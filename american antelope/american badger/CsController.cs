@@ -15,27 +15,53 @@ namespace CS.Common.StageController {
         CatI, CatII, CatE1, CatE2, CatE3, CatEd1, CatEd2, CatEd3,
         CatC1, CatC2, CatC3, CatD1, CatD2, CatD3, Mmc2, MmcXp, MsC2, MsP4, 
         QtCd1, QtCm2, QtCn6, QtAdl1, QtAdm2, QtAdm3, QtAmh2, QtAmh2a,
+        /// <summary>
+        /// 内部処理用メンバ、コントローラのタイプとしては選択不可です。
+        /// </summary>
+        Count,
+    }
+
+    public struct ControllerSpec {
+        public string ProductName;
+        public int AxesCount;
+        public ControllerSpec(string productName, int axesCount) {
+            ProductName = productName;
+            AxesCount = axesCount;
+        }
     }
 
     public class CsController : IStageController {
-        private static string[] productName
-            = new string[] { "CPC-1B", "CPC-2B", "CPC-3B", "CPC-1C", "CPC-2C", "CPC-3C", "CPC-1BT", "CPC-1CT",
-            "CPC-1CS", "CPC-2CS", "CPC-3CS", "CPC-1CH", "CPC-2CH", "CPC-3CH", "CPC-1D", "CPC-2D", "CPC-3D",
-            "CPC-1DN", "CPC-2DN", "CPC-3DN", "CAT-I", "CAT-II", "CAT-E1", "CAT-E2", "CAT-E3", "CAT-ED1", "CAT-ED2", "CAT-ED3",
-            "CAT-C1", "CAT-C2", "CAT-C3", "CAT-D1", "CAT-D2", "CAT-D3","MMC-2", "MMC-XP", "MS-C2", "MS-P4",
-            "QT-CD1/QT-CD1-35", "QT-CM2/QT-CM2-35", "QT-CN6",
-            "QT-ADL1/QT-ADL1-35", "QT-ADM2/QT-ADM2-35", "QT-ADM3/QT-ADM3-35", "QT-AMH2/QT-AMH2-35", "QT-AMH2A/QT-AMH2A-35", };
+        private static ControllerSpec[] specList;
+        private ControllerSpec spec;
 
         #region Fields
         private ICommunication port = null;
         #endregion // Fields
 
         #region Constructors
+        static CsController() {
+            specList = new ControllerSpec[(int)CsControllerType.Count];
+
+            var spstr = Properties.Resources.ControllerSpec.Split(new string[] {",", "\r\n"}, StringSplitOptions.None);
+            for ( int i = 0; i < (int)CsControllerType.Count; ++i ) {
+                if ( !String.IsNullOrEmpty(spstr[i * 2]) ) {
+                    specList[i].ProductName = spstr[i * 2];
+                    specList[i].AxesCount = int.Parse(spstr[i * 2 + 1]);
+                }
+            }
+
+            foreach ( var sp in specList ) {
+                System.Diagnostics.Debug.WriteLine("{0}:{1}", sp.ProductName, sp.AxesCount);
+            }
+        }
+
         public CsController(CsControllerType type = CsControllerType.QtAdm2, string portName = "COM1", int baudRate = 9600, int dataBits = 8,
             Ports.Parity parity = Ports.Parity.None, Ports.StopBits stopBits = Ports.StopBits.One, string delimiter = "\r\n") {
 
             if ( (type < CsControllerType.QtCd1) || !Enum.IsDefined(typeof(CsControllerType), type) ) {
                 throw new ArgumentOutOfRangeException("type", type, "未実装のコントローラです。QT-CD1以降の製品を指定してください。");
+            } else {
+                spec = specList[(int)type];
             }
 
             if ( port != null ) {
@@ -47,10 +73,14 @@ namespace CS.Common.StageController {
         }
         #endregion // Constructors
 
+        #region Properties
+        public CsControllerType ControllerType { get; private set; }
+        #endregion // Properties
+
         #region IStageController メンバー
 
         public int AxisCount {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
         }
 
         public bool IsConnect {

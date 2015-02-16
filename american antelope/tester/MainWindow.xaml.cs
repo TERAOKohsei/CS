@@ -26,7 +26,7 @@ namespace tester {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             try {
-                IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3");
+                IStageController sc = new CsController(CsControllerType.QtAdm2, "COM4");
                 sc.Dispose();
             } catch ( Exception exc ) {
                 MessageBox.Show(exc.Message);
