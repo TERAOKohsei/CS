@@ -88,7 +88,7 @@ namespace CS.Common.Communication {
 
         #region Methods
 
-        // TODO: ポートが開かれていない場合、例外を創出します。を英語に!!
+        // TODO: ポートが開かれていない場合、例外を送出します。を英語に!!
         private void ThrowException() {
             if ( port == null ) { throw new InvalidOperationException("ポートが開いていません。"); }
         }
