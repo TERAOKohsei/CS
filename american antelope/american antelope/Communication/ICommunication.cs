@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CS.Common.Communication {
-    public delegate void BufferOverflowEventHandler(object sender, BufferOverflowEventArgs e);
-
     /// <summary>
     /// 通信機能を提供する。
     /// </summary>

@@ -43,7 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communication\BufferOverflowEventArgs.cs" />
     <Compile Include="Communication\ICommunication.cs" />
     <Compile Include="Communication\SerialPort.cs" />
     <Compile Include="IUnit.cs" />
