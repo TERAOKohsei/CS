@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using CS.Common.Communication;
+using CS.Common.Communications;
 using Ports = System.IO.Ports;
 
 namespace CS.Common.StageController {
@@ -31,6 +31,15 @@ namespace CS.Common.StageController {
     }
 
     public class CsController : IStageController {
+        private struct MovingCommand {
+            public int Axis;
+            public int Pulse;
+            public MovingCommand(int axis, int pulse) {
+                Axis = axis;
+                Pulse = pulse;
+            }
+        }
+
         private static ControllerSpec[] specList;
         private ControllerSpec spec;
 
@@ -69,7 +78,7 @@ namespace CS.Common.StageController {
                 port = null;
             }
 
-            port = new CS.Common.Communication.SerialPort(portName, baudRate, dataBits, parity, stopBits, delimiter);
+            port = new CS.Common.Communications.SerialPort(portName, baudRate, dataBits, parity, stopBits, delimiter);
         }
         #endregion // Constructors
 
@@ -77,46 +86,119 @@ namespace CS.Common.StageController {
         public CsControllerType ControllerType { get; private set; }
         #endregion // Properties
 
+        #region Methods
+
+        public string GetAxisName(int axisNumber) {
+            return Convert.ToString((char)(axisNumber + 0x41));
+        }
+
+        private int[] GetParameter(int prameterNumber) {
+            port.WriteLine("P:" + prameterNumber.ToString("D2")+"R");
+            string[] r = port.ReadLine().Split(',');
+            var result = new int[r.Length];
+
+            foreach ( var s in r.Select((v, i) => new { Value = v, Index = i }) ) {
+                result[s.Index] = Int32.Parse(s.Value);
+            }
+
+            return result;
+        }
+
+        private void MoveCore(bool isAbsoluteMode, params MovingCommand[] commands) {
+            string cmdstr;
+
+            if ( isAbsoluteMode == true ) {
+                cmdstr = "AGO:";
+            } else {
+                cmdstr = "MGO:";
+            }
+
+            foreach ( var c in commands.OrderBy(elem => elem.Axis) ) {
+                cmdstr += GetAxisName(c.Axis) + c.Pulse.ToString();
+            }
+
+            port.WriteLine(cmdstr);
+            port.ReadLine();
+        }
+
+        #endregion // Methods
+
         #region IStageController メンバー
 
         public int AxisCount {
-            get { return 0; }
-        }
-
-        public bool IsConnect {
-            get { throw new NotImplementedException(); }
-        }
-
-        public void Connect() {
-            port.Open();
-        }
-
-        public void Disconnect() {
-            port.Close();
+            get { return spec.AxesCount; }
         }
 
         public void Move(int[] axes, int[] travels) {
-            throw new NotImplementedException();
+            var cs = new MovingCommand[axes.Length];
+
+            foreach ( var a in axes.Select((v, i) => new { Value = v, Index = i }) ) {
+                cs[a.Index].Axis = a.Value;
+                cs[a.Index].Pulse = travels[a.Index];
+            }
+
+            MoveCore(false, cs);
         }
 
         public void Move(params int[] travels) {
-            throw new NotImplementedException();
+            var cs = new MovingCommand[travels.Length];
+
+            foreach ( var t in travels.Select((v, i) => new { Value = v, Index = i }) ) {
+                cs[t.Index].Axis = t.Index;
+                cs[t.Index].Pulse = t.Value;
+            }
+
+            MoveCore(false, cs);
         }
 
         public void MoveTo(int[] axes, int[] positions) {
-            throw new NotImplementedException();
+            var cs = new MovingCommand[axes.Length];
+
+            foreach ( var a in axes.Select((v, i) => new { Value = v, Index = i }) ) {
+                cs[a.Index].Axis = a.Value;
+                cs[a.Index].Pulse = positions[a.Index];
+            }
+
+            MoveCore(true, cs);
         }
 
         public void MoveTo(params int[] positions) {
-            throw new NotImplementedException();
+            var cs = new MovingCommand[positions.Length];
+
+            foreach ( var p in positions.Select((v, i) => new { Value = v, Index = i }) ) {
+                cs[p.Index].Axis = p.Index;
+                cs[p.Index].Pulse = p.Value;
+            }
+
+            MoveCore(true, cs);
         }
 
         public void ReturnToOrigin() {
-            throw new NotImplementedException();
+            int[] rd = GetParameter(6);
+
+            int c = rd.Where(v => v == 1).Count();
+            int[] ra = new int[c];
+            int ix = 0;
+            for ( int i = 0; i < rd.Length; ++i ) {
+                if ( rd[i] == 1 ) {
+                    ra[ix] = i;
+                    ++ix;
+                }
+            }
+
+
+            ReturnToOrigin(ra);
         }
 
         public void ReturnToOrigin(params int[] axes) {
-            throw new NotImplementedException();
+            string cmd = "H:";
+
+            foreach ( var axis in axes.OrderBy(a => a) ) {
+                cmd += GetAxisName(axis);
+            }
+
+            port.WriteLine(cmd);
+            port.ReadLine();
         }
 
         public void Stop() {
@@ -133,11 +215,32 @@ namespace CS.Common.StageController {
 
         #endregion
 
+        #region IUnit メンバー
+
+        public bool IsConnected {
+            get { return port == null ? port.IsOpen : false; }
+        }
+
+        public void Connect() {
+            port.Open();
+            port.WriteLine("X:1");
+            port.ReadLine();
+        }
+
+        public void Disconnect() {
+            port.Close();
+        }
+
+        #endregion
+
         #region IDisposable メンバー
 
         public void Dispose() {
-            port.Close();
-            port.Dispose();
+            if ( port != null ) {
+                port.Close();
+                port.Dispose();
+                port = null;
+            }
         }
 
         #endregion

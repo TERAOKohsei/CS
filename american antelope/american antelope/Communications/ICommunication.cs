@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS.Common.Communication {
+namespace CS.Common.Communications {
     /// <summary>
     /// 通信機能を提供する。
     /// </summary>
@@ -14,8 +14,8 @@ namespace CS.Common.Communication {
         /// </summary>
         Boolean IsOpen { get; }
         /// <summary>
-        /// <see cref="CS.Common.Communication.ICommunication.ReadLine()"/>メソッドと<see cref="CS.Common.Communication.ICommunication.WriteLine(System.String)"/>メソッド、
-        /// <see cref="CS.Common.Communication.ICommunication.WriteLine(System.String, System.Object[])"/>メソッドの呼び出しの末尾を解釈する際に使用する値を
+        /// <see cref="CS.Common.Communications.ICommunication.ReadLine()"/>メソッドと<see cref="CS.Common.Communications.ICommunication.WriteLine(System.String)"/>メソッド、
+        /// <see cref="CS.Common.Communications.ICommunication.WriteLine(System.String, System.Object[])"/>メソッドの呼び出しの末尾を解釈する際に使用する値を
         /// 取得または設定する。
         /// </summary>
         String NewLine { get; set; }

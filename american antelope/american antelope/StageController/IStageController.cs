@@ -13,11 +13,8 @@ namespace CS.Common.StageController {
         DetectedReturnError = 0x20,
     }
 
-    public interface IStageController : IDisposable {
+    public interface IStageController : IUnit {
         int AxisCount { get; }
-        Boolean IsConnect { get; }
-        void Connect();
-        void Disconnect();
         void Move(int[] axes, int[] travels);
         void Move(params int[] travels);
         void MoveTo(int[] axes, int[] positions);

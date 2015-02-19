@@ -43,8 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Communication\ICommunication.cs" />
-    <Compile Include="Communication\SerialPort.cs" />
+    <Compile Include="Communications\EventArgs.cs" />
+    <Compile Include="Communications\ICommunication.cs" />
+    <Compile Include="Communications\SerialPort.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StageController\IStageController.cs" />

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using CS.Common.Communications;
 using CS.Common.StageController;
 
 namespace tester {
@@ -26,8 +27,21 @@ namespace tester {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             try {
-                IStageController sc = new CsController(CsControllerType.QtAdm2, "COM4");
-                sc.Dispose();
+                ICommunication c = new SerialPort("COM3");
+                c.Open();
+                c.WriteLine("X:1");
+                var data = c.ReadLine();
+                System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
+                System.Threading.Thread.Sleep(100);
+                c.WriteLine("MGO:A1000");
+                data = c.ReadLine();
+                System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
+                c.Close();
+                //IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3");
+                //sc.Connect();
+                //sc.ReturnToOrigin();
+                //sc.Disconnect();
+                //sc.Dispose();
             } catch ( Exception exc ) {
                 MessageBox.Show(exc.Message);
             }
