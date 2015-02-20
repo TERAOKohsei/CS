@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CS.Common.Communications;
+using System.Threading;
 using Ports = System.IO.Ports;
 
 namespace CS.Common.StageController {
@@ -45,6 +46,8 @@ namespace CS.Common.StageController {
 
         #region Fields
         private ICommunication port = null;
+        private CancellationTokenSource disposeCts = new CancellationTokenSource();
+        private int[] usableAxes = null;
         #endregion // Fields
 
         #region Constructors
@@ -88,6 +91,27 @@ namespace CS.Common.StageController {
 
         #region Methods
 
+        private string AddAxisList(string source, params int[] axes) {
+            string value = source;
+
+            foreach ( var axis in axes.OrderBy(axis => axis) ) {
+                value += GetAxisName(axis);
+            }
+
+            return value;
+        }
+
+        private string AddAxesAndParameters(string source, int[] axes, int[] args) {
+            string value = source;
+
+            int[] axisList = axes.OrderBy(axis => axis).ToArray();
+            foreach ( var axis in axisList.Select((v, i)=> new {Value = v, Index = i}) ) {
+                value += GetAxisName(axis.Value) + args[axis.Index].ToString();
+            }
+
+            return value;
+        }
+
         public string GetAxisName(int axisNumber) {
             return Convert.ToString((char)(axisNumber + 0x41));
         }
@@ -124,6 +148,52 @@ namespace CS.Common.StageController {
         #endregion // Methods
 
         #region IStageController メンバー
+
+
+        public int[] Positions {
+            get { throw new NotImplementedException(); }
+        }
+
+        public StageStates[] States {
+            get {
+                var p = Enumerable.Repeat<int>(2, usableAxes.Count()).ToArray();
+                port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
+
+                var r = new StageStates[usableAxes.Count()];
+                foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new {Value = v, Index = i}) ) {
+                    r[line.Index] = GetStateByCharacter(line.Value);
+                }
+
+                return r;
+            }
+        }
+
+        public int GetPosition(int axis) {
+            port.WriteLine("Q:{0}1", GetAxisName(axis));
+            return int.Parse(port.ReadLine());
+        }
+
+        public StageStates GetState(int axis) {
+            port.WriteLine("Q:{0}2", GetAxisName(axis));
+            return GetStateByCharacter(port.ReadLine());
+        }
+
+        private StageStates GetStateByCharacter(string character) {
+            switch ( character ) {
+            case "D":
+                return StageStates.Running;
+            case "K":
+                return StageStates.Stopped;
+            case "E":
+                return StageStates.Stopped | StageStates.DetectedEmergencyError;
+            case "H":
+                return StageStates.Stopped | StageStates.DetectedReturnError;
+            case "L":
+                return StageStates.Stopped | StageStates.DetectedLimit;
+            default:
+                return StageStates.UnknownState;
+            }
+        }
 
         public int AxisCount {
             get { return spec.AxesCount; }
@@ -174,43 +244,46 @@ namespace CS.Common.StageController {
         }
 
         public void ReturnToOrigin() {
-            int[] rd = GetParameter(6);
-
-            int c = rd.Where(v => v == 1).Count();
-            int[] ra = new int[c];
-            int ix = 0;
-            for ( int i = 0; i < rd.Length; ++i ) {
-                if ( rd[i] == 1 ) {
-                    ra[ix] = i;
-                    ++ix;
-                }
-            }
-
-
-            ReturnToOrigin(ra);
+            ReturnToOrigin(usableAxes);
         }
 
         public void ReturnToOrigin(params int[] axes) {
             string cmd = "H:";
 
-            foreach ( var axis in axes.OrderBy(a => a) ) {
-                cmd += GetAxisName(axis);
-            }
+            cmd = AddAxisList(cmd, axes);
 
             port.WriteLine(cmd);
             port.ReadLine();
         }
 
         public void Stop() {
-            throw new NotImplementedException();
+            port.WriteLine("L:");
+            port.ReadLine();
         }
 
         public void Stop(params int[] axes) {
-            throw new NotImplementedException();
+            string cmd = "L:";
+
+            cmd = AddAxisList(cmd, axes);
+
+            port.WriteLine(cmd);
+            port.ReadLine();
         }
 
         public void Wait(StageStates state = StageStates.Stopped, int waitTime = -1) {
-            throw new NotImplementedException();
+            bool detectedState = false;
+
+            while ( !detectedState ) {
+                detectedState = true;
+                StageStates[] ss = States;
+
+                foreach ( var s in ss ) {
+                    if ( (s & state) != state ) {
+                        detectedState = false;
+                        break;
+                    }
+                }
+            }
         }
 
         #endregion
@@ -225,10 +298,22 @@ namespace CS.Common.StageController {
             port.Open();
             port.WriteLine("X:1");
             port.ReadLine();
+            int[] rd = GetParameter(6);
+
+            int c = rd.Where(v => v == 1).Count();
+            usableAxes = new int[c];
+            int id = 0;
+            for ( int i = 0; i < rd.Length; ++i ) {
+                if ( rd[i] == 1 ) {
+                    usableAxes[id] = i;
+                    ++id;
+                }
+            }
         }
 
         public void Disconnect() {
             port.Close();
+            usableAxes = null;
         }
 
         #endregion

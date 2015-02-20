@@ -7,14 +7,20 @@ using System.Threading.Tasks;
 namespace CS.Common.StageController {
     [Flags()]
     public enum StageStates : uint {
-        Stopped = 0x0,
-        Running = 0x1,
+        Stopped = 0x1,
+        Running = 0x2,
         DetectedLimit = 0x10,
-        DetectedReturnError = 0x20,
+        DetectedReturnError = 0x100,
+        DetectedEmergencyError = 0x200,
+        UnknownState = 0xffff,
     }
 
     public interface IStageController : IUnit {
         int AxisCount { get; }
+        int[] Positions { get; }
+        StageStates[] States { get; }
+        int GetPosition(int axis);
+        StageStates GetState(int axis);
         void Move(int[] axes, int[] travels);
         void Move(params int[] travels);
         void MoveTo(int[] axes, int[] positions);

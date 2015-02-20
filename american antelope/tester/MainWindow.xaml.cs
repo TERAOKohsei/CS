@@ -27,23 +27,28 @@ namespace tester {
 
         private void Window_Loaded(object sender, RoutedEventArgs e) {
             try {
-                ICommunication c = new SerialPort("COM3");
-                c.Open();
-                c.WriteLine("X:1");
-                var data = c.ReadLine();
-                System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
-                System.Threading.Thread.Sleep(100);
-                c.WriteLine("MGO:A1000");
-                data = c.ReadLine();
-                System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
-                c.Close();
-                //IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3");
-                //sc.Connect();
-                //sc.ReturnToOrigin();
-                //sc.Disconnect();
-                //sc.Dispose();
+                //ICommunication c = new SerialPort("COM3");
+                //c.Open();
+                //c.WriteLine("X:1");
+                //var data = c.ReadLine();
+                //System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
+                //System.Threading.Thread.Sleep(100);
+                //c.WriteLine("MGO:A1000");
+                //data = c.ReadLine();
+                //System.Diagnostics.Debug.WriteLine(String.Format("aaa{0}aaa", data));
+                //c.Close();
+                IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3");
+                sc.Connect();
+                sc.ReturnToOrigin();
+                //System.Threading.Thread.Sleep(1000);
+                //sc.Stop();
+                sc.Wait();
+                System.Diagnostics.Debug.WriteLine(((int)sc.GetState(0)).ToString());
+                System.Threading.Thread.Sleep(1000);
+                sc.Disconnect();
+                sc.Dispose();
             } catch ( Exception exc ) {
-                MessageBox.Show(exc.Message);
+                // MessageBox.Show(exc.Message);
             }
         }
     }

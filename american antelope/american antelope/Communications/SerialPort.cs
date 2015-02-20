@@ -112,7 +112,7 @@ namespace CS.Common.Communications {
 
         public void Open() {
             if ( mainTask == null ) {
-                cts = new CancellationTokenSource(1000);
+                cts = new CancellationTokenSource();
                 mainTask = new Task(() => {
                     Ports.SerialPort port;
                     try {
@@ -135,12 +135,12 @@ namespace CS.Common.Communications {
                     Debug.WriteLine(String.Format("Enter loop for serial communication in {0}", mainTask.Id));
                     while ( !cts.IsCancellationRequested ) {
                         try {
-                            loopReset.Reset();
                             loopReset.Wait(cts.Token);
-                            if ( 0 < outbuffer.Count() ) {
+                            loopReset.Reset();
+                            while ( 0 < outbuffer.Count() ) {
                                 var command = outbuffer.Dequeue();
                                 port.Write(command);
-                                Debug.WriteLine("Write `{0}' to serial port {1}", command, port.PortName);
+                                Debug.WriteLine("Write `{0}' to serial port {1} - buffer {2}", command, port.PortName, outbuffer.Count());
                             }
                             while ( 0 < port.BytesToRead ) {
                                 char rc = (char)port.ReadByte();
