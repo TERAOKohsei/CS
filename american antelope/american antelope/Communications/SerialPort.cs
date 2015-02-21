@@ -31,7 +31,7 @@ namespace CS.Common.Communications {
         AutoResetEvent receivedEvent = new AutoResetEvent(false);
         #endregion // Fields
 
-        #region Constructors
+        #region Constructors/Destructor
 
         public SerialPort(string portName = "COM1", int baudRate = 9600, int dataBits = 8, Ports.Parity parity = Ports.Parity.None, Ports.StopBits stopBits = Ports.StopBits.One,
             string newLine = "\r\n") {
@@ -42,6 +42,10 @@ namespace CS.Common.Communications {
             parityValue = parity;
             stopBitsValue = stopBits;
             newLineValue = newLine;
+        }
+
+        ~SerialPort() {
+            Dispose(false);
         }
 
         #endregion //Constructors
@@ -94,6 +98,55 @@ namespace CS.Common.Communications {
 
         #region Methods
 
+        private void Maintask() {
+            Ports.SerialPort port = null;
+            try {
+                port = new Ports.SerialPort(portNameValue, baudRateValue, parityValue, dataBitsValue, stopBitsValue);
+                port.ReadTimeout = readTimeout;
+                port.WriteTimeout = writeTimeout;
+                port.DataReceived += (sender, e) => { loopReset.Set(); };
+                port.Open();
+                loopReset.Reset();
+                inbuffer.Clear();
+                outbuffer.Clear();
+                linebuffer = "";
+                Debug.WriteLine(String.Format("Enter loop for serial communication in {0}", mainTask.Id));
+                while ( !cts.IsCancellationRequested ) {
+                    loopReset.Wait(cts.Token);
+                    loopReset.Reset();
+                    while ( 0 < outbuffer.Count() ) {
+                        var command = outbuffer.Dequeue();
+                        port.Write(command);
+                        Debug.WriteLine("Write `{0}' to {1} - buffer {2}", command, port.PortName, outbuffer.Count());
+                    }
+                    while ( 0 < port.BytesToRead ) {
+                        char rc = (char)port.ReadByte();
+                        linebuffer += rc;
+                        Debug.WriteLine("Read `{0}' from {1}", rc, port.PortName);
+                        if ( ReceivedCharaceter != null ) {
+                            ReceivedCharaceter(this, new ReceivedCharacterEventArgs(rc));
+                        }
+                        if ( linebuffer.Contains(newLineValue) ) {
+                            string data = linebuffer.Replace(newLineValue, "");
+                            inbuffer.Enqueue(data);
+                            linebuffer = "";
+                            Debug.WriteLine("Readline `{0}' to index{1} from {2}", data, inbuffer.Count, port.PortName);
+                            if ( ReceivedLine != null ) {
+                                ReceivedLine(this, new ReceivedLineEventArgs(data));
+                            }
+                        }
+                    }
+                }
+                port.Close();
+            } catch ( OperationCanceledException ) {
+                // 何もしない。                        
+            } catch ( Exception e ) {
+                innerException = e;
+                Debug.WriteLine(e.Message, e.GetType().ToString());
+                return;
+            }
+        }
+
         #endregion // Methods
 
         #region ICommunication メンバー
@@ -113,63 +166,12 @@ namespace CS.Common.Communications {
         public void Open() {
             if ( mainTask == null ) {
                 cts = new CancellationTokenSource();
-                mainTask = new Task(() => {
-                    Ports.SerialPort port;
-                    try {
-                        port = new Ports.SerialPort(portNameValue, baudRateValue, parityValue, dataBitsValue, stopBitsValue);
-                        port.ReadTimeout = readTimeout;
-                        port.WriteTimeout = writeTimeout;
-                        port.DataReceived += (sender, e) => {
-                            loopReset.Set();
-                        };
-                        port.Open();
-                    } catch ( Exception e ) {
-                        innerException = e;
-                        Debug.WriteLine(e.Message, e.GetType().ToString());
-                        return;
-                    }
-                    loopReset.Reset();
-                    inbuffer.Clear();
-                    outbuffer.Clear();
-                    linebuffer = "";
-                    Debug.WriteLine(String.Format("Enter loop for serial communication in {0}", mainTask.Id));
-                    while ( !cts.IsCancellationRequested ) {
-                        try {
-                            loopReset.Wait(cts.Token);
-                            loopReset.Reset();
-                            while ( 0 < outbuffer.Count() ) {
-                                var command = outbuffer.Dequeue();
-                                port.Write(command);
-                                Debug.WriteLine("Write `{0}' to serial port {1} - buffer {2}", command, port.PortName, outbuffer.Count());
-                            }
-                            while ( 0 < port.BytesToRead ) {
-                                char rc = (char)port.ReadByte();
-                                linebuffer += rc;
-                                Debug.WriteLine("Read `{0}' from {1}", rc, port.PortName);
-                                if ( ReceivedCharaceter != null ) {
-                                    ReceivedCharaceter(this, new ReceivedCharacterEventArgs(rc));
-                                }
-                                if ( linebuffer.Contains(newLineValue) ) {
-                                    string data = linebuffer.Replace(newLineValue, "");
-                                    inbuffer.Enqueue(data);
-                                    linebuffer = "";
-                                    Debug.WriteLine("Readline `{0}' to index{2} from {1}", data, port.PortName, inbuffer.Count);
-                                    if ( ReceivedLine != null ) {
-                                        ReceivedLine(this, new ReceivedLineEventArgs(data));
-                                    }
-                                }
-                            }
-                        } catch ( OperationCanceledException ) {
-                            break;
-                        }
-                    }
-                    Debug.WriteLine(String.Format("Leave loop for serial communication in {0}", mainTask.Id));
-                    port.Close();
-                    port.Dispose();
-                }, cts.Token);
+                mainTask = new Task(new Action(Maintask), cts.Token);
                 mainTask.Start();
                 Thread.Sleep(100);
                 if ( mainTask.IsCompleted ) {
+                    mainTask.Dispose();
+                    mainTask = null;
                     throw innerException;
                 }
             }
@@ -232,8 +234,17 @@ namespace CS.Common.Communications {
         #region IDisposable メンバー
 
         public void Dispose() {
-            if ( IsOpen ) {
-                Close();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if ( disposing ) {
+                if ( IsOpen ) {
+                    Close();
+                }
+                receivedEvent.Dispose();
+                loopReset.Dispose();
             }
         }
 

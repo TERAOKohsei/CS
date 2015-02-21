@@ -50,7 +50,7 @@ namespace CS.Common.StageController {
         private int[] usableAxes = null;
         #endregion // Fields
 
-        #region Constructors
+        #region Constructors/Destructors
         static CsController() {
             specList = new ControllerSpec[(int)CsControllerType.Count];
 
@@ -82,6 +82,10 @@ namespace CS.Common.StageController {
             }
 
             port = new CS.Common.Communications.SerialPort(portName, baudRate, dataBits, parity, stopBits, delimiter);
+        }
+
+        ~CsController() {
+            Dispose(false);
         }
         #endregion // Constructors
 
@@ -151,7 +155,17 @@ namespace CS.Common.StageController {
 
 
         public int[] Positions {
-            get { throw new NotImplementedException(); }
+            get {
+                var p = Enumerable.Repeat<int>(1, usableAxes.Count()).ToArray();
+                port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
+
+                var r = new int[usableAxes.Count()];
+                foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new { Value = v, Index = i }) ) {
+                    r[line.Index] = Int32.Parse(line.Value);
+                }
+
+                return r;
+            }
         }
 
         public StageStates[] States {
@@ -321,10 +335,18 @@ namespace CS.Common.StageController {
         #region IDisposable メンバー
 
         public void Dispose() {
-            if ( port != null ) {
-                port.Close();
-                port.Dispose();
-                port = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if ( disposing ) {
+                if ( port != null ) {
+                    port.Close();
+                    port.Dispose();
+                    port = null;
+                }
+                disposeCts.Dispose();
             }
         }
 
