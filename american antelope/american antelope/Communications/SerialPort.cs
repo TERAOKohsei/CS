@@ -137,9 +137,13 @@ namespace CS.Common.Communications {
                         }
                     }
                 }
-                port.Close();
-            } catch ( OperationCanceledException ) {
-                // 何もしない。                        
+                port.Dispose();
+            } catch ( InvalidCastException ioe ) {
+                return;
+            } catch ( ObjectDisposedException oe ) {
+                return;
+            } catch ( OperationCanceledException eee ) {
+                return;
             } catch ( Exception e ) {
                 innerException = e;
                 Debug.WriteLine(e.Message, e.GetType().ToString());
@@ -178,14 +182,6 @@ namespace CS.Common.Communications {
         }
 
         public void Close() {
-            if ( mainTask != null ) {
-                cts.Cancel();
-                mainTask.Wait(cts.Token);
-                mainTask.Dispose();
-                mainTask = null;
-                cts.Dispose();
-                cts = null;
-            }
         }
 
         public int Read() {
@@ -239,9 +235,14 @@ namespace CS.Common.Communications {
         }
 
         protected virtual void Dispose(bool disposing) {
-            if ( disposing ) {
-                if ( IsOpen ) {
-                    Close();
+            if ( disposing && mainTask != null && IsOpen ) {
+                if ( mainTask != null ) {
+                    cts.Cancel();
+                    mainTask.Wait(cts.Token);
+                    mainTask.Dispose();
+                    mainTask = null;
+                    cts.Dispose();
+                    cts = null;
                 }
                 receivedEvent.Dispose();
                 loopReset.Dispose();

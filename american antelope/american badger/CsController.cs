@@ -325,11 +325,6 @@ namespace CS.Common.StageController {
             }
         }
 
-        public void Disconnect() {
-            port.Close();
-            usableAxes = null;
-        }
-
         #endregion
 
         #region IDisposable メンバー
@@ -340,12 +335,9 @@ namespace CS.Common.StageController {
         }
 
         protected virtual void Dispose(bool disposing) {
-            if ( disposing ) {
-                if ( port != null ) {
-                    port.Close();
-                    port.Dispose();
-                    port = null;
-                }
+            if ( disposing && port != null && port.IsOpen ) {
+                port.Dispose();
+                port = null;
                 disposeCts.Dispose();
             }
         }

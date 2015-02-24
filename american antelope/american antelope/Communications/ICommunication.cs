@@ -20,7 +20,6 @@ namespace CS.Common.Communications {
         /// </summary>
         String NewLine { get; set; }
         void Open();
-        void Close();
         Int32 Read();
         String ReadLine();
         void Write(String value);

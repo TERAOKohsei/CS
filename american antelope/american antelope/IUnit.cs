@@ -17,9 +17,5 @@ namespace CS.Common {
         /// 装置と接続する。
         /// </summary>
         void Connect();
-        /// <summary>
-        /// 装置との接続を解除する。
-        /// </summary>
-        void Disconnect();
     }
 }
