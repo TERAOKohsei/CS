@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using CS.Common.Communications;
+using CS.Common.MeasuringUnits;
 using CS.Common.StageController;
 
 namespace tester {
@@ -25,21 +26,24 @@ namespace tester {
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e) {
-            try {
-                using ( IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3") ) {
-                    sc.Connect();
-                    sc.ReturnToOrigin();
-                    sc.Wait();
-                    System.Diagnostics.Debug.WriteLine(((int)sc.GetState(0)).ToString());
-                    System.Threading.Thread.Sleep(1000);
-                    sc.Dispose();
-                }
-            } catch ( OperationCanceledException ) {
-                // do nothing.
-            } catch ( Exception exc ) {
-                MessageBox.Show(exc.Message);
-            }
+        private void buttonStart_Click(object sender, RoutedEventArgs e) {
+            IMeasuringUnit dmu = new Ev();
+            Action Measure = new Action(() => {
+                dmu.Measure();
+                dmu.GetValues();
+            });
+
+            buttonStart.IsEnabled = false;
+            Task.Run(() => {
+                System.Threading.Thread.Sleep(10000);
+                Measure();
+                this.Dispatcher.BeginInvoke(new Action(() => {
+                    buttonStop.IsEnabled = false;
+                    buttonStart.IsEnabled = true;
+                }));
+            });
+            buttonStop.IsEnabled = true;
         }
+
     }
 }

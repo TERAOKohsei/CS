@@ -138,12 +138,6 @@ namespace CS.Common.Communications {
                     }
                 }
                 port.Dispose();
-            } catch ( InvalidCastException ioe ) {
-                return;
-            } catch ( ObjectDisposedException oe ) {
-                return;
-            } catch ( OperationCanceledException eee ) {
-                return;
             } catch ( Exception e ) {
                 innerException = e;
                 Debug.WriteLine(e.Message, e.GetType().ToString());
