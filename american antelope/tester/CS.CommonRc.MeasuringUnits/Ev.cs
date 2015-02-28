@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS.Common.MeasuringUnits {
+namespace CS.CommonRc.MeasuringUnits {
     class Ev : IMeasuringUnit {
         #region IMeasuringUnit メンバー
 

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CS.Common.MeasuringUnits {
+using CS.Common;
+
+namespace CS.CommonRc.MeasuringUnits {
     interface IMeasuringUnit : IUnit {
         void Measure();
         double[] GetValues();

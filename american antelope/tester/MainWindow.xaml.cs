@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using CS.Common.Communications;
-using CS.Common.MeasuringUnits;
+using CS.CommonRc.MeasuringUnits;
 using CS.Common.StageController;
 
 namespace tester {
