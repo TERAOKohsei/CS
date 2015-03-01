@@ -27,15 +27,15 @@ namespace tester {
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e) {
-            IMeasuringUnit dmu = new Ev();
+            IMeasuringUnit dmu = new Ev(new Sensor(SensorType.Displacement, "QAAS", "mm", 0.0005), new Sensor(SensorType.Displacement, "AAAS", "m", 1));
             Action Measure = new Action(() => {
-                dmu.Measure();
-                dmu.GetValues();
+                foreach ( var sensor in dmu.Sensors.Select((v, i) => new { Value = v, Index = i }) ) {
+                    System.Diagnostics.Debug.WriteLine("{0}:{1},{2}{3}", sensor.Index, sensor.Value.Name, sensor.Value.Resolution, sensor.Value.UnitName);
+                }
             });
 
             buttonStart.IsEnabled = false;
             Task.Run(() => {
-                System.Threading.Thread.Sleep(10000);
                 Measure();
                 this.Dispatcher.BeginInvoke(new Action(() => {
                     buttonStop.IsEnabled = false;

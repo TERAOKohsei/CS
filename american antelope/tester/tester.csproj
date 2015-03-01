@@ -64,6 +64,8 @@
     </Compile>
     <Compile Include="CS.CommonRc.MeasuringUnits\Ev.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\IMeasuringUnit.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\LacS.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\Sensor.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace CS.CommonRc.MeasuringUnits {
     class Ev : IMeasuringUnit {
-
         #region コンストラクタ/デストラクタ
-        private Ev() : this(null) {
-        }
+        /// <summary>
+        /// 初期化時に使用するセンサを指定する。
+        /// </summary>
+        /// <param name="sensors"></param>
+        public Ev(params Sensor[] sensors) {
+            if ( 0 <sensors.Where(sensor => sensor.Type != SensorType.Displacement).Count() ) {
+                throw new ArgumentException("クラスEvに割り当て可能なSensorTypeはSensorType.Displacementのみです。");
+            }
 
-        public Ev(params string[] sensorNames) {
-            sensorNames = new string[displacementCountValue];
-            displacementCountValue = sensorNames.Length;
-            foreach ( var name in sensorNames.Select((v, i) => new { Value = v, Index = i }) ) {
-                sensorNames[name.Index] = name.Value;
+            sensorsValue = new Sensor[sensors.Length];
+            displacementCountValue = sensors.Where(sensor => sensor.Type == SensorType.Displacement).Count();
+            
+            foreach ( var s in sensors.Select((v, i) => new { Value = v, Index = i }) ) {
+                sensorsValue[s.Index] = s.Value;                
             }
         }
         
@@ -28,21 +33,15 @@ namespace CS.CommonRc.MeasuringUnits {
 
         public int AngularCount { get { return 0; } }
 
-        int displacementCountValue;
+        int displacementCountValue = 0;
         public int DisplacementCount { get { return displacementCountValue; } }
 
         public int HumidityCount { get { return 0; } }
 
         public int TemperatureCount { get { return 0; } }
 
-        public string[] GetAngularNames() { return null; }
-
-        string[] sensorNames;
-        public string[] GetDisplacementNames() { return sensorNames; }
-
-        public string[] GetHumidityNames() { return null; }
-
-        public string[] GetTemperatureNames() { return null; }
+        Sensor[] sensorsValue = null;
+        public Sensor[] Sensors { get { return (Sensor[])sensorsValue.Clone(); } }
 
         public void Measure() {
             throw new NotImplementedException();
@@ -62,9 +61,7 @@ namespace CS.CommonRc.MeasuringUnits {
 
         public double[] GetTemperatures() { return null; }
 
-        public void SetMeasurementItems(int displacementCount = 0, int angularCount = 0, int temeratureCount = 0, int humidityCount = 0) {
-            throw new NotImplementedException();
-        }
+        public SensorType[] GetSensors() { return null; }
 
         #endregion
 
@@ -88,6 +85,7 @@ namespace CS.CommonRc.MeasuringUnits {
         }
 
         protected virtual void Dispose(bool disposing) {
+            // TODO: リソース解放コード
         }
 
         #endregion
