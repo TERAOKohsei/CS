@@ -116,7 +116,9 @@ namespace CS.Common.Communications {
                     loopReset.Reset();
                     while ( 0 < outbuffer.Count() ) {
                         var command = outbuffer.Dequeue();
+#if !WITHOUT_UNITS
                         port.Write(command);
+#endif
                         Debug.WriteLine("Write `{0}' to {1} - buffer {2}", command, port.PortName, outbuffer.Count());
                     }
                     while ( 0 < port.BytesToRead ) {

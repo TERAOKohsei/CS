@@ -8,7 +8,8 @@ using CS.Common;
 
 namespace CS.CommonRc.MeasuringUnits {
     public interface IMeasuringUnit : IUnit {
-        Sensor[] Sensors { get; }
+        string ProductName { get; }
+        Sensor<double>[] Sensors { get; }
         void Measure();
         double[] GetValues();
         double[] GetAngulars();

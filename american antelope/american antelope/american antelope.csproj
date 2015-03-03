@@ -17,7 +17,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WITHOUT_UNITS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>
@@ -48,7 +48,7 @@
     <Compile Include="Communications\SerialPort.cs" />
     <Compile Include="IUnit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StageController\IStageController.cs" />
+    <Compile Include="StageControllers\IStageController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MeasuringUnits\" />

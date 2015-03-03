@@ -61,7 +61,7 @@ namespace CS.Common.StageController.Properties {
         }
         
         /// <summary>
-        ///   ProductName,AxesCount
+        ///   ProductName,AxisCount
         ///CPC-1B,1
         ///CPC-2B,2
         ///CPC-3B,3

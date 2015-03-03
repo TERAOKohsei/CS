@@ -12,7 +12,9 @@ namespace CS.CommonRc.MeasuringUnits {
         #endregion // Constructors/Destructors
         #region IMeasuringUnit メンバー
 
-        public Sensor[] Sensors {
+        public string ProductName { get { return "LAC-S"; } }
+
+        public Sensor<double>[] Sensors {
             get { throw new NotImplementedException(); }
         }
 

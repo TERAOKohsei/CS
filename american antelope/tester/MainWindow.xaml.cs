@@ -13,25 +13,42 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using CS.CommonRc;
 using CS.Common.Communications;
 using CS.CommonRc.MeasuringUnits;
+using CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages;
 using CS.Common.StageController;
 
-namespace tester {
+using MCounter = CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages.Counter;
+
+namespace CS.Applications.tester {
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-    public partial class MainWindow : Window {
+    public partial class MainWindow : Window, IDisposable {
+        private IMeasuringUnit counter;
+        private MCounter ev;
+        private MCounter eh101p;
+
         public MainWindow() {
             InitializeComponent();
+            ev = new MCounter(CounterType.Ev, new SerialPortSettings("COM3"),
+                new Sensor<double>(SensorType.Displacement, "MCH-335 <ASH-017B>", "mm", 1.5, -1.5, 0, 0.001),
+                new Sensor<double>(SensorType.Displacement, "MCH-335 <ASH-017A>", "mm", 1.5, -1.5, 0, 0.001));
+            eh101p = new MCounter(CounterType.Eh101p, new SerialPortSettings("COM3"),
+                new Sensor<double>(SensorType.Displacement, "LG-01100C <ASH-004R>", "mm", 100, 0, 0, 0.001));
+            counter = ev;
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e) {
-            IMeasuringUnit dmu = new Ev(new Sensor(SensorType.Displacement, "QAAS", "mm", 0.0005), new Sensor(SensorType.Displacement, "AAAS", "m", 1));
             Action Measure = new Action(() => {
-                foreach ( var sensor in dmu.Sensors.Select((v, i) => new { Value = v, Index = i }) ) {
-                    System.Diagnostics.Debug.WriteLine("{0}:{1},{2}{3}", sensor.Index, sensor.Value.Name, sensor.Value.Resolution, sensor.Value.UnitName);
-                }
+                counter.Measure();
+                this.Dispatcher.BeginInvoke(new Action(()=>{
+                    textBoxCount.Text = counter.ProductName;
+                    foreach ( var d in counter.GetDisplacements() ) {
+                        textBoxCount.Text += String.Format(",{0}", d);
+                    }
+                }));
             });
 
             buttonStart.IsEnabled = false;
@@ -45,5 +62,36 @@ namespace tester {
             buttonStop.IsEnabled = true;
         }
 
+        private void RadioButton_Checked(object sender, RoutedEventArgs e) {
+            if ( radioButtonEv.Equals(sender) ) {
+                counter = ev;
+            } else if ( radioButtonEh101p.Equals(sender) ) {
+                counter = eh101p;
+            }
+        }
+
+        #region IDisposable members
+        
+        ~MainWindow() {
+          Dispose(false);
+        }
+
+        public void Dispose() {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing) {
+            if ( disposing ) {
+                ev.Dispose();
+                eh101p.Dispose();
+            }
+        }
+
+        #endregion // IDisposable members
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e) {
+            Dispose(true);
+        }
     }
 }

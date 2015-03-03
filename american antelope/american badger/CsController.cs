@@ -24,10 +24,10 @@ namespace CS.Common.StageController {
 
     public struct ControllerSpec {
         public string ProductName;
-        public int AxesCount;
-        public ControllerSpec(string productName, int axesCount) {
+        public int AxisCount;
+        public ControllerSpec(string productName, int axisCount) {
             ProductName = productName;
-            AxesCount = axesCount;
+            AxisCount = axisCount;
         }
     }
 
@@ -58,12 +58,12 @@ namespace CS.Common.StageController {
             for ( int i = 0; i < (int)CsControllerType.Count; ++i ) {
                 if ( !String.IsNullOrEmpty(spstr[i * 2]) ) {
                     specList[i].ProductName = spstr[i * 2];
-                    specList[i].AxesCount = int.Parse(spstr[i * 2 + 1]);
+                    specList[i].AxisCount = int.Parse(spstr[i * 2 + 1]);
                 }
             }
 
             foreach ( var sp in specList ) {
-                System.Diagnostics.Debug.WriteLine("{0}:{1}", sp.ProductName, sp.AxesCount);
+                System.Diagnostics.Debug.WriteLine("{0}:{1}", sp.ProductName, sp.AxisCount);
             }
         }
 
@@ -76,16 +76,7 @@ namespace CS.Common.StageController {
                 spec = specList[(int)type];
             }
 
-            if ( port != null ) {
-                port.Dispose();
-                port = null;
-            }
-
             port = new CS.Common.Communications.SerialPort(portName, baudRate, dataBits, parity, stopBits, delimiter);
-        }
-
-        ~CsController() {
-            Dispose(false);
         }
         #endregion // Constructors
 
@@ -210,7 +201,7 @@ namespace CS.Common.StageController {
         }
 
         public int AxisCount {
-            get { return spec.AxesCount; }
+            get { return spec.AxisCount; }
         }
 
         public void Move(int[] axes, int[] travels) {
@@ -328,6 +319,10 @@ namespace CS.Common.StageController {
         #endregion
 
         #region IDisposable メンバー
+
+        ~CsController() {
+            Dispose(false);
+        }
 
         public void Dispose() {
             Dispose(true);

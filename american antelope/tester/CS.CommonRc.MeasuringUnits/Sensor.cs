@@ -13,27 +13,19 @@ namespace CS.CommonRc.MeasuringUnits {
         UnknownType = -1,
     }
 
-    public struct Sensor {
+    public struct Sensor<T> where T:IComparable<T> {
         public SensorType Type { get; private set; }
         public string Name { get; private set; }
         public string UnitName { get; private set; }
-        public double Resolution { get; private set; }
-        public double Offset { get; private set; }
+        public Range<T> Range { get; private set; }
+        public T Resolution { get; private set; }
 
-        public Sensor(SensorType type, string name = "", string unitName = "", double resolution = 1.0, double offset = 0.0) : this() {
+        public Sensor(SensorType type, string name = "", string unitName = "", T upper = default(T), T lower = default(T), T offset = default(T), T resolution = default(T) ) : this() {
             Type = type;
             Name = name;
             UnitName = unitName;
+            Range = new Range<T>(upper, lower, offset);
             Resolution = resolution;
-            Offset = offset;
-        }
-
-        public double ToRealValue(double rowValue) {
-            return rowValue * Resolution + Offset;
-        }
-
-        public double ToRowValue(double realValue) {
-            return (realValue - Offset) / Resolution;
         }
     }
 }
