@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using System.Diagnostics;
 using Ports = System.IO.Ports;
+using System.Management;
 using System.Threading;
 
 namespace CS.Common.Communications {
@@ -98,6 +99,26 @@ namespace CS.Common.Communications {
 
         #region Methods
 
+        public static string[] GetDeviceNames() {
+            var portTable = new List<string>();
+            var mcW32SerialPort = new ManagementClass("Win32_PnPEntity");
+            var check = new System.Text.RegularExpressions.Regex("(COM[1-9][0-9]?[0-9]?)");
+
+            foreach ( var port in mcW32SerialPort.GetInstances() ) {
+                var namePropertyValue = port.GetPropertyValue("Name");
+                if ( namePropertyValue == null ) {
+                    continue;
+                }
+
+                var name = namePropertyValue.ToString();
+                if ( check.IsMatch(name) ) {
+                    portTable.Add(name);
+                }
+            }
+
+            return portTable.ToArray();
+        }
+
         private void Maintask() {
             Ports.SerialPort port = null;
             try {
@@ -116,9 +137,7 @@ namespace CS.Common.Communications {
                     loopReset.Reset();
                     while ( 0 < outbuffer.Count() ) {
                         var command = outbuffer.Dequeue();
-#if !WITHOUT_UNITS
                         port.Write(command);
-#endif
                         Debug.WriteLine("Write `{0}' to {1} - buffer {2}", command, port.PortName, outbuffer.Count());
                     }
                     while ( 0 < port.BytesToRead ) {
@@ -168,7 +187,7 @@ namespace CS.Common.Communications {
                 cts = new CancellationTokenSource();
                 mainTask = new Task(new Action(Maintask), cts.Token);
                 mainTask.Start();
-                Thread.Sleep(100);
+                Thread.Sleep(500);
                 if ( mainTask.IsCompleted ) {
                     mainTask.Dispose();
                     mainTask = null;
@@ -234,8 +253,12 @@ namespace CS.Common.Communications {
             if ( disposing && mainTask != null && IsOpen ) {
                 if ( mainTask != null ) {
                     cts.Cancel();
-                    mainTask.Wait(cts.Token);
-                    mainTask.Dispose();
+                    try {
+                        mainTask.Wait(cts.Token);
+                        mainTask.Dispose();
+                    } catch ( OperationCanceledException ) {
+                        // 操作がキャンセルされたときは何もしない。
+                    }
                     mainTask = null;
                     cts.Dispose();
                     cts = null;

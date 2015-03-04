@@ -37,7 +37,7 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         /// <summary>
         /// 初期化時に使用するセンサを指定する。
         /// </summary>
-        /// <param name="sensors"></param>
+        /// <param namePropertyValue="sensors"></param>
         public Counter(CounterType type, SerialPortSettings portSettings, params Sensor<double>[] sensors) {
             switch ( type ) {
             case CounterType.Ev:
@@ -83,16 +83,12 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         private void GetDisplacementToBuffer(int channel) {
             string cmd = String.Format("GA{0:D2}", channel);
             port.WriteLine(cmd);
-#if !WITHOUT_UNITS
-            string data = "GN01,+01234.567"; // port.ReadLine();
+            string data = port.ReadLine();
             if ( String.Compare(data, 0, "GN", 0, 2) != 0 ) {
                 throw new InvalidOperationException("想定外の返答がミツトヨカウンタから帰ってきました。");
             } else {
                 currentDisplacement[channel] = double.Parse(data.Split(',')[1]);
             }
-#else
-            currentDisplacement[channel] = channel;
-#endif
         }
 
         #endregion // Methods

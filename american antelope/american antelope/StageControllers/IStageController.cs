@@ -30,10 +30,10 @@ namespace CS.Common.StageController {
         void Stop();
         void Stop(params int[] axes);
         /// <summary>
-        /// <paramref name="state"/>になるか、<paramref name="waitTime"/>[ms]経過するまで待機する。
+        /// <paramref namePropertyValue="state"/>になるか、<paramref namePropertyValue="waitTime"/>[ms]経過するまで待機する。
         /// </summary>
-        /// <param name="state">このパラメータで指定した状態になるまで待つ。</param>
-        /// <param name="waitTime"><see cref="Wait(StageStates, int)"/>メソッドの最大待ち時間[ms]。0より小さい場合、<paramref name="state"/>の状態になるまで待機する。</param>
+        /// <param namePropertyValue="state">このパラメータで指定した状態になるまで待つ。</param>
+        /// <param namePropertyValue="waitTime"><see cref="Wait(StageStates, int)"/>メソッドの最大待ち時間[ms]。0より小さい場合、<paramref namePropertyValue="state"/>の状態になるまで待機する。</param>
         /// <exception cref="TimeoutException">待ち時間を超えた場合に送出される。</exception>
         void Wait(StageStates state = StageStates.Stopped, int waitTime = -1);
     }

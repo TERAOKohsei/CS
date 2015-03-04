@@ -40,10 +40,10 @@ namespace CS.Applications.tester {
             counter = ev;
         }
 
-        private void buttonStart_Click(object sender, RoutedEventArgs e) {
+        private void TestMeasure() {
             Action Measure = new Action(() => {
                 counter.Measure();
-                this.Dispatcher.BeginInvoke(new Action(()=>{
+                this.Dispatcher.BeginInvoke(new Action(() => {
                     textBoxCount.Text = counter.ProductName;
                     foreach ( var d in counter.GetDisplacements() ) {
                         textBoxCount.Text += String.Format(",{0}", d);
@@ -59,7 +59,19 @@ namespace CS.Applications.tester {
                     buttonStart.IsEnabled = true;
                 }));
             });
-            buttonStop.IsEnabled = true;
+            buttonStop.IsEnabled = true;   
+        }
+
+        private void TestQt() {
+            using ( IStageController sc = new CsController(CsControllerType.QtAdm2, "COM3") ) {
+                sc.Connect();
+                sc.ReturnToOrigin(0);
+                sc.Wait();
+            }
+        }
+
+        private void buttonStart_Click(object sender, RoutedEventArgs e) {
+            TestQt();
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e) {
