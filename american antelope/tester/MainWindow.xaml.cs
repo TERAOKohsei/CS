@@ -42,6 +42,9 @@ namespace CS.Applications.tester {
 
         private void TestMeasure() {
             Action Measure = new Action(() => {
+                if ( !counter.IsConnected ) {
+                    counter.Connect();
+                }
                 counter.Measure();
                 this.Dispatcher.BeginInvoke(new Action(() => {
                     textBoxCount.Text = counter.ProductName;
