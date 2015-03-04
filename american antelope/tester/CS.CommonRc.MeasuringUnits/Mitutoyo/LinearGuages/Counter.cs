@@ -78,6 +78,7 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         private void DisplayCurrentValue(int channel) {
             string cmd = String.Format("CN{0:D2}", channel);
             port.WriteLine(cmd);
+            port.ReadLine();
         }
 
         private void GetDisplacementToBuffer(int channel) {
