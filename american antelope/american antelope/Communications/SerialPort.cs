@@ -131,6 +131,7 @@ namespace CS.Common.Communications {
                 inbuffer.Clear();
                 outbuffer.Clear();
                 linebuffer = "";
+                IsOpen = true;
                 Debug.WriteLine(String.Format("Enter loop for serial communication in {0}", mainTask.Id));
                 while ( !cts.IsCancellationRequested ) {
                     loopReset.Wait(cts.Token);
@@ -159,6 +160,7 @@ namespace CS.Common.Communications {
                     }
                 }
                 port.Dispose();
+                IsOpen = false;
             } catch ( Exception e ) {
                 innerException = e;
                 Debug.WriteLine(e.Message, e.GetType().ToString());
@@ -170,11 +172,7 @@ namespace CS.Common.Communications {
 
         #region ICommunication メンバー
 
-        public bool IsOpen {
-            get {
-                return mainTask != null;
-            }
-        }
+        public bool IsOpen { get; private set; }
 
         private string newLineValue = Environment.NewLine;
         public string NewLine {
@@ -187,7 +185,9 @@ namespace CS.Common.Communications {
                 cts = new CancellationTokenSource();
                 mainTask = new Task(new Action(Maintask), cts.Token);
                 mainTask.Start();
-                Thread.Sleep(500);
+                while ( !IsOpen ) {
+                    Thread.Sleep(0);
+                }
                 if ( mainTask.IsCompleted ) {
                     mainTask.Dispose();
                     mainTask = null;

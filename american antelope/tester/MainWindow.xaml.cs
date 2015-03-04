@@ -74,7 +74,7 @@ namespace CS.Applications.tester {
         }
 
         private void buttonStart_Click(object sender, RoutedEventArgs e) {
-            TestMeasure();
+            TestQt();
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e) {
