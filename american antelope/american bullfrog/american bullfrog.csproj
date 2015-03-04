@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.2.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -59,6 +62,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CS.CommonRc.Inspections\Inspection.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\IMeasuringUnit.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\LacS.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\Mitutoyo\LinearGuages\Counter.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\Sensor.cs" />
+    <Compile Include="CS.CommonRc.Stages\Stage.cs" />
+    <Compile Include="CS.CommonRc\Operator.cs" />
+    <Compile Include="CS.CommonRc\Range.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +92,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

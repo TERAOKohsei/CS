@@ -31,8 +31,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.comboBoxPorts = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.richTextBoxLogger = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -41,6 +45,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -79,6 +84,7 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.label2);
             this.tabPage4.Controls.Add(this.label1);
             this.tabPage4.Controls.Add(this.comboBoxPorts);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
@@ -114,6 +120,34 @@
             this.panel1.Size = new System.Drawing.Size(1008, 117);
             this.panel1.TabIndex = 1;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(219, 24);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "QT-Aシリーズ (デフォルトの通信設定)\r\n9,600bps、8bit、パリティなし、ストップビット1bit";
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.richTextBoxLogger);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(1000, 584);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "ログ";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxLogger
+            // 
+            this.richTextBoxLogger.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBoxLogger.Location = new System.Drawing.Point(0, 0);
+            this.richTextBoxLogger.Name = "richTextBoxLogger";
+            this.richTextBoxLogger.Size = new System.Drawing.Size(1000, 584);
+            this.richTextBoxLogger.TabIndex = 4;
+            this.richTextBoxLogger.Text = "";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -129,6 +163,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -143,6 +178,9 @@
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox comboBoxPorts;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.RichTextBox richTextBoxLogger;
 
     }
 }
