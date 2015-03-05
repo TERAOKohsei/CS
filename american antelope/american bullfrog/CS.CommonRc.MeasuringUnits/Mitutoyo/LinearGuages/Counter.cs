@@ -29,47 +29,48 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         }
     }
 
-    public class Counter : IMeasuringUnit {
+    public class Counter : MeasuringUnit {
         private ICommunication port = null;
-        private double[] currentDisplacement;
+        private double[] currentDisplacement = null;
 
         #region コンストラクタ/デストラクタ
-        /// <summary>
-        /// 初期化時に使用するセンサを指定する。
-        /// </summary>
-        /// <param namePropertyValue="sensors"></param>
-        public Counter(CounterType type, SerialPortSettings portSettings, params Sensor<double>[] sensors) {
-            switch ( type ) {
-            case CounterType.Ev:
-                ProductName = "EV";
-                displacementCountValue = 10;
-                break;
-            case CounterType.Eh101p:
-                ProductName = "EH-101P";
-                displacementCountValue = 1;
-                break;
-            default:
-                throw new ArgumentOutOfRangeException("type", type, "未実装/未知のカウンタです。EVもしくはEH-101Pのいずれかを指定してください。");
-            }
-
-            if ( displacementCountValue < sensors.Count() ) {
-                throw new ArgumentException(String.Format("指定したセンサの数が多すぎます。{0}以下で指定してください。", DisplacementCount), "sensors");
-            }
-
-            port = new SerialPort(portSettings.PortName, portSettings.BaudRate, portSettings.DataBits, portSettings.Parity, Ports.StopBits.Two);
-
-            if ( 0 <sensors.Where(sensor => sensor.Type != SensorType.Displacement).Count() ) {
-                throw new ArgumentException("クラスEvに割り当て可能なSensorTypeはSensorType.Displacementのみです。");
-            }
-
-            sensorsValue = new Sensor<double>[sensors.Length];
-            displacementCountValue = sensors.Where(sensor => sensor.Type == SensorType.Displacement).Count();
-            currentDisplacement = new double[DisplacementCount];
+        public Counter(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
+            IEnumerable<string> axisNames, IEnumerable<int> sensorCodes) : base(id, managementNumber, manufacturer, productName, productType, serialNumber, axisCount, axisNames, sensorCodes) {
             
-            foreach ( var s in sensors.Select((v, i) => new { Value = v, Index = i }) ) {
-                sensorsValue[s.Index] = s.Value;                
-            }
+            currentDisplacement = new double[axisCount];            
         }
+        //public Counter(CounterType type, SerialPortSettings portSettings, params Sensor[] sensors) {
+        //    switch ( type ) {
+        //    case CounterType.Ev:
+        //        ProductName = "EV";
+        //        displacementCountValue = 10;
+        //        break;
+        //    case CounterType.Eh101p:
+        //        ProductName = "EH-101P";
+        //        displacementCountValue = 1;
+        //        break;
+        //    default:
+        //        throw new ArgumentOutOfRangeException("type", type, "未実装/未知のカウンタです。EVもしくはEH-101Pのいずれかを指定してください。");
+        //    }
+
+        //    if ( displacementCountValue < sensors.Count() ) {
+        //        throw new ArgumentException(String.Format("指定したセンサの数が多すぎます。{0}以下で指定してください。", DisplacementCount), "sensors");
+        //    }
+
+        //    port = new SerialPort(portSettings.PortName, portSettings.BaudRate, portSettings.DataBits, portSettings.Parity, Ports.StopBits.Two);
+
+        //    if ( 0 <sensors.Where(sensors => sensors.SensorType != SensorType.Displacement).Count() ) {
+        //        throw new ArgumentException("クラスEvに割り当て可能なSensorTypeはSensorType.Displacementのみです。");
+        //    }
+
+        //    sensorsValue = new Sensor[sensors.Length];
+        //    displacementCountValue = sensors.Where(sensors => sensors.SensorType == SensorType.Displacement).Count();
+        //    currentDisplacement = new double[DisplacementCount];
+            
+        //    foreach ( var s in sensors.Select((v, i) => new { Value = v, Index = i }) ) {
+        //        sensorsValue[s.Index] = s.Value;                
+        //    }
+        //}
         
         #endregion // コンストラクタ/デストラクタ
 
@@ -94,42 +95,28 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
 
         #endregion // Methods
 
-        #region IMeasuringUnit メンバー
+        #region MeasuringUnit メンバー
 
-        public string ProductName { get; private set; }
-
-        public int AngularCount { get { return 0; } }
-
-        int displacementCountValue = 0;
-        public int DisplacementCount { get { return displacementCountValue; } }
-
-        public int HumidityCount { get { return 0; } }
-
-        public int TemperatureCount { get { return 0; } }
-
-        Sensor<double>[] sensorsValue = null;
-        public Sensor<double>[] Sensors { get { return (Sensor<double>[])sensorsValue.Clone(); } }
-
-        public void Measure() {
+        public override void Measure() {
             foreach ( var s in Sensors.Select((v, i) => new { Value = v, Index = i }) ) {
                 DisplayCurrentValue(s.Index);
                 GetDisplacementToBuffer(s.Index);
             }
         }
 
-        public double[] GetValues() {
+        public override double[] GetValues() {
             return (double[])currentDisplacement.Clone();
         }
 
-        public double[] GetAngulars() { return null; }
+        public override double[] GetAngulars() { return null; }
 
-        public double[] GetDisplacements() {
+        public override double[] GetDisplacements() {
             return (double[])currentDisplacement.Clone();
         }
 
-        public double[] GetHumidities() { return null; }
+        public override double[] GetHumidities() { return null; }
 
-        public double[] GetTemperatures() { return null; }
+        public override double[] GetTemperatures() { return null; }
 
         public SensorType[] GetSensors() { return null; }
 
@@ -137,9 +124,7 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
 
         #region IUnit メンバー
 
-        public bool IsConnected { get { return port == null ? port.IsOpen : false; } }
-
-        public void Connect() {
+        public override void Connect() {
             port.Open();
         }
 
@@ -150,13 +135,8 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         ~Counter() {
             Dispose(false);
         }
-        
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
 
-        protected virtual void Dispose(bool disposing) {
+        protected override void Dispose(bool disposing) {
             if ( disposing && port != null ) {
                 port.Dispose();
                 port = null;

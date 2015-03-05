@@ -22,5 +22,23 @@ namespace CS.Applications.AmericanBullfrog.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\ageo.chuo.co.jp\\ShareRoot\\inspection_data\\Config\\SensorList.csv")]
+        public string SensorListFilePath {
+            get {
+                return ((string)(this["SensorListFilePath"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\ageo.chuo.co.jp\\ShareRoot\\inspection_data\\Config\\MeasuringUnitList.csv")]
+        public string MeasuringUnitListFilePath {
+            get {
+                return ((string)(this["MeasuringUnitListFilePath"]));
+            }
+        }
     }
 }

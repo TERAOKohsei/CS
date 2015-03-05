@@ -63,7 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CS.CommonRc.Inspections\Inspection.cs" />
-    <Compile Include="CS.CommonRc.MeasuringUnits\IMeasuringUnit.cs" />
+    <Compile Include="CS.CommonRc.MeasuringUnits\MeasuringUnit.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\LacS.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\Mitutoyo\LinearGuages\Counter.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\Sensor.cs" />
