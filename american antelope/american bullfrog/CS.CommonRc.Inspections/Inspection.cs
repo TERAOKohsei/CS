@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 namespace CS.CommonRc.Inspections {
     [Flags()]
     public enum InspectionItems : uint {
+        Nothing = 0x0,
         TravelRanges = 0x1,
         PositioningAccuracy = 0x2,
         RepeatabilityofPositioning = 0x4,
         LostMotion = 0x8,
         MotionAccuracyHorizontal = 0x10,
         MotionAccuracyVertical = 0x20,
-        MOtionAccuracyYaw = 0x40,
+        MotionAccuracyYaw = 0x40,
         MotionAccuracyPitch = 0x80,
         ParallelismOfMotion = 0x100,
     }

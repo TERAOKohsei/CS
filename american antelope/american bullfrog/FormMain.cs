@@ -121,6 +121,14 @@ namespace CS.Applications.AmericanBullfrog {
             buttonSetPMeasuringUnit.Enabled = angular;
         }
 
+#if DEBUG
+        private void Test() {
+            CS.CommonRc.Stages.Stage stage = new CommonRc.Stages.Stage();
+            stage.LoadInformation(@"C:\Users\kohsei\Documents\LS-3047-C1.csv");
+            //stage.LoadInformation(@"\\ageo.chuo.co.jp\ShareRoot\inspection_data\CTS検査データ\CTS-自動検査\検査パラメータ\LS-3047.dat");
+        }
+#endif
+
         private void FormMain_Load(object sender, EventArgs e) {
             logger = NLog.LogManager.GetCurrentClassLogger();
             Text = String.Format("{0} Ver.{1}", Application.ProductName, Application.ProductVersion);
@@ -129,6 +137,10 @@ namespace CS.Applications.AmericanBullfrog {
                 LoadSensorList();
                 LoadMeasuringUnitList();
                 LoadInspector();
+#if DEBUG
+                Test();
+#endif
+                
                 // TODO: 前回の設定をロード
             } catch ( Exception exc ) {
                 MessageBox.Show(String.Format("起動中に例外が発生しました。\r\n{0}", exc.Message));
