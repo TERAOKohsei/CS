@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 namespace CS.CommonRc.Inspections {
     [Flags()]
     public enum InspectionItems : uint {
-        PositioningAccuracy = 0x1,
-        RepeatabilityofPositioning = 0x2,
-        LostMotion = 0x4,
-        MotionAccuracyHorizontal = 0x8,
-        MotionAccuracyVertical = 0x10,
-        MOtionAccuracyYaw = 0x20,
-        MotionAccuracyPitch = 0x40,
-        ParallelismOfMotion = 0x80,
+        TravelRanges = 0x1,
+        PositioningAccuracy = 0x2,
+        RepeatabilityofPositioning = 0x4,
+        LostMotion = 0x8,
+        MotionAccuracyHorizontal = 0x10,
+        MotionAccuracyVertical = 0x20,
+        MOtionAccuracyYaw = 0x40,
+        MotionAccuracyPitch = 0x80,
+        ParallelismOfMotion = 0x100,
     }
 
     public struct InspectionCondition {
+        public InspectionItems InspectionItems { get; private set; }
         public int LowerSpeed { get; private set; }
         public int UppeerSpeed { get; private set; }
         public int AccelerationMilliSecond { get; private set; }

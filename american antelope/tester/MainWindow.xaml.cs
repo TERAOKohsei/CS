@@ -26,17 +26,14 @@ namespace CS.Applications.tester {
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window, IDisposable {
-        private IMeasuringUnit counter;
+        private MeasuringUnit counter;
         private MCounter ev;
         private MCounter eh101p;
 
         public MainWindow() {
             InitializeComponent();
-            ev = new MCounter(CounterType.Ev, new SerialPortSettings("COM3"),
-                new Sensor<double>(SensorType.Displacement, "MCH-335 <ASH-017B>", "mm", 1.5, -1.5, 0, 0.001),
-                new Sensor<double>(SensorType.Displacement, "MCH-335 <ASH-017A>", "mm", 1.5, -1.5, 0, 0.001));
-            eh101p = new MCounter(CounterType.Eh101p, new SerialPortSettings("COM3"),
-                new Sensor<double>(SensorType.Displacement, "LG-01100C <ASH-004R>", "mm", 100, 0, 0, 0.001));
+            ev = new MCounter(1, "ASH-001A", "ミツトヨ", "ミューチェッカ用", "EV-16A", "aasdd", 6, new string[] { "CH1", "CH2", "CH3", "CH4", "CH5", "CH6" }, new int[] { 2, 2, 2, 2, 2, 2 });
+            eh101p = new MCounter(2, "ASH-001B", "ミツトヨ", "リニアゲージ用", "EH-101P", "aasdd", 1, new string[] { "CH1" }, new int[] { 3 });
             counter = ev;
         }
 

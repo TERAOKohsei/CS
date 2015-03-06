@@ -129,8 +129,7 @@ namespace CS.Applications.AmericanBullfrog {
                 LoadSensorList();
                 LoadMeasuringUnitList();
                 LoadInspector();
-                measuringUnits[2].Communication = new CS.Common.Communications.SerialPort("COM3", 9600, 7, System.IO.Ports.Parity.Even, System.IO.Ports.StopBits.Two);
-                measuringUnits[0].Communication = new CS.Common.Communications.SerialPort("COM3", 9600, 8, System.IO.Ports.Parity.Even, System.IO.Ports.StopBits.Two);
+                // TODO: 前回の設定をロード
             } catch ( Exception exc ) {
                 MessageBox.Show(String.Format("起動中に例外が発生しました。\r\n{0}", exc.Message));
                 logger.DebugException("起動中に例外が発生しました。\r\n", exc);
@@ -139,6 +138,10 @@ namespace CS.Applications.AmericanBullfrog {
             }
 
             logger.Trace("FromMainがロードされました。");
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
+            // TODO : 設定を保存
         }
 
         private void listBoxMeasuringUnits_SelectedIndexChanged(object sender, EventArgs e) {

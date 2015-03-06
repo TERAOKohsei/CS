@@ -62,13 +62,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CS.CommonRc.MeasuringUnits\Mitutoyo\LinearGuages\Counter.cs" />
-    <Compile Include="CS.CommonRc.MeasuringUnits\IMeasuringUnit.cs" />
-    <Compile Include="CS.CommonRc.MeasuringUnits\LacS.cs" />
-    <Compile Include="CS.CommonRc.MeasuringUnits\Sensor.cs" />
-    <Compile Include="CS.CommonRc.Stages\Stage.cs" />
-    <Compile Include="CS.CommonRc\Operator.cs" />
-    <Compile Include="CS.CommonRc\Range.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -109,6 +102,10 @@
     <ProjectReference Include="..\american badger\american badger.csproj">
       <Project>{3774c470-de2a-4077-9052-c7764dba1c98}</Project>
       <Name>american badger</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\american bullfrog\american bullfrog.csproj">
+      <Project>{790e7560-1f9a-49da-8f71-8fd83a73125e}</Project>
+      <Name>american bullfrog</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

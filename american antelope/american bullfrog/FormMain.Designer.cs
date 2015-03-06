@@ -25,8 +25,77 @@
         private void InitializeComponent() {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxTravelRange = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBoxLowerTravelRange = new System.Windows.Forms.TextBox();
+            this.checkBoxParallelismOfMotion = new System.Windows.Forms.CheckBox();
+            this.textBoxUpperTravelRange = new System.Windows.Forms.TextBox();
+            this.checkBoxMotionAccuracyP = new System.Windows.Forms.CheckBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.checkBoxMotionAccuracyY = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.checkBoxMotionAccuracyV = new System.Windows.Forms.CheckBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.checkBoxMotionAccuracyH = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.checkBoxLostMotion = new System.Windows.Forms.CheckBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.checkBoxRepeatabilityOfPositioning = new System.Windows.Forms.CheckBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.checkBoxPositioningAccuracy = new System.Windows.Forms.CheckBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.checkBoxTravelRange = new System.Windows.Forms.CheckBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.listBoxMeasuringPositions = new System.Windows.Forms.ListBox();
+            this.buttonDeleteMeasuringPosition = new System.Windows.Forms.Button();
+            this.buttonAddMeasuringPosition = new System.Windows.Forms.Button();
+            this.textBox1MeasuringPosition = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBoxRepeatCount = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxMeasuringPointCount = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.textBoxProductType = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxProductName = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxNote = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.listBoxInspectors = new System.Windows.Forms.ListBox();
+            this.textBoxProductCode = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.buttonShowMeasuringUnitSettingDialogue = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label8 = new System.Windows.Forms.Label();
             this.listBoxMeasuringUnits = new System.Windows.Forms.ListBox();
@@ -59,77 +128,12 @@
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.richTextBoxLogger = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.listBoxInspectors = new System.Windows.Forms.ListBox();
-            this.textBoxProductCode = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxNote = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.textBoxProductName = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.textBoxProductType = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBoxTravelRange = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBoxLowerTravelRange = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.textBoxUpperTravelRange = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.checkBoxTravelRange = new System.Windows.Forms.CheckBox();
-            this.checkBoxPositioningAccuracy = new System.Windows.Forms.CheckBox();
-            this.checkBoxRepeatabilityOfPositioning = new System.Windows.Forms.CheckBox();
-            this.checkBoxLostMotion = new System.Windows.Forms.CheckBox();
-            this.checkBoxMotionAccuracyH = new System.Windows.Forms.CheckBox();
-            this.checkBoxMotionAccuracyV = new System.Windows.Forms.CheckBox();
-            this.checkBoxMotionAccuracyY = new System.Windows.Forms.CheckBox();
-            this.checkBoxMotionAccuracyP = new System.Windows.Forms.CheckBox();
-            this.checkBoxParallelismOfMotion = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxMeasuringPointCount = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxRepeatCount = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBox1MeasuringPosition = new System.Windows.Forms.TextBox();
-            this.buttonAddMeasuringPosition = new System.Windows.Forms.Button();
-            this.buttonDeleteMeasuringPosition = new System.Windows.Forms.Button();
-            this.listBoxMeasuringPositions = new System.Windows.Forms.ListBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.buttonShowMeasuringUnitSettingDialogue = new System.Windows.Forms.Button();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -137,10 +141,6 @@
             this.splitContainer1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPageLog.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -187,6 +187,650 @@
             this.tabPage1.Text = "ステージ仕様/測定条件";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textBoxTravelRange);
+            this.groupBox4.Controls.Add(this.label16);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.textBoxLowerTravelRange);
+            this.groupBox4.Controls.Add(this.checkBoxParallelismOfMotion);
+            this.groupBox4.Controls.Add(this.textBoxUpperTravelRange);
+            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyP);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyY);
+            this.groupBox4.Controls.Add(this.label19);
+            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyV);
+            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyH);
+            this.groupBox4.Controls.Add(this.label20);
+            this.groupBox4.Controls.Add(this.checkBoxLostMotion);
+            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.checkBoxRepeatabilityOfPositioning);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.checkBoxPositioningAccuracy);
+            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.checkBoxTravelRange);
+            this.groupBox4.Controls.Add(this.label22);
+            this.groupBox4.Controls.Add(this.textBox8);
+            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.label26);
+            this.groupBox4.Controls.Add(this.label23);
+            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.label25);
+            this.groupBox4.Controls.Add(this.label24);
+            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Location = new System.Drawing.Point(319, 71);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(408, 318);
+            this.groupBox4.TabIndex = 54;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "測定項目";
+            // 
+            // textBoxTravelRange
+            // 
+            this.textBoxTravelRange.Location = new System.Drawing.Point(172, 21);
+            this.textBoxTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxTravelRange.Name = "textBoxTravelRange";
+            this.textBoxTravelRange.Size = new System.Drawing.Size(219, 21);
+            this.textBoxTravelRange.TabIndex = 22;
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(31, 20);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(134, 22);
+            this.label16.TabIndex = 21;
+            this.label16.Text = "総移動量[mm]";
+            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label17
+            // 
+            this.label17.Location = new System.Drawing.Point(31, 52);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(134, 22);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "総移範囲[mm]";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxLowerTravelRange
+            // 
+            this.textBoxLowerTravelRange.Location = new System.Drawing.Point(172, 53);
+            this.textBoxLowerTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLowerTravelRange.Name = "textBoxLowerTravelRange";
+            this.textBoxLowerTravelRange.Size = new System.Drawing.Size(80, 21);
+            this.textBoxLowerTravelRange.TabIndex = 24;
+            // 
+            // checkBoxParallelismOfMotion
+            // 
+            this.checkBoxParallelismOfMotion.AutoSize = true;
+            this.checkBoxParallelismOfMotion.Location = new System.Drawing.Point(10, 293);
+            this.checkBoxParallelismOfMotion.Name = "checkBoxParallelismOfMotion";
+            this.checkBoxParallelismOfMotion.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxParallelismOfMotion.TabIndex = 50;
+            this.checkBoxParallelismOfMotion.UseVisualStyleBackColor = true;
+            // 
+            // textBoxUpperTravelRange
+            // 
+            this.textBoxUpperTravelRange.Location = new System.Drawing.Point(311, 53);
+            this.textBoxUpperTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUpperTravelRange.Name = "textBoxUpperTravelRange";
+            this.textBoxUpperTravelRange.Size = new System.Drawing.Size(80, 21);
+            this.textBoxUpperTravelRange.TabIndex = 24;
+            // 
+            // checkBoxMotionAccuracyP
+            // 
+            this.checkBoxMotionAccuracyP.AutoSize = true;
+            this.checkBoxMotionAccuracyP.Location = new System.Drawing.Point(10, 264);
+            this.checkBoxMotionAccuracyP.Name = "checkBoxMotionAccuracyP";
+            this.checkBoxMotionAccuracyP.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMotionAccuracyP.TabIndex = 49;
+            this.checkBoxMotionAccuracyP.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(260, 57);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(35, 20);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "～";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBoxMotionAccuracyY
+            // 
+            this.checkBoxMotionAccuracyY.AutoSize = true;
+            this.checkBoxMotionAccuracyY.Location = new System.Drawing.Point(10, 235);
+            this.checkBoxMotionAccuracyY.Name = "checkBoxMotionAccuracyY";
+            this.checkBoxMotionAccuracyY.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMotionAccuracyY.TabIndex = 48;
+            this.checkBoxMotionAccuracyY.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(31, 83);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(134, 22);
+            this.label19.TabIndex = 26;
+            this.label19.Text = "位置決め精度[μm]";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBoxMotionAccuracyV
+            // 
+            this.checkBoxMotionAccuracyV.AutoSize = true;
+            this.checkBoxMotionAccuracyV.Location = new System.Drawing.Point(10, 206);
+            this.checkBoxMotionAccuracyV.Name = "checkBoxMotionAccuracyV";
+            this.checkBoxMotionAccuracyV.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMotionAccuracyV.TabIndex = 47;
+            this.checkBoxMotionAccuracyV.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(172, 84);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(219, 21);
+            this.textBox1.TabIndex = 27;
+            // 
+            // checkBoxMotionAccuracyH
+            // 
+            this.checkBoxMotionAccuracyH.AutoSize = true;
+            this.checkBoxMotionAccuracyH.Location = new System.Drawing.Point(10, 177);
+            this.checkBoxMotionAccuracyH.Name = "checkBoxMotionAccuracyH";
+            this.checkBoxMotionAccuracyH.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxMotionAccuracyH.TabIndex = 46;
+            this.checkBoxMotionAccuracyH.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.Location = new System.Drawing.Point(31, 114);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(134, 22);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "繰り返し精度[μm] ±";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBoxLostMotion
+            // 
+            this.checkBoxLostMotion.AutoSize = true;
+            this.checkBoxLostMotion.Location = new System.Drawing.Point(10, 148);
+            this.checkBoxLostMotion.Name = "checkBoxLostMotion";
+            this.checkBoxLostMotion.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxLostMotion.TabIndex = 45;
+            this.checkBoxLostMotion.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(172, 115);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(219, 21);
+            this.textBox2.TabIndex = 29;
+            // 
+            // checkBoxRepeatabilityOfPositioning
+            // 
+            this.checkBoxRepeatabilityOfPositioning.AutoSize = true;
+            this.checkBoxRepeatabilityOfPositioning.Location = new System.Drawing.Point(10, 119);
+            this.checkBoxRepeatabilityOfPositioning.Name = "checkBoxRepeatabilityOfPositioning";
+            this.checkBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxRepeatabilityOfPositioning.TabIndex = 44;
+            this.checkBoxRepeatabilityOfPositioning.UseVisualStyleBackColor = true;
+            // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(31, 143);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(134, 22);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "ロストモーション[μm]";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // checkBoxPositioningAccuracy
+            // 
+            this.checkBoxPositioningAccuracy.AutoSize = true;
+            this.checkBoxPositioningAccuracy.Location = new System.Drawing.Point(10, 88);
+            this.checkBoxPositioningAccuracy.Name = "checkBoxPositioningAccuracy";
+            this.checkBoxPositioningAccuracy.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxPositioningAccuracy.TabIndex = 43;
+            this.checkBoxPositioningAccuracy.UseVisualStyleBackColor = true;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(172, 144);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(219, 21);
+            this.textBox3.TabIndex = 31;
+            // 
+            // checkBoxTravelRange
+            // 
+            this.checkBoxTravelRange.AutoSize = true;
+            this.checkBoxTravelRange.Location = new System.Drawing.Point(10, 26);
+            this.checkBoxTravelRange.Name = "checkBoxTravelRange";
+            this.checkBoxTravelRange.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxTravelRange.TabIndex = 42;
+            this.checkBoxTravelRange.UseVisualStyleBackColor = true;
+            // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(31, 172);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(134, 22);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "移動精度 H[μm]";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox8
+            // 
+            this.textBox8.Location = new System.Drawing.Point(172, 289);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.Size = new System.Drawing.Size(219, 21);
+            this.textBox8.TabIndex = 41;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(172, 173);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(219, 21);
+            this.textBox4.TabIndex = 33;
+            // 
+            // label26
+            // 
+            this.label26.Location = new System.Drawing.Point(31, 288);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(134, 22);
+            this.label26.TabIndex = 40;
+            this.label26.Text = "走りの平行度[μm]";
+            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label23
+            // 
+            this.label23.Location = new System.Drawing.Point(31, 201);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(134, 22);
+            this.label23.TabIndex = 34;
+            this.label23.Text = "移動精度 V[μm]";
+            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox7
+            // 
+            this.textBox7.Location = new System.Drawing.Point(172, 260);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(219, 21);
+            this.textBox7.TabIndex = 39;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(172, 202);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(219, 21);
+            this.textBox5.TabIndex = 35;
+            // 
+            // label25
+            // 
+            this.label25.Location = new System.Drawing.Point(31, 259);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(134, 22);
+            this.label25.TabIndex = 38;
+            this.label25.Text = "移動精度 P[″]";
+            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label24
+            // 
+            this.label24.Location = new System.Drawing.Point(31, 230);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(134, 22);
+            this.label24.TabIndex = 36;
+            this.label24.Text = "移動精度 Y[″]";
+            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(172, 231);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(219, 21);
+            this.textBox6.TabIndex = 37;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBox13);
+            this.groupBox3.Controls.Add(this.label34);
+            this.groupBox3.Controls.Add(this.textBox12);
+            this.groupBox3.Controls.Add(this.label33);
+            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.label30);
+            this.groupBox3.Location = new System.Drawing.Point(754, 282);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(255, 168);
+            this.groupBox3.TabIndex = 53;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ステージ測定条件";
+            // 
+            // textBox13
+            // 
+            this.textBox13.Location = new System.Drawing.Point(124, 137);
+            this.textBox13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox13.Name = "textBox13";
+            this.textBox13.Size = new System.Drawing.Size(116, 21);
+            this.textBox13.TabIndex = 22;
+            // 
+            // label34
+            // 
+            this.label34.Location = new System.Drawing.Point(6, 137);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(112, 20);
+            this.label34.TabIndex = 21;
+            this.label34.Text = "停止後待ち時間[ms]";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(165, 108);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(75, 21);
+            this.textBox12.TabIndex = 20;
+            // 
+            // label33
+            // 
+            this.label33.Location = new System.Drawing.Point(6, 108);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(153, 20);
+            this.label33.TabIndex = 19;
+            this.label33.Text = "ロストモーション除去量[pulse]";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(124, 79);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(116, 21);
+            this.textBox11.TabIndex = 18;
+            // 
+            // label32
+            // 
+            this.label32.Location = new System.Drawing.Point(6, 79);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(112, 20);
+            this.label32.TabIndex = 17;
+            this.label32.Text = "加減速時間[ms]";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox10
+            // 
+            this.textBox10.Location = new System.Drawing.Point(124, 50);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox10.Name = "textBox10";
+            this.textBox10.Size = new System.Drawing.Size(116, 21);
+            this.textBox10.TabIndex = 16;
+            // 
+            // label31
+            // 
+            this.label31.Location = new System.Drawing.Point(6, 50);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(112, 20);
+            this.label31.TabIndex = 15;
+            this.label31.Text = "高速速度[pps]";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(124, 21);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(116, 21);
+            this.textBox9.TabIndex = 14;
+            // 
+            // label30
+            // 
+            this.label30.Location = new System.Drawing.Point(6, 21);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(112, 20);
+            this.label30.TabIndex = 13;
+            this.label30.Text = "低速速度[pps]";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.listBoxMeasuringPositions);
+            this.groupBox2.Controls.Add(this.buttonDeleteMeasuringPosition);
+            this.groupBox2.Controls.Add(this.buttonAddMeasuringPosition);
+            this.groupBox2.Controls.Add(this.textBox1MeasuringPosition);
+            this.groupBox2.Controls.Add(this.label29);
+            this.groupBox2.Controls.Add(this.textBoxRepeatCount);
+            this.groupBox2.Controls.Add(this.label28);
+            this.groupBox2.Location = new System.Drawing.Point(754, 70);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(255, 206);
+            this.groupBox2.TabIndex = 52;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "繰り返し精度/ロストモーション設定";
+            // 
+            // listBoxMeasuringPositions
+            // 
+            this.listBoxMeasuringPositions.FormattingEnabled = true;
+            this.listBoxMeasuringPositions.ItemHeight = 15;
+            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 117);
+            this.listBoxMeasuringPositions.Name = "listBoxMeasuringPositions";
+            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(120, 79);
+            this.listBoxMeasuringPositions.TabIndex = 17;
+            // 
+            // buttonDeleteMeasuringPosition
+            // 
+            this.buttonDeleteMeasuringPosition.Location = new System.Drawing.Point(184, 81);
+            this.buttonDeleteMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonDeleteMeasuringPosition.Name = "buttonDeleteMeasuringPosition";
+            this.buttonDeleteMeasuringPosition.Size = new System.Drawing.Size(56, 29);
+            this.buttonDeleteMeasuringPosition.TabIndex = 16;
+            this.buttonDeleteMeasuringPosition.Text = "削除";
+            this.buttonDeleteMeasuringPosition.UseVisualStyleBackColor = true;
+            // 
+            // buttonAddMeasuringPosition
+            // 
+            this.buttonAddMeasuringPosition.Location = new System.Drawing.Point(124, 81);
+            this.buttonAddMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAddMeasuringPosition.Name = "buttonAddMeasuringPosition";
+            this.buttonAddMeasuringPosition.Size = new System.Drawing.Size(56, 29);
+            this.buttonAddMeasuringPosition.TabIndex = 16;
+            this.buttonAddMeasuringPosition.Text = "追加";
+            this.buttonAddMeasuringPosition.UseVisualStyleBackColor = true;
+            // 
+            // textBox1MeasuringPosition
+            // 
+            this.textBox1MeasuringPosition.Location = new System.Drawing.Point(124, 52);
+            this.textBox1MeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBox1MeasuringPosition.Name = "textBox1MeasuringPosition";
+            this.textBox1MeasuringPosition.Size = new System.Drawing.Size(116, 21);
+            this.textBox1MeasuringPosition.TabIndex = 15;
+            // 
+            // label29
+            // 
+            this.label29.Location = new System.Drawing.Point(6, 52);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(112, 20);
+            this.label29.TabIndex = 13;
+            this.label29.Text = "測定点[mm]";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxRepeatCount
+            // 
+            this.textBoxRepeatCount.Location = new System.Drawing.Point(124, 23);
+            this.textBoxRepeatCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxRepeatCount.Name = "textBoxRepeatCount";
+            this.textBoxRepeatCount.Size = new System.Drawing.Size(116, 21);
+            this.textBoxRepeatCount.TabIndex = 12;
+            // 
+            // label28
+            // 
+            this.label28.Location = new System.Drawing.Point(6, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(112, 20);
+            this.label28.TabIndex = 11;
+            this.label28.Text = "繰返し回数";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxMeasuringPointCount);
+            this.groupBox1.Controls.Add(this.label27);
+            this.groupBox1.Location = new System.Drawing.Point(754, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(255, 51);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "位置決め精度/移動精度設定";
+            // 
+            // textBoxMeasuringPointCount
+            // 
+            this.textBoxMeasuringPointCount.Location = new System.Drawing.Point(124, 23);
+            this.textBoxMeasuringPointCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMeasuringPointCount.Name = "textBoxMeasuringPointCount";
+            this.textBoxMeasuringPointCount.Size = new System.Drawing.Size(116, 21);
+            this.textBoxMeasuringPointCount.TabIndex = 12;
+            // 
+            // label27
+            // 
+            this.label27.Location = new System.Drawing.Point(6, 23);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(112, 20);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "測定点数";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxProductType
+            // 
+            this.textBoxProductType.Location = new System.Drawing.Point(429, 43);
+            this.textBoxProductType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxProductType.Name = "textBoxProductType";
+            this.textBoxProductType.Size = new System.Drawing.Size(298, 21);
+            this.textBoxProductType.TabIndex = 20;
+            // 
+            // label15
+            // 
+            this.label15.Location = new System.Drawing.Point(315, 40);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(108, 22);
+            this.label15.TabIndex = 19;
+            this.label15.Text = "製品型番";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxProductName
+            // 
+            this.textBoxProductName.Location = new System.Drawing.Point(429, 12);
+            this.textBoxProductName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxProductName.Name = "textBoxProductName";
+            this.textBoxProductName.Size = new System.Drawing.Size(298, 21);
+            this.textBoxProductName.TabIndex = 18;
+            // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(316, 11);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(107, 22);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "製品名";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxNote
+            // 
+            this.textBoxNote.Location = new System.Drawing.Point(134, 260);
+            this.textBoxNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxNote.Multiline = true;
+            this.textBoxNote.Name = "textBoxNote";
+            this.textBoxNote.Size = new System.Drawing.Size(179, 190);
+            this.textBoxNote.TabIndex = 16;
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(15, 261);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(112, 20);
+            this.label13.TabIndex = 15;
+            this.label13.Text = "備考";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.Location = new System.Drawing.Point(15, 142);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(112, 20);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "検査担当";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // listBoxInspectors
+            // 
+            this.listBoxInspectors.FormattingEnabled = true;
+            this.listBoxInspectors.ItemHeight = 15;
+            this.listBoxInspectors.Location = new System.Drawing.Point(134, 142);
+            this.listBoxInspectors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.listBoxInspectors.Name = "listBoxInspectors";
+            this.listBoxInspectors.Size = new System.Drawing.Size(179, 109);
+            this.listBoxInspectors.TabIndex = 13;
+            // 
+            // textBoxProductCode
+            // 
+            this.textBoxProductCode.Location = new System.Drawing.Point(134, 111);
+            this.textBoxProductCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxProductCode.Name = "textBoxProductCode";
+            this.textBoxProductCode.Size = new System.Drawing.Size(179, 21);
+            this.textBoxProductCode.TabIndex = 12;
+            // 
+            // label11
+            // 
+            this.label11.Location = new System.Drawing.Point(15, 112);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(112, 20);
+            this.label11.TabIndex = 11;
+            this.label11.Text = "製品コード";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxSerialNumber
+            // 
+            this.textBoxSerialNumber.Location = new System.Drawing.Point(134, 80);
+            this.textBoxSerialNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxSerialNumber.Name = "textBoxSerialNumber";
+            this.textBoxSerialNumber.Size = new System.Drawing.Size(179, 21);
+            this.textBoxSerialNumber.TabIndex = 10;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(15, 81);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 20);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "ロット/シリアルNo.";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(9, 44);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(300, 29);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "保存...";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(9, 8);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(301, 29);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "読み込み...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
@@ -229,6 +873,16 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "測定機";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // buttonShowMeasuringUnitSettingDialogue
+            // 
+            this.buttonShowMeasuringUnitSettingDialogue.Location = new System.Drawing.Point(362, 390);
+            this.buttonShowMeasuringUnitSettingDialogue.Name = "buttonShowMeasuringUnitSettingDialogue";
+            this.buttonShowMeasuringUnitSettingDialogue.Size = new System.Drawing.Size(84, 23);
+            this.buttonShowMeasuringUnitSettingDialogue.TabIndex = 15;
+            this.buttonShowMeasuringUnitSettingDialogue.Text = "測定機設定...";
+            this.buttonShowMeasuringUnitSettingDialogue.UseVisualStyleBackColor = true;
+            this.buttonShowMeasuringUnitSettingDialogue.Click += new System.EventHandler(this.buttonShowMeasuringUnitSettingDialogue_Click);
             // 
             // splitContainer1
             // 
@@ -546,7 +1200,7 @@
             this.tabPageLog.Location = new System.Drawing.Point(4, 24);
             this.tabPageLog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPageLog.Name = "tabPageLog";
-            this.tabPageLog.Size = new System.Drawing.Size(1168, 475);
+            this.tabPageLog.Size = new System.Drawing.Size(1168, 734);
             this.tabPageLog.TabIndex = 4;
             this.tabPageLog.Text = "ログ";
             this.tabPageLog.UseVisualStyleBackColor = true;
@@ -557,7 +1211,7 @@
             this.richTextBoxLogger.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxLogger.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.richTextBoxLogger.Name = "richTextBoxLogger";
-            this.richTextBoxLogger.Size = new System.Drawing.Size(1168, 475);
+            this.richTextBoxLogger.Size = new System.Drawing.Size(1168, 734);
             this.richTextBoxLogger.TabIndex = 4;
             this.richTextBoxLogger.Text = "";
             // 
@@ -569,660 +1223,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1176, 146);
             this.panel1.TabIndex = 1;
-            // 
-            // listBoxInspectors
-            // 
-            this.listBoxInspectors.FormattingEnabled = true;
-            this.listBoxInspectors.ItemHeight = 15;
-            this.listBoxInspectors.Location = new System.Drawing.Point(134, 142);
-            this.listBoxInspectors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.listBoxInspectors.Name = "listBoxInspectors";
-            this.listBoxInspectors.Size = new System.Drawing.Size(179, 109);
-            this.listBoxInspectors.TabIndex = 13;
-            // 
-            // textBoxProductCode
-            // 
-            this.textBoxProductCode.Location = new System.Drawing.Point(134, 111);
-            this.textBoxProductCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxProductCode.Name = "textBoxProductCode";
-            this.textBoxProductCode.Size = new System.Drawing.Size(179, 21);
-            this.textBoxProductCode.TabIndex = 12;
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(15, 112);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(112, 20);
-            this.label11.TabIndex = 11;
-            this.label11.Text = "製品コード";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxSerialNumber
-            // 
-            this.textBoxSerialNumber.Location = new System.Drawing.Point(134, 80);
-            this.textBoxSerialNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxSerialNumber.Name = "textBoxSerialNumber";
-            this.textBoxSerialNumber.Size = new System.Drawing.Size(179, 21);
-            this.textBoxSerialNumber.TabIndex = 10;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(15, 81);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(112, 20);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "ロット/シリアルNo.";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(9, 44);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(300, 29);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "保存...";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 8);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(301, 29);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "読み込み...";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label12
-            // 
-            this.label12.Location = new System.Drawing.Point(15, 142);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(112, 20);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "検査担当";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxNote
-            // 
-            this.textBoxNote.Location = new System.Drawing.Point(134, 260);
-            this.textBoxNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxNote.Multiline = true;
-            this.textBoxNote.Name = "textBoxNote";
-            this.textBoxNote.Size = new System.Drawing.Size(179, 190);
-            this.textBoxNote.TabIndex = 16;
-            // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(15, 261);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(112, 20);
-            this.label13.TabIndex = 15;
-            this.label13.Text = "備考";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxProductName
-            // 
-            this.textBoxProductName.Location = new System.Drawing.Point(429, 12);
-            this.textBoxProductName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxProductName.Name = "textBoxProductName";
-            this.textBoxProductName.Size = new System.Drawing.Size(298, 21);
-            this.textBoxProductName.TabIndex = 18;
-            // 
-            // label14
-            // 
-            this.label14.Location = new System.Drawing.Point(316, 11);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(107, 22);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "製品名";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxProductType
-            // 
-            this.textBoxProductType.Location = new System.Drawing.Point(429, 43);
-            this.textBoxProductType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxProductType.Name = "textBoxProductType";
-            this.textBoxProductType.Size = new System.Drawing.Size(298, 21);
-            this.textBoxProductType.TabIndex = 20;
-            // 
-            // label15
-            // 
-            this.label15.Location = new System.Drawing.Point(315, 40);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(108, 22);
-            this.label15.TabIndex = 19;
-            this.label15.Text = "製品型番";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxTravelRange
-            // 
-            this.textBoxTravelRange.Location = new System.Drawing.Point(172, 21);
-            this.textBoxTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxTravelRange.Name = "textBoxTravelRange";
-            this.textBoxTravelRange.Size = new System.Drawing.Size(219, 21);
-            this.textBoxTravelRange.TabIndex = 22;
-            // 
-            // label16
-            // 
-            this.label16.Location = new System.Drawing.Point(31, 20);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(134, 22);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "総移動量[mm]";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxLowerTravelRange
-            // 
-            this.textBoxLowerTravelRange.Location = new System.Drawing.Point(172, 53);
-            this.textBoxLowerTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxLowerTravelRange.Name = "textBoxLowerTravelRange";
-            this.textBoxLowerTravelRange.Size = new System.Drawing.Size(80, 21);
-            this.textBoxLowerTravelRange.TabIndex = 24;
-            // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(31, 52);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(134, 22);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "総移範囲[mm]";
-            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxUpperTravelRange
-            // 
-            this.textBoxUpperTravelRange.Location = new System.Drawing.Point(311, 53);
-            this.textBoxUpperTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxUpperTravelRange.Name = "textBoxUpperTravelRange";
-            this.textBoxUpperTravelRange.Size = new System.Drawing.Size(80, 21);
-            this.textBoxUpperTravelRange.TabIndex = 24;
-            // 
-            // label18
-            // 
-            this.label18.Location = new System.Drawing.Point(260, 57);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 20);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "～";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(172, 84);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 21);
-            this.textBox1.TabIndex = 27;
-            // 
-            // label19
-            // 
-            this.label19.Location = new System.Drawing.Point(31, 83);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(134, 22);
-            this.label19.TabIndex = 26;
-            this.label19.Text = "位置決め精度[μm]";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(172, 115);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 21);
-            this.textBox2.TabIndex = 29;
-            // 
-            // label20
-            // 
-            this.label20.Location = new System.Drawing.Point(31, 114);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(134, 22);
-            this.label20.TabIndex = 28;
-            this.label20.Text = "繰り返し精度[μm] ±";
-            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(172, 144);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 21);
-            this.textBox3.TabIndex = 31;
-            // 
-            // label21
-            // 
-            this.label21.Location = new System.Drawing.Point(31, 143);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(134, 22);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "ロストモーション[μm]";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(172, 173);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(219, 21);
-            this.textBox4.TabIndex = 33;
-            // 
-            // label22
-            // 
-            this.label22.Location = new System.Drawing.Point(31, 172);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(134, 22);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "移動精度 H[μm]";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(172, 202);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(219, 21);
-            this.textBox5.TabIndex = 35;
-            // 
-            // label23
-            // 
-            this.label23.Location = new System.Drawing.Point(31, 201);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(134, 22);
-            this.label23.TabIndex = 34;
-            this.label23.Text = "移動精度 V[μm]";
-            this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(172, 231);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(219, 21);
-            this.textBox6.TabIndex = 37;
-            // 
-            // label24
-            // 
-            this.label24.Location = new System.Drawing.Point(31, 230);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(134, 22);
-            this.label24.TabIndex = 36;
-            this.label24.Text = "移動精度 Y[″]";
-            this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox7
-            // 
-            this.textBox7.Location = new System.Drawing.Point(172, 260);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(219, 21);
-            this.textBox7.TabIndex = 39;
-            // 
-            // label25
-            // 
-            this.label25.Location = new System.Drawing.Point(31, 259);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(134, 22);
-            this.label25.TabIndex = 38;
-            this.label25.Text = "移動精度 P[″]";
-            this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox8
-            // 
-            this.textBox8.Location = new System.Drawing.Point(172, 289);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(219, 21);
-            this.textBox8.TabIndex = 41;
-            // 
-            // label26
-            // 
-            this.label26.Location = new System.Drawing.Point(31, 288);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(134, 22);
-            this.label26.TabIndex = 40;
-            this.label26.Text = "走りの平行度[μm]";
-            this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // checkBoxTravelRange
-            // 
-            this.checkBoxTravelRange.AutoSize = true;
-            this.checkBoxTravelRange.Location = new System.Drawing.Point(10, 26);
-            this.checkBoxTravelRange.Name = "checkBoxTravelRange";
-            this.checkBoxTravelRange.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxTravelRange.TabIndex = 42;
-            this.checkBoxTravelRange.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxPositioningAccuracy
-            // 
-            this.checkBoxPositioningAccuracy.AutoSize = true;
-            this.checkBoxPositioningAccuracy.Location = new System.Drawing.Point(10, 88);
-            this.checkBoxPositioningAccuracy.Name = "checkBoxPositioningAccuracy";
-            this.checkBoxPositioningAccuracy.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxPositioningAccuracy.TabIndex = 43;
-            this.checkBoxPositioningAccuracy.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxRepeatabilityOfPositioning
-            // 
-            this.checkBoxRepeatabilityOfPositioning.AutoSize = true;
-            this.checkBoxRepeatabilityOfPositioning.Location = new System.Drawing.Point(10, 119);
-            this.checkBoxRepeatabilityOfPositioning.Name = "checkBoxRepeatabilityOfPositioning";
-            this.checkBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxRepeatabilityOfPositioning.TabIndex = 44;
-            this.checkBoxRepeatabilityOfPositioning.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxLostMotion
-            // 
-            this.checkBoxLostMotion.AutoSize = true;
-            this.checkBoxLostMotion.Location = new System.Drawing.Point(10, 148);
-            this.checkBoxLostMotion.Name = "checkBoxLostMotion";
-            this.checkBoxLostMotion.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxLostMotion.TabIndex = 45;
-            this.checkBoxLostMotion.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMotionAccuracyH
-            // 
-            this.checkBoxMotionAccuracyH.AutoSize = true;
-            this.checkBoxMotionAccuracyH.Location = new System.Drawing.Point(10, 177);
-            this.checkBoxMotionAccuracyH.Name = "checkBoxMotionAccuracyH";
-            this.checkBoxMotionAccuracyH.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMotionAccuracyH.TabIndex = 46;
-            this.checkBoxMotionAccuracyH.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMotionAccuracyV
-            // 
-            this.checkBoxMotionAccuracyV.AutoSize = true;
-            this.checkBoxMotionAccuracyV.Location = new System.Drawing.Point(10, 206);
-            this.checkBoxMotionAccuracyV.Name = "checkBoxMotionAccuracyV";
-            this.checkBoxMotionAccuracyV.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMotionAccuracyV.TabIndex = 47;
-            this.checkBoxMotionAccuracyV.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMotionAccuracyY
-            // 
-            this.checkBoxMotionAccuracyY.AutoSize = true;
-            this.checkBoxMotionAccuracyY.Location = new System.Drawing.Point(10, 235);
-            this.checkBoxMotionAccuracyY.Name = "checkBoxMotionAccuracyY";
-            this.checkBoxMotionAccuracyY.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMotionAccuracyY.TabIndex = 48;
-            this.checkBoxMotionAccuracyY.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxMotionAccuracyP
-            // 
-            this.checkBoxMotionAccuracyP.AutoSize = true;
-            this.checkBoxMotionAccuracyP.Location = new System.Drawing.Point(10, 264);
-            this.checkBoxMotionAccuracyP.Name = "checkBoxMotionAccuracyP";
-            this.checkBoxMotionAccuracyP.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxMotionAccuracyP.TabIndex = 49;
-            this.checkBoxMotionAccuracyP.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxParallelismOfMotion
-            // 
-            this.checkBoxParallelismOfMotion.AutoSize = true;
-            this.checkBoxParallelismOfMotion.Location = new System.Drawing.Point(10, 293);
-            this.checkBoxParallelismOfMotion.Name = "checkBoxParallelismOfMotion";
-            this.checkBoxParallelismOfMotion.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxParallelismOfMotion.TabIndex = 50;
-            this.checkBoxParallelismOfMotion.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBoxMeasuringPointCount);
-            this.groupBox1.Controls.Add(this.label27);
-            this.groupBox1.Location = new System.Drawing.Point(754, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 51);
-            this.groupBox1.TabIndex = 51;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "位置決め精度/移動精度設定";
-            // 
-            // textBoxMeasuringPointCount
-            // 
-            this.textBoxMeasuringPointCount.Location = new System.Drawing.Point(124, 23);
-            this.textBoxMeasuringPointCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxMeasuringPointCount.Name = "textBoxMeasuringPointCount";
-            this.textBoxMeasuringPointCount.Size = new System.Drawing.Size(116, 21);
-            this.textBoxMeasuringPointCount.TabIndex = 12;
-            // 
-            // label27
-            // 
-            this.label27.Location = new System.Drawing.Point(6, 23);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(112, 20);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "測定点数";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listBoxMeasuringPositions);
-            this.groupBox2.Controls.Add(this.buttonDeleteMeasuringPosition);
-            this.groupBox2.Controls.Add(this.buttonAddMeasuringPosition);
-            this.groupBox2.Controls.Add(this.textBox1MeasuringPosition);
-            this.groupBox2.Controls.Add(this.label29);
-            this.groupBox2.Controls.Add(this.textBoxRepeatCount);
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Location = new System.Drawing.Point(754, 70);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 206);
-            this.groupBox2.TabIndex = 52;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "繰り返し精度/ロストモーション設定";
-            // 
-            // textBoxRepeatCount
-            // 
-            this.textBoxRepeatCount.Location = new System.Drawing.Point(124, 23);
-            this.textBoxRepeatCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxRepeatCount.Name = "textBoxRepeatCount";
-            this.textBoxRepeatCount.Size = new System.Drawing.Size(116, 21);
-            this.textBoxRepeatCount.TabIndex = 12;
-            // 
-            // label28
-            // 
-            this.label28.Location = new System.Drawing.Point(6, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(112, 20);
-            this.label28.TabIndex = 11;
-            this.label28.Text = "繰返し回数";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label29
-            // 
-            this.label29.Location = new System.Drawing.Point(6, 52);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(112, 20);
-            this.label29.TabIndex = 13;
-            this.label29.Text = "測定点[mm]";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox1MeasuringPosition
-            // 
-            this.textBox1MeasuringPosition.Location = new System.Drawing.Point(124, 52);
-            this.textBox1MeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1MeasuringPosition.Name = "textBox1MeasuringPosition";
-            this.textBox1MeasuringPosition.Size = new System.Drawing.Size(116, 21);
-            this.textBox1MeasuringPosition.TabIndex = 15;
-            // 
-            // buttonAddMeasuringPosition
-            // 
-            this.buttonAddMeasuringPosition.Location = new System.Drawing.Point(124, 81);
-            this.buttonAddMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonAddMeasuringPosition.Name = "buttonAddMeasuringPosition";
-            this.buttonAddMeasuringPosition.Size = new System.Drawing.Size(56, 29);
-            this.buttonAddMeasuringPosition.TabIndex = 16;
-            this.buttonAddMeasuringPosition.Text = "追加";
-            this.buttonAddMeasuringPosition.UseVisualStyleBackColor = true;
-            // 
-            // buttonDeleteMeasuringPosition
-            // 
-            this.buttonDeleteMeasuringPosition.Location = new System.Drawing.Point(184, 81);
-            this.buttonDeleteMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonDeleteMeasuringPosition.Name = "buttonDeleteMeasuringPosition";
-            this.buttonDeleteMeasuringPosition.Size = new System.Drawing.Size(56, 29);
-            this.buttonDeleteMeasuringPosition.TabIndex = 16;
-            this.buttonDeleteMeasuringPosition.Text = "削除";
-            this.buttonDeleteMeasuringPosition.UseVisualStyleBackColor = true;
-            // 
-            // listBoxMeasuringPositions
-            // 
-            this.listBoxMeasuringPositions.FormattingEnabled = true;
-            this.listBoxMeasuringPositions.ItemHeight = 15;
-            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 117);
-            this.listBoxMeasuringPositions.Name = "listBoxMeasuringPositions";
-            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(120, 79);
-            this.listBoxMeasuringPositions.TabIndex = 17;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.textBox13);
-            this.groupBox3.Controls.Add(this.label34);
-            this.groupBox3.Controls.Add(this.textBox12);
-            this.groupBox3.Controls.Add(this.label33);
-            this.groupBox3.Controls.Add(this.textBox11);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.textBox10);
-            this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.textBox9);
-            this.groupBox3.Controls.Add(this.label30);
-            this.groupBox3.Location = new System.Drawing.Point(754, 282);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(255, 168);
-            this.groupBox3.TabIndex = 53;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ステージ測定条件";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(124, 21);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(116, 21);
-            this.textBox9.TabIndex = 14;
-            // 
-            // label30
-            // 
-            this.label30.Location = new System.Drawing.Point(6, 21);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(112, 20);
-            this.label30.TabIndex = 13;
-            this.label30.Text = "低速速度[pps]";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox10
-            // 
-            this.textBox10.Location = new System.Drawing.Point(124, 50);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(116, 21);
-            this.textBox10.TabIndex = 16;
-            // 
-            // label31
-            // 
-            this.label31.Location = new System.Drawing.Point(6, 50);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(112, 20);
-            this.label31.TabIndex = 15;
-            this.label31.Text = "高速速度[pps]";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(124, 79);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(116, 21);
-            this.textBox11.TabIndex = 18;
-            // 
-            // label32
-            // 
-            this.label32.Location = new System.Drawing.Point(6, 79);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(112, 20);
-            this.label32.TabIndex = 17;
-            this.label32.Text = "加減速時間[ms]";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox12
-            // 
-            this.textBox12.Location = new System.Drawing.Point(165, 108);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(75, 21);
-            this.textBox12.TabIndex = 20;
-            // 
-            // label33
-            // 
-            this.label33.Location = new System.Drawing.Point(6, 108);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(153, 20);
-            this.label33.TabIndex = 19;
-            this.label33.Text = "ロストモーション除去量[pulse]";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBox13
-            // 
-            this.textBox13.Location = new System.Drawing.Point(124, 137);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(116, 21);
-            this.textBox13.TabIndex = 22;
-            // 
-            // label34
-            // 
-            this.label34.Location = new System.Drawing.Point(6, 137);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(112, 20);
-            this.label34.TabIndex = 21;
-            this.label34.Text = "停止後待ち時間[ms]";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.textBoxTravelRange);
-            this.groupBox4.Controls.Add(this.label16);
-            this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.textBoxLowerTravelRange);
-            this.groupBox4.Controls.Add(this.checkBoxParallelismOfMotion);
-            this.groupBox4.Controls.Add(this.textBoxUpperTravelRange);
-            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyP);
-            this.groupBox4.Controls.Add(this.label18);
-            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyY);
-            this.groupBox4.Controls.Add(this.label19);
-            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyV);
-            this.groupBox4.Controls.Add(this.textBox1);
-            this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyH);
-            this.groupBox4.Controls.Add(this.label20);
-            this.groupBox4.Controls.Add(this.checkBoxLostMotion);
-            this.groupBox4.Controls.Add(this.textBox2);
-            this.groupBox4.Controls.Add(this.checkBoxRepeatabilityOfPositioning);
-            this.groupBox4.Controls.Add(this.label21);
-            this.groupBox4.Controls.Add(this.checkBoxPositioningAccuracy);
-            this.groupBox4.Controls.Add(this.textBox3);
-            this.groupBox4.Controls.Add(this.checkBoxTravelRange);
-            this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.textBox8);
-            this.groupBox4.Controls.Add(this.textBox4);
-            this.groupBox4.Controls.Add(this.label26);
-            this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.textBox7);
-            this.groupBox4.Controls.Add(this.textBox5);
-            this.groupBox4.Controls.Add(this.label25);
-            this.groupBox4.Controls.Add(this.label24);
-            this.groupBox4.Controls.Add(this.textBox6);
-            this.groupBox4.Location = new System.Drawing.Point(319, 71);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(408, 318);
-            this.groupBox4.TabIndex = 54;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "測定項目";
-            // 
-            // buttonShowMeasuringUnitSettingDialogue
-            // 
-            this.buttonShowMeasuringUnitSettingDialogue.Location = new System.Drawing.Point(362, 390);
-            this.buttonShowMeasuringUnitSettingDialogue.Name = "buttonShowMeasuringUnitSettingDialogue";
-            this.buttonShowMeasuringUnitSettingDialogue.Size = new System.Drawing.Size(84, 23);
-            this.buttonShowMeasuringUnitSettingDialogue.TabIndex = 15;
-            this.buttonShowMeasuringUnitSettingDialogue.Text = "測定機設定...";
-            this.buttonShowMeasuringUnitSettingDialogue.UseVisualStyleBackColor = true;
-            this.buttonShowMeasuringUnitSettingDialogue.Click += new System.EventHandler(this.buttonShowMeasuringUnitSettingDialogue_Click);
             // 
             // FormMain
             // 
@@ -1237,10 +1237,19 @@
             this.MaximizeBox = false;
             this.Name = "FormMain";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1252,14 +1261,6 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPageLog.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
