@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using CS.Common.Communications;
+using Ports = System.IO.Ports;
+
 namespace CS.CommonRc.MeasuringUnits {
-    class LacS : MeasuringUnit  {
+    public class LacS : MeasuringUnit  {
         double[] currentAngle = new double[2];
 
         public LacS(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
@@ -13,7 +16,15 @@ namespace CS.CommonRc.MeasuringUnits {
         }
 
         public override void Measure() {
-            throw new NotImplementedException();
+            port.WriteLine("D");
+            var words = port.ReadLine().Split(',');
+            foreach ( var w in words.Select((v, i) => new { v, i }) ) {
+                if ( w.v == "<" ) {
+                    currentAngle[w.i] = double.NaN;
+                } else {
+                    double.TryParse(w.v, out currentAngle[w.i]);
+                }
+            }
         }
 
         public override double[] GetValues() {
@@ -25,19 +36,57 @@ namespace CS.CommonRc.MeasuringUnits {
         }
 
         public override double[] GetDisplacements() {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override double[] GetHumidities() {
-            throw new NotImplementedException();
+            return null;
         }
 
         public override double[] GetTemperatures() {
-            throw new NotImplementedException();
+            return null;
+        }
+
+        public override void ShowSettingDialogue() {
+            using ( var form = new FormLacsSettings(this) ) {
+                form.ShowDialog();
+            }
         }
 
         public override void Connect() {
-            throw new NotImplementedException();
+            port.Open();
+        }
+
+        public override void Reset() {
+            port.WriteLine("I");
+            port.Read();
+            port.WriteLine("RX");
+            port.Read();
+            port.WriteLine("RY");
+            port.Read();
+        }
+
+        protected override void Dispose(bool disposing) {
+            if ( disposing && (port != null) ) {
+                port.Dispose();
+                port = null;
+            }
+        }
+
+        public override Common.Communications.ICommunication Communication {
+            get { return port; }
+            set {
+                if ( value.GetType().Equals(typeof(SerialPort)) ) {
+                    var p = (SerialPort)value;
+                    if ( (p.BaudRate != 9600) || (p.DataBits != 8) || (p.Parity != Ports.Parity.Even) || (p.StopBits != Ports.StopBits.Two) || (p.NewLine != "\r\n") ) {
+                        throw new ArgumentException("LAC-Sのシリアル通信は現在、工場出荷時の設定のみサポートしています。");
+                    }
+                } else {
+                    throw new ArgumentException("LAC-Sでは指定されたICommunicationオブジェクトはサポートされていません。");
+                }
+
+                port = value;
+            }
         }
     }
 }

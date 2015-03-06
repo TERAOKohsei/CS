@@ -73,5 +73,26 @@ namespace CS.CommonRc.MeasuringUnits {
 
             return list;
         }
+
+        public override string ToString() {
+            string str = String.Join(" ", Manufacturer, ProductType);
+
+
+            if ( !String.IsNullOrEmpty(str) ) {
+                str += " ";
+            }
+            if ( !String.IsNullOrEmpty(SerialNumber) ) {
+                str += "(" + SerialNumber + ")";
+            }
+
+            if ( !String.IsNullOrEmpty(str) ) {
+                str += " ";
+            }
+            if ( !String.IsNullOrEmpty(ManagementNumber) ) {
+                str += "- " + ManagementNumber;
+            }
+
+            return str;
+        }
     }
 }

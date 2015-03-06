@@ -13,6 +13,15 @@ namespace CS.Common.Communications {
     public delegate ReceivedCharacterEventArgs ReceivedCharacterEventHandler(object sender, ReceivedCharacterEventArgs e);
     public delegate ReceivedLineEventArgs ReceivedLineEventHandler(object sender, ReceivedLineEventArgs e);
 
+    public struct PortInformation {
+        public string DeviceName { get; private set; }
+        public string PortName { get; private set; }
+        public PortInformation(string deviceName, string portName) : this() {
+            DeviceName = deviceName;
+            PortName = portName;
+        }
+    }
+
     public class SerialPort : ICommunication {
         #region Events
         public ReceivedCharacterEventHandler ReceivedCharaceter;
@@ -117,6 +126,15 @@ namespace CS.Common.Communications {
             }
 
             return portTable.ToArray();
+        }
+
+        public static PortInformation[] GetPortInformations() {
+            var portInfos = new List<PortInformation>();
+            foreach ( var pair in GetDeviceNames().Zip(Ports.SerialPort.GetPortNames(), (device, port) => new { device, port }) ) {
+                portInfos.Add(new PortInformation(pair.device, pair.port));
+            }
+
+            return portInfos.ToArray();
         }
 
         private void Maintask() {

@@ -40,5 +40,14 @@ namespace CS.Applications.AmericanBullfrog.Properties {
                 return ((string)(this["MeasuringUnitListFilePath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\ageo.chuo.co.jp\\ShareRoot\\inspection_data\\Config\\InspectorList.csv")]
+        public string InspecorListFilePath {
+            get {
+                return ((string)(this["InspecorListFilePath"]));
+            }
+        }
     }
 }
