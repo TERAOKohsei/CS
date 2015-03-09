@@ -223,7 +223,7 @@ namespace CS.CommonRc.Stages {
                     break;
                 case TextConsts.InspectTravelRange:
                     if ( Boolean.Parse(words[1]) ) {
-                        InspectionItems |= Inspections.InspectionItems.TravelRanges;
+                        InspectionItems |= Inspections.InspectionItems.TravelRange;
                     }
                     break;
                 case TextConsts.InspectPositioningAccuracy:

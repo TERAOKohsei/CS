@@ -8,7 +8,7 @@ namespace CS.CommonRc.Inspections {
     [Flags()]
     public enum InspectionItems : uint {
         Nothing = 0x0,
-        TravelRanges = 0x1,
+        TravelRange = 0x1,
         PositioningAccuracy = 0x2,
         RepeatabilityofPositioning = 0x4,
         LostMotion = 0x8,
