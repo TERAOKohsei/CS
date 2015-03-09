@@ -16,17 +16,17 @@ namespace CS.CommonRc.MeasuringUnits {
     }
 
     public struct Sensor {
-        public int Id { get; private set; }
-        public string ManagementNumber { get; private set; }
-        public string Manufacturer { get; private set; }
-        public string ProductName { get; private set; }
-        public string ProductType { get; private set; }
-        public string SerialNumber { get; private set; }
-        public SensorType SensorType { get; private set; }
-        public string UnitName { get; private set; }
-        public Range<double> Range { get; private set; }
-        public double Resolution { get; private set; }
-        public int SensorCode { get; private set; }
+        public int Id { get; set; }
+        public string ManagementNumber { get; set; }
+        public string Manufacturer { get; set; }
+        public string ProductName { get; set; }
+        public string ProductType { get; set; }
+        public string SerialNumber { get; set; }
+        public SensorType SensorType { get; set; }
+        public string UnitName { get; set; }
+        public Range<double> Range { get; set; }
+        public double Resolution { get; set; }
+        public int SensorCode { get; set; }
 
         public Sensor(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, SensorType sensorType, string unitName,
             double upper, double lower, double offset, double resolution, int sensorCode)
