@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.IO;
+using System.Xml.Serialization;
 using CS.Common;
 
 namespace CS.CommonRc.MeasuringUnits {
-    public abstract class MeasuringUnit : IUnit {
+    public abstract class MeasuringUnit : IUnit, IXmlSerializable {
         public int ID { get; private set; }
         public string ManagementNumber { get; private set; }
         public string Manufacturer { get; private set; }
@@ -30,6 +31,9 @@ namespace CS.CommonRc.MeasuringUnits {
         public abstract double[] GetHumidities();
         public abstract double[] GetTemperatures();
         public abstract CS.Common.Communications.ICommunication Communication { get; set; }
+
+        protected MeasuringUnit() {
+        }
 
         public static IList<MeasuringUnit> LoadFromFile(string measuringUnitListPath) {
             var list = new List<MeasuringUnit>();
@@ -176,6 +180,75 @@ namespace CS.CommonRc.MeasuringUnits {
         public bool IsConnected { get; private set; }
 
         public abstract void Connect();
+
+        #endregion
+
+        #region IXmlSerializable メンバー
+
+        public virtual System.Xml.Schema.XmlSchema GetSchema() {
+            return null;
+        }
+
+        public virtual void ReadXml(System.Xml.XmlReader reader) {
+            reader.Read();
+            ID = reader.ReadElementContentAsInt("ID", "");
+            ManagementNumber = reader.ReadElementContentAsString("ManagementNumber", "");
+            Manufacturer = reader.ReadElementContentAsString("Manufacturer", "");
+            ProductName = reader.ReadElementContentAsString("ProductName", "");
+            ProductType = reader.ReadElementContentAsString("ProductType", "");
+            SerialNumber = reader.ReadElementContentAsString("SerialNumber", "");
+            AxisCount = reader.ReadElementContentAsInt("AxisCount", "");
+
+            reader.ReadStartElement("AxisNames");
+            var axisNames = new string[AxisCount];
+            for ( int i = 0; i < AxisCount; i++ ) {
+                axisNames[i] = reader.ReadElementContentAsString("string", "");
+            }
+            reader.ReadEndElement();
+            AxisNames = axisNames;
+
+            reader.ReadStartElement("SensorCodes");
+            var codes = new int[AxisCount];
+            for ( int i = 0; i < AxisCount; i++ ) {
+                codes[i] = reader.ReadElementContentAsInt("int", "");
+            }
+            reader.ReadEndElement();
+            SensorCodes = codes;
+
+            reader.ReadStartElement("Sensors");
+            innerSensors = new Sensor[AxisCount];
+            for ( int i = 0; i < AxisCount; i++ ) {
+                var xs = new XmlSerializer(typeof(Sensor));
+                innerSensors[i] = (Sensor)xs.Deserialize(reader);
+            }
+            reader.ReadEndElement();
+        }
+
+        public virtual void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteElementString("ID", ID.ToString());
+            writer.WriteElementString("ManagementNumber", ManagementNumber);
+            writer.WriteElementString("Manufacturer", Manufacturer);
+            writer.WriteElementString("ProductName", ProductName);
+            writer.WriteElementString("ProductType", ProductType);
+            writer.WriteElementString("SerialNumber", SerialNumber);
+            writer.WriteElementString("AxisCount", AxisCount.ToString());
+            writer.WriteStartElement("AxisNames");
+            foreach ( var s in AxisNames ) {
+                writer.WriteElementString("string", s);
+            }
+            writer.WriteEndElement();
+            writer.WriteStartElement("SensorCodes");
+            foreach ( var code in SensorCodes ) {
+                writer.WriteElementString("int", code.ToString());
+            }
+            writer.WriteEndElement();
+            writer.WriteStartElement("Sensors");
+            foreach ( var sens in innerSensors ) {
+                var xs = new XmlSerializer(typeof(Sensor));
+                xs.Serialize(writer, sens);
+            }
+            writer.WriteEndElement();
+        }
 
         #endregion
     }
