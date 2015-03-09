@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Ports = System.IO.Ports;
+using System.Xml.Serialization;
 using CS.Common.Communications;
 
 namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
@@ -16,23 +17,15 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         Count,
     }
 
-    public struct SerialPortSettings {
-        public string PortName;
-        public int BaudRate;
-        public Ports.Parity Parity;
-        public int DataBits;
-        public SerialPortSettings(string portName = "COM1", int baudRate = 9600, Ports.Parity parity = Ports.Parity.Even, int dataBits = 7) {
-            PortName = portName;
-            BaudRate = baudRate;
-            Parity = parity;
-            DataBits = dataBits;
-        }
-    }
-
     public class Counter : MeasuringUnit {
         private double[] currentDisplacement = null;
 
         #region コンストラクタ/デストラクタ
+
+        protected Counter()
+            : base() {
+        }
+
         public Counter(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
             IEnumerable<string> axisNames, IEnumerable<int> sensorCodes) : base(id, managementNumber, manufacturer, productName, productType, serialNumber, axisCount, axisNames, sensorCodes) {
             
@@ -133,5 +126,36 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
         }
 
         #endregion
+
+        #region IXmlSerializer Members
+        public override void ReadXml(System.Xml.XmlReader reader) {
+            base.ReadXml(reader);
+            switch ( reader.ReadElementContentAsString("Communication", "") ) {
+            case "SerialPort":
+                if ( port == null ) {
+                    port = new SerialPort();
+                }
+                port.ReadXml(reader);
+                break;
+            case "Null":
+            default:
+                if ( port != null ) {
+                    port.Dispose();
+                    port = null;
+                }
+                break;
+            }
+        }
+
+        public override void WriteXml(System.Xml.XmlWriter writer) {
+            base.WriteXml(writer);
+            if ( port == null ) {
+                writer.WriteElementString("Communication", "Null");
+            } else {
+                writer.WriteElementString("Communication", "SerialPort");
+                port.WriteXml(writer);
+            }
+        }
+        #endregion // IXmlSerializer Members
     }
 }

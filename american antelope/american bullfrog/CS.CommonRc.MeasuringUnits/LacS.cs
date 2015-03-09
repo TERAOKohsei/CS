@@ -96,22 +96,31 @@ namespace CS.CommonRc.MeasuringUnits {
 
         #region IXmlSerializable メンバー
 
-        public override System.Xml.Schema.XmlSchema GetSchema() {
-            base.GetSchema();
-            return null;
-        }
-
         public override void ReadXml(System.Xml.XmlReader reader) {
             base.ReadXml(reader);
-            if ( port == null ) {
-                port = new SerialPort();
+            switch ( reader.ReadElementContentAsString("Communication", "") ) {
+            case "SerialPort":
+                if ( port == null ) {
+                    port = new SerialPort();
+                }
+                port.ReadXml(reader);
+                break;
+            case "Null":
+            default:
+                if ( port != null ) {
+                    port.Dispose();
+                    port = null;
+                }
+                break;
             }
-            port.ReadXml(reader);
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer) {
             base.WriteXml(writer);
-            if ( port != null ) {
+            if ( port == null ) {
+                writer.WriteElementString("Communication", "Null");
+            } else {
+                writer.WriteElementString("Communication", "SerialPort");
                 port.WriteXml(writer);
             }
         }
