@@ -53,35 +53,35 @@ namespace CS.CommonRc.Stages {
     }
 
     public struct Stage {
-        public StageType StageType { get; private set; }
-        public string ProductName { get; private set; }
-        public string ProductType { get; private set; }
+        public StageType StageType { get; set; }
+        public string ProductName { get; set; }
+        public string ProductType { get; set; }
         #region General Specs
-        public bool HaveOriginSensor { get; private set; }
-        public bool HaveLimitSensors { get; private set; }
-        public double Resolution { get; private set; }
-        public Range<double> TravelRange { get; private set; }
+        public bool HaveOriginSensor { get; set; }
+        public bool HaveLimitSensors { get; set; }
+        public double Resolution { get; set; }
+        public Range<double> TravelRange { get; set; }
         #endregion // General Specs
         #region Accuracy Specs
-        public double PositionAccuracy { get; private set; }
-        public double RepeatabilityOfPositioning { get; private set; }
-        public double LostMotion { get; private set; }
-        public double MotionAccuracyHorizontal { get; private set; }
-        public double MotionAccuracyVertical { get; private set; }
-        public double MotionAccuracyYaw { get; private set; }
-        public double MotionAccuracyPitch { get; private set; }
-        public double ParallelismOfMotion { get; private set; }
+        public double PositionAccuracy { get; set; }
+        public double RepeatabilityOfPositioning { get; set; }
+        public double LostMotion { get; set; }
+        public double MotionAccuracyHorizontal { get; set; }
+        public double MotionAccuracyVertical { get; set; }
+        public double MotionAccuracyYaw { get; set; }
+        public double MotionAccuracyPitch { get; set; }
+        public double ParallelismOfMotion { get; set; }
         #endregion // Accuracy Specs
-        public InspectionItems InspectionItems { get; private set; }
+        public InspectionItems InspectionItems { get; set; }
         #region // Conditions
-        public int LowerSpeedPps { get; private set; }
-        public int UpperSpeedPps { get; private set; }
-        public int AccelerationTimeMs { get; private set; }
-        public int LostMotionCorrectPps { get; private set; }
-        public int WaitTimeMsAfterStopped { get; private set; }
-        public int MeasuringPointCount { get; private set; }
-        public int RepeatCount { get; private set; }
-        public double[] MeasuringPositions { get; private set; }
+        public int LowerSpeedPps { get; set; }
+        public int UpperSpeedPps { get; set; }
+        public int AccelerationTimeMs { get; set; }
+        public int LostMotionCorrectPps { get; set; }
+        public int WaitTimeMsAfterStopped { get; set; }
+        public int MeasuringPointCount { get; set; }
+        public int RepeatCount { get; set; }
+        public double[] MeasuringPositions { get; set; }
         #endregion // Conditons
 
         private void LoadInformationVersion0(StreamReader reader) {
