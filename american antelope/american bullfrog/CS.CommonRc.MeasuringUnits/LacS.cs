@@ -4,12 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml.Serialization;
 using CS.Common.Communications;
 using Ports = System.IO.Ports;
 
 namespace CS.CommonRc.MeasuringUnits {
-    public class LacS : MeasuringUnit  {
+    public class LacS : MeasuringUnit {
         double[] currentAngle = new double[2];
+
+        protected LacS()
+            : base() {
+        }
 
         public LacS(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
             IEnumerable<string> axisNames, IEnumerable<int> sensorCodes) : base(id, managementNumber, manufacturer, productName, productType, serialNumber, axisCount, axisNames, sensorCodes) {
@@ -88,5 +93,29 @@ namespace CS.CommonRc.MeasuringUnits {
                 port = value;
             }
         }
+
+        #region IXmlSerializable メンバー
+
+        public override System.Xml.Schema.XmlSchema GetSchema() {
+            base.GetSchema();
+            return null;
+        }
+
+        public override void ReadXml(System.Xml.XmlReader reader) {
+            base.ReadXml(reader);
+            if ( port == null ) {
+                port = new SerialPort();
+            }
+            port.ReadXml(reader);
+        }
+
+        public override void WriteXml(System.Xml.XmlWriter writer) {
+            base.WriteXml(writer);
+            if ( port != null ) {
+                port.WriteXml(writer);
+            }
+        }
+
+        #endregion
     }
 }
