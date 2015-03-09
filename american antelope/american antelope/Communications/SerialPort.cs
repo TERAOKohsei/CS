@@ -9,6 +9,8 @@ using Ports = System.IO.Ports;
 using System.Management;
 using System.Threading;
 
+using System.Xml.Serialization;
+
 namespace CS.Common.Communications {
     public delegate ReceivedCharacterEventArgs ReceivedCharacterEventHandler(object sender, ReceivedCharacterEventArgs e);
     public delegate ReceivedLineEventArgs ReceivedLineEventHandler(object sender, ReceivedLineEventArgs e);
@@ -29,19 +31,21 @@ namespace CS.Common.Communications {
         #endregion // Events
 
         #region Fields
-        Task mainTask = null;
-        CancellationTokenSource cts = null;
+        private Task mainTask = null;
+        private CancellationTokenSource cts = null;
         private const int readTimeout = 1000;
         private const int writeTimeout = 1000;
-        Exception innerException = null;
-        Queue<string> inbuffer = new Queue<string>();
-        Queue<string> outbuffer = new Queue<string>();
-        string linebuffer = "";
-        ManualResetEventSlim loopReset = new ManualResetEventSlim();
-        AutoResetEvent receivedEvent = new AutoResetEvent(false);
+        private Exception innerException = null;
+        private Queue<string> inbuffer = new Queue<string>();
+        private Queue<string> outbuffer = new Queue<string>();
+        private string linebuffer = "";
+        private ManualResetEventSlim loopReset = new ManualResetEventSlim();
+        private AutoResetEvent receivedEvent = new AutoResetEvent(false);
         #endregion // Fields
 
         #region Constructors/Destructor
+
+//        protected SerialPort() { }
 
         public SerialPort(string portName = "COM1", int baudRate = 9600, int dataBits = 8, Ports.Parity parity = Ports.Parity.None, Ports.StopBits stopBits = Ports.StopBits.One,
             string newLine = "\r\n") {
@@ -284,6 +288,59 @@ namespace CS.Common.Communications {
                 receivedEvent.Dispose();
                 loopReset.Dispose();
             }
+        }
+
+        #endregion
+
+        #region IXmlSerializable メンバー
+
+        public System.Xml.Schema.XmlSchema GetSchema() {
+            return null;
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader) {
+            PortName = reader.ReadElementContentAsString("PortName", "");
+            BaudRate = reader.ReadElementContentAsInt("BaudRate", "");
+            DataBits = reader.ReadElementContentAsInt("DataBits", "");
+            var xs = new XmlSerializer(typeof(Ports.Parity));
+            Parity = (Ports.Parity)xs.Deserialize(reader);
+            xs = new XmlSerializer(typeof(Ports.StopBits));
+            StopBits = (Ports.StopBits)xs.Deserialize(reader);
+            string ns = reader.ReadElementContentAsString("NewLine", "");
+            switch ( ns ) {
+            case "Cr":
+                NewLine = "\r";
+                break;
+            case "Lf":
+                NewLine = "\n";
+                break;
+            case "CrLf":
+            default:
+                NewLine = "\r\n";
+                break;
+            }
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteElementString("PortName", PortName);
+            writer.WriteElementString("BaudRate", BaudRate.ToString());
+            writer.WriteElementString("DataBits", DataBits.ToString());
+            writer.WriteElementString("Parity", Parity.ToString());
+            writer.WriteElementString("StopBits", StopBits.ToString());
+            string ns;
+            switch ( NewLine ) {
+            case "\r":
+                ns = "Cr";
+                break;
+            case "\n":
+                ns = "Lf";
+                break;
+            case "\r\n":
+            default:
+                ns = "CrLf";
+                break;
+            }
+            writer.WriteElementString("NewLine", ns);
         }
 
         #endregion

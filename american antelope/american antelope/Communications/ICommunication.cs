@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml.Serialization;
+
 namespace CS.Common.Communications {
     /// <summary>
     /// 通信機能を提供する。
     /// </summary>
-    public interface ICommunication : IDisposable {
+    public interface ICommunication : IDisposable, IXmlSerializable {
         /// <summary>
         /// 通信回線が開いているかどうかを取得する。
         /// </summary>
