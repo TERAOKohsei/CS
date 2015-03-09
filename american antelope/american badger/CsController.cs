@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using CS.Common.Communications;
 using System.Threading;
+using System.Xml.Serialization;
 using Ports = System.IO.Ports;
 
 namespace CS.Common.StageController {
@@ -66,6 +67,8 @@ namespace CS.Common.StageController {
                 System.Diagnostics.Debug.WriteLine("{0}:{1}", sp.ProductName, sp.AxisCount);
             }
         }
+
+        protected CsController() { }
 
         public CsController(CsControllerType type = CsControllerType.QtAdm2, string portName = "COM1", int baudRate = 9600, int dataBits = 8,
             Ports.Parity parity = Ports.Parity.None, Ports.StopBits stopBits = Ports.StopBits.One, string delimiter = "\r\n") {
@@ -143,7 +146,6 @@ namespace CS.Common.StageController {
         #endregion // Methods
 
         #region IStageController メンバー
-
 
         public int[] Positions {
             get {
@@ -334,6 +336,32 @@ namespace CS.Common.StageController {
                 port.Dispose();
                 port = null;
                 disposeCts.Dispose();
+            }
+        }
+
+        #endregion
+
+        #region IXmlSerializable メンバー
+
+        public System.Xml.Schema.XmlSchema GetSchema() {
+            return null;
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader) {
+            reader.Read();
+            spec.ProductName = reader.ReadElementContentAsString("ProductName", "");
+            spec.AxisCount = reader.ReadElementContentAsInt("AxisCount", "");
+            if ( port == null ) {
+                port = new SerialPort();
+            }
+            port.ReadXml(reader);
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteElementString("ProductName", spec.ProductName);
+            writer.WriteElementString("AxisCount", spec.AxisCount.ToString());
+            if ( port != null ) {
+                port.WriteXml(writer);
             }
         }
 

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using System.Xml.Serialization;
+
 namespace CS.Common.StageController {
     [Flags()]
     public enum StageStates : uint {
@@ -15,7 +17,7 @@ namespace CS.Common.StageController {
         UnknownState = 0xffff,
     }
 
-    public interface IStageController : IUnit {
+    public interface IStageController : IUnit, IXmlSerializable {
         int AxisCount { get; }
         int[] Positions { get; }
         StageStates[] States { get; }
