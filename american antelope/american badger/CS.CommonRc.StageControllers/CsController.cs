@@ -269,25 +269,11 @@ namespace CS.CommonRc.StageControllers {
         #endregion
 
         #region IXmlSerializable メンバー
-
         public override void ReadXml(System.Xml.XmlReader reader) {
-            reader.Read();
-            ProductName = reader.ReadElementContentAsString("ProductName", "");
-            AxisCount = reader.ReadElementContentAsInt("AxisCount", "");
-            if ( port == null ) {
-                port = new SerialPort();
-            }
-            port.ReadXml(reader);
+            reader.ReadStartElement("CsController", "");
+            base.ReadXml(reader);
+            reader.ReadEndElement();
         }
-
-        public override void WriteXml(System.Xml.XmlWriter writer) {
-            writer.WriteElementString("ProductName", ProductName);
-            writer.WriteElementString("AxisCount", AxisCount.ToString());
-            if ( port != null ) {
-                port.WriteXml(writer);
-            }
-        }
-
         #endregion
     }
 }

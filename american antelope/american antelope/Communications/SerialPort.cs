@@ -299,6 +299,7 @@ namespace CS.Common.Communications {
         }
 
         public void ReadXml(System.Xml.XmlReader reader) {
+            reader.ReadStartElement("SerialPort");
             PortName = reader.ReadElementContentAsString("PortName", "");
             BaudRate = reader.ReadElementContentAsInt("BaudRate", "");
             DataBits = reader.ReadElementContentAsInt("DataBits", "");
@@ -319,9 +320,11 @@ namespace CS.Common.Communications {
                 NewLine = "\r\n";
                 break;
             }
+            reader.ReadEndElement();
         }
 
         public void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteStartElement("SerialPort");
             writer.WriteElementString("PortName", PortName);
             writer.WriteElementString("BaudRate", BaudRate.ToString());
             writer.WriteElementString("DataBits", DataBits.ToString());
@@ -341,6 +344,7 @@ namespace CS.Common.Communications {
                 break;
             }
             writer.WriteElementString("NewLine", ns);
+            writer.WriteEndElement();
         }
 
         #endregion
