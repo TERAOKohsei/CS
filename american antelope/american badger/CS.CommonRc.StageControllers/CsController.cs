@@ -24,38 +24,20 @@ namespace CS.CommonRc.StageControllers {
     }
 
     public struct ControllerSpec {
-        public string ProductName;
-        public int AxisCount;
-        public ControllerSpec(string productName, int axisCount) {
-            ProductName = productName;
-            AxisCount = axisCount;
-        }
+        public string ProductName {get; set; }
+        public int AxisCount { get; set; }
     }
 
-    public class CsController : IStageController {
-        private struct MovingCommand {
-            public int Axis;
-            public int Pulse;
-            public MovingCommand(int axis, int pulse) {
-                Axis = axis;
-                Pulse = pulse;
-            }
-        }
-
-        private static ControllerSpec[] specList;
-        private ControllerSpec spec;
-
+    public class CsController : StageController {
         #region Fields
-        private ICommunication port = null;
-        private CancellationTokenSource disposeCts = new CancellationTokenSource();
+        private static ControllerSpec[] specList = new ControllerSpec[(int)CsControllerType.Count];
+        private CancellationTokenSource disposeCts =  new CancellationTokenSource();
         private int[] usableAxes = null;
         #endregion // Fields
 
         #region Constructors/Destructors
         static CsController() {
-            specList = new ControllerSpec[(int)CsControllerType.Count];
-
-            var spstr = Properties.Resources.ControllerSpec.Split(new string[] {",", "\r\n"}, StringSplitOptions.None);
+            var spstr = Properties.Resources.ControllerSpec.Split(new string[] { ",", "\r\n" }, StringSplitOptions.None);
             for ( int i = 0; i < (int)CsControllerType.Count; ++i ) {
                 if ( !String.IsNullOrEmpty(spstr[i * 2]) ) {
                     specList[i].ProductName = spstr[i * 2];
@@ -68,18 +50,15 @@ namespace CS.CommonRc.StageControllers {
             }
         }
 
-        protected CsController() { }
+        private CsController() : base() { }
 
-        public CsController(CsControllerType type = CsControllerType.QtAdm2, string portName = "COM1", int baudRate = 9600, int dataBits = 8,
-            Ports.Parity parity = Ports.Parity.None, Ports.StopBits stopBits = Ports.StopBits.One, string delimiter = "\r\n") {
-
+        public CsController(CsControllerType type = CsControllerType.QtAdm2) : base() {
             if ( (type < CsControllerType.QtCd1) || !Enum.IsDefined(typeof(CsControllerType), type) ) {
                 throw new ArgumentOutOfRangeException("type", type, "未実装のコントローラです。QT-CD1以降の製品を指定してください。");
             } else {
-                spec = specList[(int)type];
+                ProductName = specList[(int)type].ProductName;
+                AxisCount = specList[(int)type].AxisCount;
             }
-
-            port = new CS.Common.Communications.SerialPort(portName, baudRate, dataBits, parity, stopBits, delimiter);
         }
         #endregion // Constructors
 
@@ -110,7 +89,7 @@ namespace CS.CommonRc.StageControllers {
             return value;
         }
 
-        public string GetAxisName(int axisNumber) {
+        public override string GetAxisName(int axisNumber) {
             return Convert.ToString((char)(axisNumber + 0x41));
         }
 
@@ -126,7 +105,7 @@ namespace CS.CommonRc.StageControllers {
             return result;
         }
 
-        private void MoveCore(bool isAbsoluteMode, params MovingCommand[] commands) {
+        protected override void MoveCore(bool isAbsoluteMode, params MovingCommand[] commands) {
             string cmdstr;
 
             if ( isAbsoluteMode == true ) {
@@ -147,40 +126,36 @@ namespace CS.CommonRc.StageControllers {
 
         #region IStageController メンバー
 
-        public int[] Positions {
-            get {
-                var p = Enumerable.Repeat<int>(1, usableAxes.Count()).ToArray();
-                port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
+        public override int[] GetPositions() {
+            var p = Enumerable.Repeat<int>(1, usableAxes.Count()).ToArray();
+            port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
 
-                var r = new int[usableAxes.Count()];
-                foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new { Value = v, Index = i }) ) {
-                    r[line.Index] = Int32.Parse(line.Value);
-                }
-
-                return r;
+            var r = new int[usableAxes.Count()];
+            foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new { Value = v, Index = i }) ) {
+                r[line.Index] = Int32.Parse(line.Value);
             }
+
+            return r;
         }
 
-        public StageStates[] States {
-            get {
-                var p = Enumerable.Repeat<int>(2, usableAxes.Count()).ToArray();
-                port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
+        public override StageStates[] GetStates() {
+            var p = Enumerable.Repeat<int>(2, usableAxes.Count()).ToArray();
+            port.WriteLine(AddAxesAndParameters("Q:", usableAxes, p));
 
-                var r = new StageStates[usableAxes.Count()];
-                foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new {Value = v, Index = i}) ) {
-                    r[line.Index] = GetStateByCharacter(line.Value);
-                }
-
-                return r;
+            var r = new StageStates[usableAxes.Count()];
+            foreach ( var line in port.ReadLine().Split(',').Select((v, i) => new { Value = v, Index = i }) ) {
+                r[line.Index] = GetStateByCharacter(line.Value);
             }
+
+            return r;
         }
 
-        public int GetPosition(int axis) {
+        public override int GetPosition(int axis) {
             port.WriteLine("Q:{0}1", GetAxisName(axis));
             return int.Parse(port.ReadLine());
         }
 
-        public StageStates GetState(int axis) {
+        public override StageStates GetState(int axis) {
             port.WriteLine("Q:{0}2", GetAxisName(axis));
             return GetStateByCharacter(port.ReadLine());
         }
@@ -202,59 +177,11 @@ namespace CS.CommonRc.StageControllers {
             }
         }
 
-        public int AxisCount {
-            get { return spec.AxisCount; }
-        }
-
-        public void Move(int[] axes, int[] travels) {
-            var cs = new MovingCommand[axes.Length];
-
-            foreach ( var a in axes.Select((v, i) => new { Value = v, Index = i }) ) {
-                cs[a.Index].Axis = a.Value;
-                cs[a.Index].Pulse = travels[a.Index];
-            }
-
-            MoveCore(false, cs);
-        }
-
-        public void Move(params int[] travels) {
-            var cs = new MovingCommand[travels.Length];
-
-            foreach ( var t in travels.Select((v, i) => new { Value = v, Index = i }) ) {
-                cs[t.Index].Axis = t.Index;
-                cs[t.Index].Pulse = t.Value;
-            }
-
-            MoveCore(false, cs);
-        }
-
-        public void MoveTo(int[] axes, int[] positions) {
-            var cs = new MovingCommand[axes.Length];
-
-            foreach ( var a in axes.Select((v, i) => new { Value = v, Index = i }) ) {
-                cs[a.Index].Axis = a.Value;
-                cs[a.Index].Pulse = positions[a.Index];
-            }
-
-            MoveCore(true, cs);
-        }
-
-        public void MoveTo(params int[] positions) {
-            var cs = new MovingCommand[positions.Length];
-
-            foreach ( var p in positions.Select((v, i) => new { Value = v, Index = i }) ) {
-                cs[p.Index].Axis = p.Index;
-                cs[p.Index].Pulse = p.Value;
-            }
-
-            MoveCore(true, cs);
-        }
-
-        public void ReturnToOrigin() {
+        public override void ReturnToOrigin() {
             ReturnToOrigin(usableAxes);
         }
 
-        public void ReturnToOrigin(params int[] axes) {
+        public override void ReturnToOrigin(params int[] axes) {
             string cmd = "H:";
 
             cmd = AddAxisList(cmd, axes);
@@ -263,12 +190,12 @@ namespace CS.CommonRc.StageControllers {
             port.ReadLine();
         }
 
-        public void Stop() {
+        public override void Stop() {
             port.WriteLine("L:");
             port.ReadLine();
         }
 
-        public void Stop(params int[] axes) {
+        public override void Stop(params int[] axes) {
             string cmd = "L:";
 
             cmd = AddAxisList(cmd, axes);
@@ -277,19 +204,19 @@ namespace CS.CommonRc.StageControllers {
             port.ReadLine();
         }
 
-        public void Wait(StageStates state = StageStates.Stopped, int waitTime = -1) {
-            bool detectedState = false;
-
-            while ( !detectedState ) {
-                detectedState = true;
-                StageStates[] ss = States;
-
-                foreach ( var s in ss ) {
-                    if ( (s & state) != state ) {
-                        detectedState = false;
-                        break;
+        public override Common.Communications.ICommunication Communication {
+            get { return port; }
+            set {
+                if ( value.GetType().Equals(typeof(SerialPort)) ) {
+                    var p = (SerialPort)value;
+                    if ( (p.BaudRate != 9600) || (p.DataBits != 8) || (p.Parity != Ports.Parity.None) || (p.StopBits != Ports.StopBits.One) || (p.NewLine != "\r\n") ) {
+                        throw new ArgumentException("QT/QT-Aシリーズのシリアル通信は現在、工場出荷時の設定のみサポートしています。");
                     }
+                } else {
+                    throw new ArgumentException("QT/QT-Aでは指定されたICommunicationオブジェクトはサポートされていません。");
                 }
+
+                port = value;
             }
         }
 
@@ -297,11 +224,7 @@ namespace CS.CommonRc.StageControllers {
 
         #region IUnit メンバー
 
-        public bool IsConnected {
-            get { return port == null ? port.IsOpen : false; }
-        }
-
-        public void Connect() {
+        public override void Connect() {
             port.Open();
             port.WriteLine("X:1");
             port.ReadLine();
@@ -322,44 +245,44 @@ namespace CS.CommonRc.StageControllers {
 
         #region IDisposable メンバー
 
-        ~CsController() {
-            Dispose(false);
-        }
+        //~CsController() {
+        //    Dispose(false);
+        //}
 
-        public void Dispose() {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        //public void Dispose() {
+        //    Dispose(true);
+        //    GC.SuppressFinalize(this);
+        //}
 
-        protected virtual void Dispose(bool disposing) {
-            if ( disposing && port != null && port.IsOpen ) {
-                port.Dispose();
-                port = null;
+        protected override void Dispose(bool disposing) {
+            base.Dispose(disposing);
+            if ( disposing && disposeCts != null ) {
                 disposeCts.Dispose();
             }
+            //if ( disposing && port != null && port.IsOpen ) {
+            //    port.Dispose();
+            //    port = null;
+            //    disposeCts.Dispose();
+            //}
         }
 
         #endregion
 
         #region IXmlSerializable メンバー
 
-        public System.Xml.Schema.XmlSchema GetSchema() {
-            return null;
-        }
-
-        public void ReadXml(System.Xml.XmlReader reader) {
+        public override void ReadXml(System.Xml.XmlReader reader) {
             reader.Read();
-            spec.ProductName = reader.ReadElementContentAsString("ProductName", "");
-            spec.AxisCount = reader.ReadElementContentAsInt("AxisCount", "");
+            ProductName = reader.ReadElementContentAsString("ProductName", "");
+            AxisCount = reader.ReadElementContentAsInt("AxisCount", "");
             if ( port == null ) {
                 port = new SerialPort();
             }
             port.ReadXml(reader);
         }
 
-        public void WriteXml(System.Xml.XmlWriter writer) {
-            writer.WriteElementString("ProductName", spec.ProductName);
-            writer.WriteElementString("AxisCount", spec.AxisCount.ToString());
+        public override void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteElementString("ProductName", ProductName);
+            writer.WriteElementString("AxisCount", AxisCount.ToString());
             if ( port != null ) {
                 port.WriteXml(writer);
             }
