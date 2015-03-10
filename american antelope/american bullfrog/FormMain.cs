@@ -10,11 +10,14 @@ using System.Windows.Forms;
 
 using System.IO;
 using System.Threading;
+using System.Xml.Serialization;
 using CS.CommonRc.MeasuringUnits;
+using CS.CommonRc.Stages;
+using CS.CommonRc.StageControllers;
 using MySettings = CS.Applications.AmericanBullfrog.Properties.Settings;
 
 namespace CS.Applications.AmericanBullfrog {
-    public partial class FormMain : Form {
+    public partial class FormMain : Form, IXmlSerializable {
         private struct MeasuringUnitAxis {
             public MeasuringUnit Unit;
             public int Axis;
@@ -28,8 +31,8 @@ namespace CS.Applications.AmericanBullfrog {
         }
 
         private struct Inspector {
-            public int Code { get; private set; }
-            public string Name { get; private set; }
+            public int Code { get; set; }
+            public string Name { get; set; }
             public Inspector(int code, string name) : this() {
                 Code = code;
                 Name = name;
@@ -39,15 +42,26 @@ namespace CS.Applications.AmericanBullfrog {
             }
         }
 
+        private struct InspectionConditions {
+            public string SerialNumber { get; set; }
+            public string ProductCode { get; set; }
+            public Inspector Inspector { get; set; }
+            public string Notes { get; set; }
+        }
+
         private static NLog.Logger logger = null;
         private static IList<Sensor> sensors = null;
         private static IList<MeasuringUnit> measuringUnits = null;
 
-        private static MeasuringUnitAxis LengthUnit;
-        private static MeasuringUnitAxis HUnit;
-        private static MeasuringUnitAxis VUnit;
-        private static MeasuringUnitAxis YUnit;
-        private static MeasuringUnitAxis PUnit;
+        private static MeasuringUnitAxis lengthUnit;
+        private static MeasuringUnitAxis hUnit;
+        private static MeasuringUnitAxis vUnit;
+        private static MeasuringUnitAxis yUnit;
+        private static MeasuringUnitAxis pUnit;
+
+        private static StageController stageController;
+        private static Stage stage;
+        
 
         public FormMain() {
             InitializeComponent();
@@ -122,10 +136,30 @@ namespace CS.Applications.AmericanBullfrog {
         }
 
 #if DEBUG
-        private void Test() {
-            CS.CommonRc.Stages.Stage stage = new CommonRc.Stages.Stage();
-            stage.LoadInformation(@"C:\Users\kohsei\Documents\LS-3047-C1.csv");
-            //stage.LoadInformation(@"\\ageo.chuo.co.jp\ShareRoot\inspection_data\CTS検査データ\CTS-自動検査\検査パラメータ\LS-3047.dat");
+        private void TestReadXml() {
+            using ( var sr = new StreamReader(@"C:\Users\kohsei\Documents\american bullfrog.xml", Encoding.GetEncoding("shift-jis")) ) {
+                var xs = new XmlSerializer(typeof(FormMain));
+                xs.Deserialize(sr);
+            }
+        }
+
+        private void TestWriteXml() {
+            stageController = new CsController(CsControllerType.QtAdm2);
+            stageController.Communication = new CS.Common.Communications.SerialPort("COM3");
+            using ( var sw = new StreamWriter(@"C:\Users\kohsei\Documents\american bullfrog.xml", false, Encoding.GetEncoding("shift-jis")) ) {
+                var xs = new XmlSerializer(typeof(FormMain));
+                xs.Serialize(sw, this);
+            }
+
+            stageController.Dispose();
+            stageController = null;
+        }
+
+        private void TestStageController() {
+            stageController.Connect();
+            stageController.ReturnToOrigin();
+            stageController.Dispose();
+            stageController = null;
         }
 #endif
 
@@ -138,7 +172,9 @@ namespace CS.Applications.AmericanBullfrog {
                 LoadMeasuringUnitList();
                 LoadInspector();
 #if DEBUG
-                Test();
+                // TestWriteXml();
+                TestReadXml();
+                TestStageController();
 #endif
                 
                 // TODO: 前回の設定をロード
@@ -153,7 +189,6 @@ namespace CS.Applications.AmericanBullfrog {
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e) {
-            // TODO : 設定を保存
         }
 
         private void listBoxMeasuringUnits_SelectedIndexChanged(object sender, EventArgs e) {
@@ -193,23 +228,23 @@ namespace CS.Applications.AmericanBullfrog {
             TextBox tbs = null;
             unit.Unit.SetSensor(new int[] { unit.Axis }, new Sensor[] { sensor });
             if ( buttonSetLengthMeasuringUnit.Equals(sender) ) {
-                LengthUnit = unit;
+                lengthUnit = unit;
                 tbm = textBoxLengthMeasuringUnit;
                 tbs = textBoxLengthMeasuringSensor;
             } else if ( buttonSetHMeasuringUnit.Equals(sender) ) {
-                HUnit = unit;
+                hUnit = unit;
                 tbm = textBoxHMeasuringUnit;
                 tbs = textBoxHMeasuringSensor;
             } else if ( buttonSetVMeasuringUnit.Equals(sender) ) {
-                VUnit = unit;
+                vUnit = unit;
                 tbm = textBoxVMeasuringUnit;
                 tbs = textBoxVMeasuringSensor;
             } else if ( buttonSetYMeasuringUnit.Equals(sender) ) {
-                YUnit = unit;
+                yUnit = unit;
                 tbm = textBoxYMeasuringUnit;
                 tbs = textBoxYMeasuringSensor;
             } else if ( buttonSetPMeasuringUnit.Equals(sender) ) {
-                PUnit = unit;
+                pUnit = unit;
                 tbm = textBoxPMeasuringUnit;
                 tbs = textBoxPMeasuringSensor;
             }
@@ -229,6 +264,36 @@ namespace CS.Applications.AmericanBullfrog {
             if ( unit.Unit != null ) {
                 unit.Unit.ShowSettingDialogue();
             }
+        }
+
+        #region IXmlSerializable メンバー
+
+        public System.Xml.Schema.XmlSchema GetSchema() {
+            return null;
+        }
+
+        public void ReadXml(System.Xml.XmlReader reader) {
+            reader.ReadStartElement("FormMain");
+            reader.ReadElementContentAsString("StageControllerObject", "");
+            XmlSerializer xs;
+            // TODO: 現段階ではStageControllerの実装はCsControllerのみ
+            xs = new XmlSerializer(typeof(CsController));
+            stageController = (CsController)xs.Deserialize(reader);
+            reader.ReadEndElement();
+        }
+
+        public void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteElementString("StageControllerObject", stageController.GetType().ToString());
+            XmlSerializer xs;
+            // TODO: 現段階ではStageControllerの実装はCsControllerのみ
+            xs = new XmlSerializer(typeof(CsController));
+            xs.Serialize(writer, stageController);
+        }
+
+        #endregion
+
+        private void comboBoxPorts_SelectedIndexChanged(object sender, EventArgs e) {
+            
         }
     }
 }

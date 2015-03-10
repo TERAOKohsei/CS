@@ -1193,6 +1193,7 @@
             this.comboBoxPorts.Name = "comboBoxPorts";
             this.comboBoxPorts.Size = new System.Drawing.Size(319, 23);
             this.comboBoxPorts.TabIndex = 0;
+            this.comboBoxPorts.SelectedIndexChanged += new System.EventHandler(this.comboBoxPorts_SelectedIndexChanged);
             // 
             // tabPageLog
             // 
