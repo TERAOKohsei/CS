@@ -17,19 +17,7 @@ using CS.CommonRc.StageControllers;
 using MySettings = CS.Applications.AmericanBullfrog.Properties.Settings;
 
 namespace CS.Applications.AmericanBullfrog {
-    public partial class FormMain : Form, IXmlSerializable {
-        private struct MeasuringUnitAxis {
-            public MeasuringUnit Unit;
-            public int Axis;
-            public MeasuringUnitAxis(MeasuringUnit unit, int axis) {
-                Unit = unit;
-                Axis = axis;
-            }
-            public override string ToString() {
-                return Unit.ToString(Axis);
-            }
-        }
-
+    public partial class FormMain : Form {
         private struct Inspector {
             public int Code { get; set; }
             public string Name { get; set; }
@@ -51,17 +39,9 @@ namespace CS.Applications.AmericanBullfrog {
 
         private static NLog.Logger logger = null;
         private static IList<Sensor> sensors = null;
-        private static IList<MeasuringUnit> measuringUnits = null;
+        public static IList<MeasuringUnit> MeasuringUnits = null;
 
-        private static MeasuringUnitAxis lengthUnit;
-        private static MeasuringUnitAxis hUnit;
-        private static MeasuringUnitAxis vUnit;
-        private static MeasuringUnitAxis yUnit;
-        private static MeasuringUnitAxis pUnit;
-
-        private static StageController stageController;
-        private static Stage stage;
-        
+        private static AmericanBullfrogSettings settings;
 
         public FormMain() {
             InitializeComponent();
@@ -102,10 +82,10 @@ namespace CS.Applications.AmericanBullfrog {
         private void LoadMeasuringUnitList() {
             listBoxMeasuringUnits.Items.Clear();
             try {
-                measuringUnits = MeasuringUnit.LoadFromFile(MySettings.Default.MeasuringUnitListFilePath);
-                foreach ( var m in measuringUnits ) {
+                MeasuringUnits = MeasuringUnit.LoadFromFile(MySettings.Default.MeasuringUnitListFilePath);
+                foreach ( var m in MeasuringUnits ) {
                     for ( int i = 0; i < m.AxisCount; i++ ) {
-                        listBoxMeasuringUnits.Items.Add(new MeasuringUnitAxis(m, i));
+                        listBoxMeasuringUnits.Items.Add(new MeasuringUnitAxis(m.ID, i, -1));
                     }
                 }
             } catch ( Exception e ) {
@@ -113,7 +93,7 @@ namespace CS.Applications.AmericanBullfrog {
                 throw;
             }
 
-            foreach ( var unit in measuringUnits ) {
+            foreach ( var unit in MeasuringUnits ) {
                 logger.Trace(String.Format("測定機{0}: {1} {2} ({3})を読み込み", unit.ID, unit.Manufacturer, unit.ProductType, unit.ManagementNumber));
             }
         }
@@ -138,28 +118,44 @@ namespace CS.Applications.AmericanBullfrog {
 #if DEBUG
         private void TestReadXml() {
             using ( var sr = new StreamReader(@"C:\Users\kohsei\Documents\american bullfrog.xml", Encoding.GetEncoding("shift-jis")) ) {
-                var xs = new XmlSerializer(typeof(FormMain));
-                xs.Deserialize(sr);
+                var xs = new XmlSerializer(typeof(AmericanBullfrogSettings));
+                settings = (AmericanBullfrogSettings)xs.Deserialize(sr);
             }
+
+            comboBoxPorts.SelectedValue = ((CS.Common.Communications.SerialPort)settings.StageController.Communication).PortName;
         }
 
         private void TestWriteXml() {
-            stageController = new CsController(CsControllerType.QtAdm2);
-            stageController.Communication = new CS.Common.Communications.SerialPort("COM3");
+            settings.StageController = new CsController(CsControllerType.QtAdm2);
+            settings.StageController.Communication = new CS.Common.Communications.SerialPort("COM3");
+            MeasuringUnits[3].SetSensor(new int[] { 0 }, new Sensor[] { sensors[0] });
+            MeasuringUnits[1].SetSensor(new int[] { 0, 1 }, new Sensor[] { sensors[2], sensors[3] });
+            MeasuringUnits[0].SetSensor(new int[] { 0, 1 }, new Sensor[] { sensors[4], sensors[4] });
+            settings.LengthUnit.UnitId = 3;
+            settings.LengthUnit.Axis = 0;
+            settings.HUnit.UnitId = 1;
+            settings.HUnit.Axis = 0;
+            settings.VUnit.UnitId = 1;
+            settings.VUnit.Axis = 1;
+            settings.YUnit.UnitId = 0;
+            settings.YUnit.Axis = 0;
+            settings.PUnit.UnitId = 0;
+            settings.PUnit.Axis = 1;
+            
             using ( var sw = new StreamWriter(@"C:\Users\kohsei\Documents\american bullfrog.xml", false, Encoding.GetEncoding("shift-jis")) ) {
-                var xs = new XmlSerializer(typeof(FormMain));
-                xs.Serialize(sw, this);
+                var xs = new XmlSerializer(typeof(AmericanBullfrogSettings));
+                xs.Serialize(sw, settings);
             }
 
-            stageController.Dispose();
-            stageController = null;
+            settings.StageController.Dispose();
+            settings.StageController = null;
         }
 
         private void TestStageController() {
-            stageController.Connect();
-            stageController.ReturnToOrigin();
-            stageController.Dispose();
-            stageController = null;
+            settings.StageController.Connect();
+            settings.StageController.ReturnToOrigin();
+            settings.StageController.Dispose();
+            settings.StageController = null;
         }
 #endif
 
@@ -172,9 +168,9 @@ namespace CS.Applications.AmericanBullfrog {
                 LoadMeasuringUnitList();
                 LoadInspector();
 #if DEBUG
-                // TestWriteXml();
+                TestWriteXml();
                 TestReadXml();
-                TestStageController();
+                //TestStageController();
 #endif
                 
                 // TODO: 前回の設定をロード
@@ -196,7 +192,7 @@ namespace CS.Applications.AmericanBullfrog {
 
             listBoxSensors.Items.Clear();
             SetMeasuringUnitButtonEnabled(false, false);
-            foreach ( var s in sensors.Where(s => s.SensorCode == sc.Unit.SensorCodes.ElementAt(sc.Axis)) ) {
+            foreach ( var s in sensors.Where(s => s.SensorCode == MeasuringUnits[sc.UnitId].SensorCodes.ElementAt(sc.Axis)) ) {
                 listBoxSensors.Items.Add(s);
             }
 
@@ -226,74 +222,50 @@ namespace CS.Applications.AmericanBullfrog {
             Sensor sensor = (Sensor)listBoxSensors.SelectedItem;
             TextBox tbm = null;
             TextBox tbs = null;
-            unit.Unit.SetSensor(new int[] { unit.Axis }, new Sensor[] { sensor });
+            MeasuringUnits[unit.UnitId].SetSensor(new int[] { unit.Axis }, new Sensor[] { sensor });
             if ( buttonSetLengthMeasuringUnit.Equals(sender) ) {
-                lengthUnit = unit;
+                settings.LengthUnit = unit;
                 tbm = textBoxLengthMeasuringUnit;
                 tbs = textBoxLengthMeasuringSensor;
             } else if ( buttonSetHMeasuringUnit.Equals(sender) ) {
-                hUnit = unit;
+                settings.HUnit = unit;
                 tbm = textBoxHMeasuringUnit;
                 tbs = textBoxHMeasuringSensor;
             } else if ( buttonSetVMeasuringUnit.Equals(sender) ) {
-                vUnit = unit;
+                settings.VUnit = unit;
                 tbm = textBoxVMeasuringUnit;
                 tbs = textBoxVMeasuringSensor;
             } else if ( buttonSetYMeasuringUnit.Equals(sender) ) {
-                yUnit = unit;
+                settings.YUnit = unit;
                 tbm = textBoxYMeasuringUnit;
                 tbs = textBoxYMeasuringSensor;
             } else if ( buttonSetPMeasuringUnit.Equals(sender) ) {
-                pUnit = unit;
+                settings.PUnit = unit;
                 tbm = textBoxPMeasuringUnit;
                 tbs = textBoxPMeasuringSensor;
             }
 
             if ( tbm != null ) {
-                tbm.Text = unit.Unit.ToString(unit.Axis);
+                tbm.Text = MeasuringUnits[unit.UnitId].ToString(unit.Axis);
             }
 
             if ( tbs != null ) {
-                tbs.Text = unit.Unit.Sensors[unit.Axis].ToString();
+                tbs.Text = MeasuringUnits[unit.UnitId].Sensors[unit.Axis].ToString();
             }
         }
 
         private void buttonShowMeasuringUnitSettingDialogue_Click(object sender, EventArgs e) {
             var unit = (MeasuringUnitAxis)listBoxMeasuringUnits.SelectedItem;
 
-            if ( unit.Unit != null ) {
-                unit.Unit.ShowSettingDialogue();
+            if ( MeasuringUnits[unit.UnitId] != null ) {
+                MeasuringUnits[unit.UnitId].ShowSettingDialogue();
             }
         }
 
-        #region IXmlSerializable メンバー
-
-        public System.Xml.Schema.XmlSchema GetSchema() {
-            return null;
-        }
-
-        public void ReadXml(System.Xml.XmlReader reader) {
-            reader.ReadStartElement("FormMain");
-            reader.ReadElementContentAsString("StageControllerObject", "");
-            XmlSerializer xs;
-            // TODO: 現段階ではStageControllerの実装はCsControllerのみ
-            xs = new XmlSerializer(typeof(CsController));
-            stageController = (CsController)xs.Deserialize(reader);
-            reader.ReadEndElement();
-        }
-
-        public void WriteXml(System.Xml.XmlWriter writer) {
-            writer.WriteElementString("StageControllerObject", stageController.GetType().ToString());
-            XmlSerializer xs;
-            // TODO: 現段階ではStageControllerの実装はCsControllerのみ
-            xs = new XmlSerializer(typeof(CsController));
-            xs.Serialize(writer, stageController);
-        }
-
-        #endregion
-
         private void comboBoxPorts_SelectedIndexChanged(object sender, EventArgs e) {
-            
+            if ( settings.StageController != null ) {
+                settings.StageController.Communication = new CS.Common.Communications.SerialPort((string)comboBoxPorts.SelectedValue);
+            }
         }
     }
 }

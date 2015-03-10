@@ -159,7 +159,7 @@ namespace CS.CommonRc.MeasuringUnits {
                 str += "- " + ManagementNumber;
             }
 
-            str += " : " + AxisNames.ElementAt(axis);
+                str += " : " + AxisNames.ElementAt(axis);
 
             return str;
         }
