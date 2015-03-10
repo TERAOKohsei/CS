@@ -17,7 +17,7 @@ using CS.CommonRc;
 using CS.Common.Communications;
 using CS.CommonRc.MeasuringUnits;
 using CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages;
-using CS.Common.StageController;
+using CS.Common.StageControllers;
 
 using MCounter = CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages.Counter;
 

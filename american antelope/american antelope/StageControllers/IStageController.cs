@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Xml.Serialization;
 
-namespace CS.Common.StageController {
+namespace CS.Common.StageControllers {
     [Flags()]
     public enum StageStates : uint {
         Stopped = 0x1,

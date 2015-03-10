@@ -9,7 +9,7 @@ using System.Threading;
 using System.Xml.Serialization;
 using Ports = System.IO.Ports;
 
-namespace CS.Common.StageController {
+namespace CS.Common.StageControllers {
     public enum CsControllerType {
         Cpc1b, Cpc2b, Cpc3b, Cpc1c, Cpc2c, Cpc3c, Cpc1bt, Cpc1ct,
         Cpc1cs, Cpc2cs, Cpc3cs, Cpc1ch, Cpc2ch, Cpc3ch,

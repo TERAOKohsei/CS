@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CS.Common.StageController.Properties {
+namespace CS.Common.StageControllers.Properties {
     using System;
     
     
@@ -17,7 +17,7 @@ namespace CS.Common.StageController.Properties {
     /// </summary>
     // このクラスは StronglyTypedResourceBuilder クラスが ResGen
     // または Visual Studio のようなツールを使用して自動生成されました。
-    // メンバーを追加または削除するには、.ResX ファイルを編集して、/data オプションと共に
+    // メンバーを追加または削除するには、.ResX ファイルを編集して、/str オプションと共に
     // ResGen を実行し直すか、または VS プロジェクトをビルドし直します。
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -39,7 +39,7 @@ namespace CS.Common.StageController.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CS.Common.StageController.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CS.Common.StageControllers.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,8 +61,7 @@ namespace CS.Common.StageController.Properties {
         }
         
         /// <summary>
-        ///   ProductName,AxisCount
-        ///CPC-1B,1
+        ///   CPC-1B,1
         ///CPC-2B,2
         ///CPC-3B,3
         ///CPC-1C,1
@@ -70,6 +69,15 @@ namespace CS.Common.StageController.Properties {
         ///CPC-3C,3
         ///CPC-1BT,1
         ///CPC-1CT,1
+        ///CPC-1CS,1
+        ///CPC-2CS,2
+        ///CPC-3CS,3
+        ///CPC-1CH,1
+        ///CPC-2CH,2
+        ///CPC-3CH,3
+        ///CPC-1D,1
+        ///CPC-2D,2
+        ///CPC-3D,3
         ///CPC-1DN,1
         ///CPC-2DN,2
         ///CPC-3DN,3
@@ -97,9 +105,7 @@ namespace CS.Common.StageController.Properties {
         ///QT-ADL1/QT-ADL1-35,1
         ///QT-ADM2/QT-ADM2-35,2
         ///QT-ADM3/QT-ADM3-35,3
-        ///QT-AMH2/QT-AMH2-35,2
-        ///QT-AMH2A/QT-AMH2A-35,2
-        /// に類似しているローカライズされた文字列を検索します。
+        ///QT-AMH [残りの文字列は切り詰められました]&quot;; に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ControllerSpec {
             get {

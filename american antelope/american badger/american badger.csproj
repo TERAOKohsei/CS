@@ -7,7 +7,7 @@
     <ProjectGuid>{3774C470-DE2A-4077-9052-C7764DBA1C98}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CS.Common.StageController</RootNamespace>
+    <RootNamespace>CS.Common.StageControllers</RootNamespace>
     <AssemblyName>american badger</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
