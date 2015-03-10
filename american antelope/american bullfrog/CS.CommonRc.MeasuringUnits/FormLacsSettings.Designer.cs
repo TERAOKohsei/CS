@@ -30,11 +30,13 @@
             this.comboBoxPortName = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.labelMeasuringUnitInformation = new System.Windows.Forms.Label();
+            this.textBoxWaitTimeMs = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonApply
             // 
-            this.buttonApply.Location = new System.Drawing.Point(213, 67);
+            this.buttonApply.Location = new System.Drawing.Point(216, 128);
             this.buttonApply.Name = "buttonApply";
             this.buttonApply.Size = new System.Drawing.Size(75, 23);
             this.buttonApply.TabIndex = 13;
@@ -44,7 +46,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(132, 67);
+            this.buttonCancel.Location = new System.Drawing.Point(135, 128);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 12;
@@ -54,7 +56,7 @@
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(51, 67);
+            this.buttonOK.Location = new System.Drawing.Point(54, 128);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 11;
@@ -97,11 +99,34 @@
             this.labelMeasuringUnitInformation.TabIndex = 7;
             this.labelMeasuringUnitInformation.Text = "測定機";
             // 
+            // textBoxWaitTimeMs
+            // 
+            this.textBoxWaitTimeMs.Location = new System.Drawing.Point(116, 77);
+            this.textBoxWaitTimeMs.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxWaitTimeMs.Name = "textBoxWaitTimeMs";
+            this.textBoxWaitTimeMs.Size = new System.Drawing.Size(76, 19);
+            this.textBoxWaitTimeMs.TabIndex = 14;
+            this.textBoxWaitTimeMs.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxWaitTimeMs.Click += new System.EventHandler(this.textBoxWaitTimeMs_Click);
+            this.textBoxWaitTimeMs.Enter += new System.EventHandler(this.textBoxWaitTimeMs_Enter);
+            this.textBoxWaitTimeMs.Validating += new System.ComponentModel.CancelEventHandler(this.textBoxWaitTimeMs_Validating);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 12);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "測定待ち時間[ms]";
+            // 
             // FormLacsSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 101);
+            this.ClientSize = new System.Drawing.Size(297, 163);
+            this.Controls.Add(this.textBoxWaitTimeMs);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonApply);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
@@ -125,5 +150,7 @@
         private System.Windows.Forms.ComboBox comboBoxPortName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelMeasuringUnitInformation;
+        private System.Windows.Forms.TextBox textBoxWaitTimeMs;
+        private System.Windows.Forms.Label label1;
     }
 }

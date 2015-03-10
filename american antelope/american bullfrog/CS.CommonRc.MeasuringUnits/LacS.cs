@@ -20,7 +20,7 @@ namespace CS.CommonRc.MeasuringUnits {
             IEnumerable<string> axisNames, IEnumerable<int> sensorCodes) : base(id, managementNumber, manufacturer, productName, productType, serialNumber, axisCount, axisNames, sensorCodes) {
         }
 
-        public override void Measure() {
+        protected override void MeasureImmediately() {
             port.WriteLine("D");
             var words = port.ReadLine().Split(',');
             foreach ( var w in words.Select((v, i) => new { v, i }) ) {

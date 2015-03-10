@@ -57,7 +57,7 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
 
         #region MeasuringUnit メンバー
 
-        public override void Measure() {
+        protected override void MeasureImmediately() {
             foreach ( var s in Sensors.Select((v, i) => new { Value = v, Index = i }) ) {
                 DisplayCurrentValue(s.Index);
                 GetDisplacementToBuffer(s.Index);

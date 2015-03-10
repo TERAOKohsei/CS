@@ -19,11 +19,12 @@ namespace CS.CommonRc.MeasuringUnits {
         public int AxisCount { get; private set; }
         public IEnumerable<string> AxisNames { get; private set; }
         public IEnumerable<int> SensorCodes { get; private set; }
+        public int WaitTimeMs { get; set; }
 
         protected CS.Common.Communications.ICommunication port;
         private Sensor[] innerSensors = null;
         public Sensor[] Sensors { get { return (Sensor[])innerSensors.Clone(); } }
-        public abstract void Measure();
+        protected abstract void MeasureImmediately();
         public abstract void Reset();
         public abstract double[] GetValues();
         public abstract double[] GetAngulars();
@@ -84,8 +85,13 @@ namespace CS.CommonRc.MeasuringUnits {
             return list;
         }
 
-        public MeasuringUnit(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
-            IEnumerable<string> axisNames, IEnumerable<int> sensorCodes) {
+        public void Measure() {
+            System.Threading.Thread.Sleep(WaitTimeMs);
+            MeasureImmediately();
+        }
+
+        protected MeasuringUnit(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
+            IEnumerable<string> axisNames, IEnumerable<int> sensorCodes, int waitTimeMs = 0) {
 
             ID = id;
             ManagementNumber = managementNumber;
@@ -96,6 +102,7 @@ namespace CS.CommonRc.MeasuringUnits {
             AxisCount = axisCount;
             AxisNames = axisNames;
             SensorCodes = sensorCodes;
+            WaitTimeMs = waitTimeMs;
 
             innerSensors = new Sensor[axisCount];
         }
@@ -222,6 +229,8 @@ namespace CS.CommonRc.MeasuringUnits {
                 innerSensors[i] = (Sensor)xs.Deserialize(reader);
             }
             reader.ReadEndElement();
+
+            WaitTimeMs = reader.ReadElementContentAsInt("WaitTimeMs", "");
         }
 
         public virtual void WriteXml(System.Xml.XmlWriter writer) {
@@ -248,6 +257,7 @@ namespace CS.CommonRc.MeasuringUnits {
                 xs.Serialize(writer, sens);
             }
             writer.WriteEndElement();
+            writer.WriteElementString("WaitTimeMs", WaitTimeMs.ToString());
         }
 
         #endregion
