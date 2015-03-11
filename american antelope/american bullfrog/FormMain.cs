@@ -30,46 +30,13 @@ namespace CS.Applications.AmericanBullfrog {
             }
         }
 
-        private struct Inspector {
-            public int Code { get; set; }
-            public string Name { get; set; }
-            public Inspector(int code, string name) : this() {
-                Code = code;
-                Name = name;
-            }
-            public override string ToString() {
-                return String.Format("{0}: {1}", Code, Name);
-            }
-        }
-
-        private struct InspectionConditions {
-            public string SerialNumber { get; set; }
-            public string ProductCode { get; set; }
-            public Inspector Inspector { get; set; }
-            public string Notes { get; set; }
-        }
-
         public static NLog.Logger logger = null;
-        private static IList<Sensor> sensors = null;
 
         private static AmericanBullfrogSettings settings;
 
         public FormMain() {
             InitializeComponent();
             int i = settings.HUnit.Axis;
-        }
-
-        private void LoadSensorList() {
-            try {
-                sensors = Sensor.LoadFromFile(MySettings.Default.SensorListFilePath);
-            } catch ( Exception e ) {
-                logger.DebugException("センサリスト読み込み中に例外が発生。", e);
-                throw;
-            }
-
-            foreach ( var sensor in sensors ) {
-                logger.Trace(String.Format("センサ{0}: {1} {2} ({3})を読み込み", sensor.Id, sensor.Manufacturer, sensor.ProductType, sensor.ManagementNumber));
-            }
         }
 
         private void LoadInspector() {
@@ -92,13 +59,17 @@ namespace CS.Applications.AmericanBullfrog {
         }
 
         private void LoadMeasuringUnitList() {
-            settings.LoadMeasuringUnitList(MySettings.Default.MeasuringUnitListFilePath);
+            AmericanBullfrogSettings.LoadMeasuringUnitList(MySettings.Default.MeasuringUnitListFilePath);
             listBoxMeasuringUnits.Items.Clear();
-            foreach ( var mu in settings.MeasuringUnits ) {
+            foreach ( var mu in AmericanBullfrogSettings.MeasuringUnits ) {
                 for ( int i = 0; i < mu.AxisCount; i++ ) {
-                    listBoxMeasuringUnits.Items.Add(new MeasuringUnitChannel(settings.MeasuringUnits[mu.ID], i));
+                    listBoxMeasuringUnits.Items.Add(new MeasuringUnitChannel(AmericanBullfrogSettings.MeasuringUnits[mu.ID], i));
                 }
             }
+        }
+
+        private void LoadSensorList() {
+            AmericanBullfrogSettings.LoadSensorList(MySettings.Default.SensorListFilePath);
         }
 
         private void LoadSerialPortList() {
@@ -123,28 +94,72 @@ namespace CS.Applications.AmericanBullfrog {
             using ( var sr = new StreamReader(@"C:\Users\kohsei\Documents\american bullfrog.xml", Encoding.GetEncoding("shift-jis")) ) {
                 var xs = new XmlSerializer(typeof(AmericanBullfrogSettings));
                 settings = (AmericanBullfrogSettings)xs.Deserialize(sr);
-                LoadMeasuringUnitList();
             }
 
             comboBoxPorts.SelectedValue = ((CS.Common.Communications.SerialPort)settings.StageController.Communication).PortName;
+            textBoxLengthMeasuringUnit.Text = settings.LengthUnit.ToString();
+            textBoxLengthMeasuringSensor.Text = settings.LengthUnit.GetSensorName();
+            textBoxHMeasuringUnit.Text = settings.HUnit.ToString();
+            textBoxHMeasuringSensor.Text = settings.HUnit.GetSensorName();
+            textBoxVMeasuringUnit.Text = settings.VUnit.ToString();
+            textBoxVMeasuringSensor.Text = settings.VUnit.GetSensorName();
+            textBoxYMeasuringUnit.Text = settings.YUnit.ToString();
+            textBoxYMeasuringSensor.Text = settings.YUnit.GetSensorName();
+            textBoxPMeasuringUnit.Text = settings.PUnit.ToString();
+            textBoxPMeasuringSensor.Text = settings.PUnit.GetSensorName();
+
+            textBoxProductName.Text = settings.Stage.ProductName;
+            textBoxProductType.Text = settings.Stage.ProductType;
+            textBoxTravelRange.Text = settings.Stage.TravelRange.Difference.ToString();
+            textBoxLowerTravelRange.Text = settings.Stage.TravelRange.Lower.ToString();
+            textBoxUpperTravelRange.Text = settings.Stage.TravelRange.Upper.ToString();
+            textBoxPositioningAccuracy.Text = settings.Stage.PositionAccuracy.ToString();
+            textBoxRepeatabilityOfPositioning.Text = settings.Stage.RepeatabilityOfPositioning.ToString();
+            textBoxLostMotion.Text = settings.Stage.LostMotion.ToString();
+            textBoxMotionAccuracyH.Text = settings.Stage.MotionAccuracyHorizontal.ToString();
+            textBoxMotionAccuracyV.Text = settings.Stage.MotionAccuracyVertical.ToString();
+            textBoxMotionAccuracyY.Text = settings.Stage.MotionAccuracyYaw.ToString();
+            textBoxMotionAccuracyP.Text = settings.Stage.MotionAccuracyPitch.ToString();
+            textBoxParallelismOfMotion.Text = settings.Stage.ParallelismOfMotion.ToString();
+
+            textBoxMeasuringPointCount.Text = settings.Stage.MeasuringPointCount.ToString();
+            textBoxRepeatCount.Text = settings.Stage.RepeatCount.ToString();
+            listBoxMeasuringPositions.Items.Clear();
+            foreach ( var p in settings.Stage.MeasuringPositions ) {
+                listBoxMeasuringPositions.Items.Add(p);
+            }
+            textBoxLowerSpeed.Text = settings.Stage.LowerSpeedPps.ToString();
+            textBoxUpperSpeed.Text = settings.Stage.UpperSpeedPps.ToString();
+            textBoxAccelerationTime.Text = settings.Stage.AccelerationTimeMs.ToString();
+            textBoxLostMotionCorrectValue.Text = settings.Stage.LostMotionCorrectPps.ToString();
+            textBoxWaitTimeAfterStopped.Text = settings.Stage.WaitTimeMsAfterStopped.ToString();
         }
 
         private void TestWriteXml() {
             settings.StageController = new CsController(CsControllerType.QtAdm2);
             settings.StageController.Communication = new CS.Common.Communications.SerialPort("COM3");
-            settings.MeasuringUnits[3].SetSensor(new int[] { 0 }, new Sensor[] { sensors[0] });
-            settings.MeasuringUnits[1].SetSensor(new int[] { 0, 1 }, new Sensor[] { sensors[2], sensors[3] });
-            settings.MeasuringUnits[0].SetSensor(new int[] { 0, 1 }, new Sensor[] { sensors[4], sensors[4] });
+            AmericanBullfrogSettings.MeasuringUnits[3].SetSensor(new int[] { 0 }, new Sensor[] { AmericanBullfrogSettings.Sensors[0] });
+            AmericanBullfrogSettings.MeasuringUnits[3].Communication = new CS.Common.Communications.SerialPort("COM2", 9600, 7, System.IO.Ports.Parity.Even, System.IO.Ports.StopBits.Two);
+            AmericanBullfrogSettings.MeasuringUnits[1].SetSensor(new int[] { 0, 1 }, new Sensor[] { AmericanBullfrogSettings.Sensors[2], AmericanBullfrogSettings.Sensors[3] });
+            AmericanBullfrogSettings.MeasuringUnits[1].Communication = new CS.Common.Communications.SerialPort("COM4", 9600, 7, System.IO.Ports.Parity.Even, System.IO.Ports.StopBits.Two);
+            AmericanBullfrogSettings.MeasuringUnits[0].SetSensor(new int[] { 0, 1 }, new Sensor[] { AmericanBullfrogSettings.Sensors[4], AmericanBullfrogSettings.Sensors[4] });
+            AmericanBullfrogSettings.MeasuringUnits[0].Communication = new CS.Common.Communications.SerialPort("COM5", 9600, 8, System.IO.Ports.Parity.Even, System.IO.Ports.StopBits.Two);
             settings.LengthUnit.UnitId = 3;
             settings.LengthUnit.Axis = 0;
+            settings.LengthUnit.SensorId = 0;
             settings.HUnit.UnitId = 1;
             settings.HUnit.Axis = 0;
+            settings.HUnit.SensorId = 2;
             settings.VUnit.UnitId = 1;
             settings.VUnit.Axis = 1;
+            settings.VUnit.SensorId = 3;
             settings.YUnit.UnitId = 0;
             settings.YUnit.Axis = 0;
+            settings.YUnit.SensorId = 4;
             settings.PUnit.UnitId = 0;
             settings.PUnit.Axis = 1;
+            settings.PUnit.SensorId = 4;
+            settings.Stage.LoadInformation(@"C:\Users\kohsei\Documents\LS-3047-C1.csv");
             
             using ( var sw = new StreamWriter(@"C:\Users\kohsei\Documents\american bullfrog.xml", false, Encoding.GetEncoding("shift-jis")) ) {
                 var xs = new XmlSerializer(typeof(AmericanBullfrogSettings));
@@ -196,8 +211,8 @@ namespace CS.Applications.AmericanBullfrog {
 
             listBoxSensors.Items.Clear();
             SetMeasuringUnitButtonEnabled(false, false);
-            if ( settings.MeasuringUnits != null ) {
-                foreach ( var s in sensors.Where(s => s.SensorCode == settings.MeasuringUnits[sc.Unit.ID].SensorCodes.ElementAt(sc.Axis)) ) {
+            if ( AmericanBullfrogSettings.MeasuringUnits != null ) {
+                foreach ( var s in AmericanBullfrogSettings.Sensors.Where(s => s.SensorCode == AmericanBullfrogSettings.MeasuringUnits[sc.Unit.ID].SensorCodes.ElementAt(sc.Axis)) ) {
                     listBoxSensors.Items.Add(s);
                 }
             }
@@ -229,43 +244,43 @@ namespace CS.Applications.AmericanBullfrog {
             Sensor sensor = (Sensor)listBoxSensors.SelectedItem;
             TextBox tbm = null;
             TextBox tbs = null;
-            settings.MeasuringUnits[unit.ID].SetSensor(new int[] { uc.Axis }, new Sensor[] { sensor });
+            AmericanBullfrogSettings.MeasuringUnits[unit.ID].SetSensor(new int[] { uc.Axis }, new Sensor[] { sensor });
             if ( buttonSetLengthMeasuringUnit.Equals(sender) ) {
-                settings.LengthUnit = new MeasuringUnitAxis(unit.ID, uc.Axis, sensor.Id);
+                settings.LengthUnit = new MeasuringUnitCombination(unit.ID, uc.Axis, sensor.Id);
                 tbm = textBoxLengthMeasuringUnit;
                 tbs = textBoxLengthMeasuringSensor;
             } else if ( buttonSetHMeasuringUnit.Equals(sender) ) {
-                settings.HUnit = new MeasuringUnitAxis(unit.ID, uc.Axis, sensor.Id);
+                settings.HUnit = new MeasuringUnitCombination(unit.ID, uc.Axis, sensor.Id);
                 tbm = textBoxHMeasuringUnit;
                 tbs = textBoxHMeasuringSensor;
             } else if ( buttonSetVMeasuringUnit.Equals(sender) ) {
-                settings.VUnit = new MeasuringUnitAxis(unit.ID, uc.Axis, sensor.Id);
+                settings.VUnit = new MeasuringUnitCombination(unit.ID, uc.Axis, sensor.Id);
                 tbm = textBoxVMeasuringUnit;
                 tbs = textBoxVMeasuringSensor;
             } else if ( buttonSetYMeasuringUnit.Equals(sender) ) {
-                settings.YUnit = new MeasuringUnitAxis(unit.ID, uc.Axis, sensor.Id);
+                settings.YUnit = new MeasuringUnitCombination(unit.ID, uc.Axis, sensor.Id);
                 tbm = textBoxYMeasuringUnit;
                 tbs = textBoxYMeasuringSensor;
             } else if ( buttonSetPMeasuringUnit.Equals(sender) ) {
-                settings.PUnit = new MeasuringUnitAxis(unit.ID, uc.Axis, sensor.Id);
+                settings.PUnit = new MeasuringUnitCombination(unit.ID, uc.Axis, sensor.Id);
                 tbm = textBoxPMeasuringUnit;
                 tbs = textBoxPMeasuringSensor;
             }
 
             if ( tbm != null ) {
-                tbm.Text = settings.MeasuringUnits[unit.ID].ToString(uc.Axis);
+                tbm.Text = AmericanBullfrogSettings.MeasuringUnits[unit.ID].ToString(uc.Axis);
             }
 
             if ( tbs != null ) {
-                tbs.Text = settings.MeasuringUnits[unit.ID].Sensors[uc.Axis].ToString();
+                tbs.Text = AmericanBullfrogSettings.MeasuringUnits[unit.ID].Sensors[uc.Axis].ToString();
             }
         }
 
         private void buttonShowMeasuringUnitSettingDialogue_Click(object sender, EventArgs e) {
             var unit = (MeasuringUnitChannel)listBoxMeasuringUnits.SelectedItem;
 
-            if ( settings.MeasuringUnits[unit.Unit.ID] != null ) {
-                settings.MeasuringUnits[unit.Unit.ID].ShowSettingDialogue();
+            if ( AmericanBullfrogSettings.MeasuringUnits[unit.Unit.ID] != null ) {
+                AmericanBullfrogSettings.MeasuringUnits[unit.Unit.ID].ShowSettingDialogue();
             }
         }
 

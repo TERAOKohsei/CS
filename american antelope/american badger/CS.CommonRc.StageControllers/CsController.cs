@@ -274,6 +274,12 @@ namespace CS.CommonRc.StageControllers {
             base.ReadXml(reader);
             reader.ReadEndElement();
         }
+
+        public override void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteStartElement("CsController");
+            base.WriteXml(writer);
+            writer.WriteEndElement();
+        }
         #endregion
     }
 }

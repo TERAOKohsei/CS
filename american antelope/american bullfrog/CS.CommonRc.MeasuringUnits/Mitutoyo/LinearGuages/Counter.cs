@@ -22,7 +22,7 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
 
         #region コンストラクタ/デストラクタ
 
-        protected Counter()
+        public Counter()
             : base() {
         }
 
@@ -129,6 +129,8 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
 
         #region IXmlSerializer Members
         public override void ReadXml(System.Xml.XmlReader reader) {
+            reader.ReadStartElement("Mitutoyo.LinearGuages.Counter");
+
             base.ReadXml(reader);
             switch ( reader.ReadElementContentAsString("Communication", "") ) {
             case "SerialPort":
@@ -145,9 +147,13 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
                 }
                 break;
             }
+
+            reader.ReadEndElement();
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteStartElement("Mitutoyo.LinearGuages.Counter");
+
             base.WriteXml(writer);
             if ( port == null ) {
                 writer.WriteElementString("Communication", "Null");
@@ -155,6 +161,8 @@ namespace CS.CommonRc.MeasuringUnits.Mitutoyo.LinearGuages {
                 writer.WriteElementString("Communication", "SerialPort");
                 port.WriteXml(writer);
             }
+
+            writer.WriteEndElement();
         }
         #endregion // IXmlSerializer Members
     }

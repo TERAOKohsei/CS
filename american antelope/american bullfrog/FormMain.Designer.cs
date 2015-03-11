@@ -37,36 +37,36 @@
             this.checkBoxMotionAccuracyY = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.checkBoxMotionAccuracyV = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxPositioningAccuracy = new System.Windows.Forms.TextBox();
             this.checkBoxMotionAccuracyH = new System.Windows.Forms.CheckBox();
             this.label20 = new System.Windows.Forms.Label();
             this.checkBoxLostMotion = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxRepeatabilityOfPositioning = new System.Windows.Forms.TextBox();
             this.checkBoxRepeatabilityOfPositioning = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.checkBoxPositioningAccuracy = new System.Windows.Forms.CheckBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxLostMotion = new System.Windows.Forms.TextBox();
             this.checkBoxTravelRange = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBoxParallelismOfMotion = new System.Windows.Forms.TextBox();
+            this.textBoxMotionAccuracyH = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBoxMotionAccuracyP = new System.Windows.Forms.TextBox();
+            this.textBoxMotionAccuracyV = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBoxMotionAccuracyY = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
+            this.textBoxWaitTimeAfterStopped = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBoxLostMotionCorrectValue = new System.Windows.Forms.TextBox();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.textBoxAccelerationTime = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.textBoxUpperSpeed = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBoxLowerSpeed = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxMeasuringPositions = new System.Windows.Forms.ListBox();
@@ -200,26 +200,26 @@
             this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyY);
             this.groupBox4.Controls.Add(this.label19);
             this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyV);
-            this.groupBox4.Controls.Add(this.textBox1);
+            this.groupBox4.Controls.Add(this.textBoxPositioningAccuracy);
             this.groupBox4.Controls.Add(this.checkBoxMotionAccuracyH);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.checkBoxLostMotion);
-            this.groupBox4.Controls.Add(this.textBox2);
+            this.groupBox4.Controls.Add(this.textBoxRepeatabilityOfPositioning);
             this.groupBox4.Controls.Add(this.checkBoxRepeatabilityOfPositioning);
             this.groupBox4.Controls.Add(this.label21);
             this.groupBox4.Controls.Add(this.checkBoxPositioningAccuracy);
-            this.groupBox4.Controls.Add(this.textBox3);
+            this.groupBox4.Controls.Add(this.textBoxLostMotion);
             this.groupBox4.Controls.Add(this.checkBoxTravelRange);
             this.groupBox4.Controls.Add(this.label22);
-            this.groupBox4.Controls.Add(this.textBox8);
-            this.groupBox4.Controls.Add(this.textBox4);
+            this.groupBox4.Controls.Add(this.textBoxParallelismOfMotion);
+            this.groupBox4.Controls.Add(this.textBoxMotionAccuracyH);
             this.groupBox4.Controls.Add(this.label26);
             this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.textBox7);
-            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.textBoxMotionAccuracyP);
+            this.groupBox4.Controls.Add(this.textBoxMotionAccuracyV);
             this.groupBox4.Controls.Add(this.label25);
             this.groupBox4.Controls.Add(this.label24);
-            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.textBoxMotionAccuracyY);
             this.groupBox4.Location = new System.Drawing.Point(319, 71);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(408, 318);
@@ -234,6 +234,7 @@
             this.textBoxTravelRange.Name = "textBoxTravelRange";
             this.textBoxTravelRange.Size = new System.Drawing.Size(219, 21);
             this.textBoxTravelRange.TabIndex = 22;
+            this.textBoxTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label16
             // 
@@ -260,6 +261,7 @@
             this.textBoxLowerTravelRange.Name = "textBoxLowerTravelRange";
             this.textBoxLowerTravelRange.Size = new System.Drawing.Size(80, 21);
             this.textBoxLowerTravelRange.TabIndex = 24;
+            this.textBoxLowerTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxParallelismOfMotion
             // 
@@ -277,6 +279,7 @@
             this.textBoxUpperTravelRange.Name = "textBoxUpperTravelRange";
             this.textBoxUpperTravelRange.Size = new System.Drawing.Size(80, 21);
             this.textBoxUpperTravelRange.TabIndex = 24;
+            this.textBoxUpperTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxMotionAccuracyP
             // 
@@ -323,13 +326,14 @@
             this.checkBoxMotionAccuracyV.TabIndex = 47;
             this.checkBoxMotionAccuracyV.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxPositioningAccuracy
             // 
-            this.textBox1.Location = new System.Drawing.Point(172, 84);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 21);
-            this.textBox1.TabIndex = 27;
+            this.textBoxPositioningAccuracy.Location = new System.Drawing.Point(172, 84);
+            this.textBoxPositioningAccuracy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxPositioningAccuracy.Name = "textBoxPositioningAccuracy";
+            this.textBoxPositioningAccuracy.Size = new System.Drawing.Size(219, 21);
+            this.textBoxPositioningAccuracy.TabIndex = 27;
+            this.textBoxPositioningAccuracy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxMotionAccuracyH
             // 
@@ -358,13 +362,14 @@
             this.checkBoxLostMotion.TabIndex = 45;
             this.checkBoxLostMotion.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // textBoxRepeatabilityOfPositioning
             // 
-            this.textBox2.Location = new System.Drawing.Point(172, 115);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 21);
-            this.textBox2.TabIndex = 29;
+            this.textBoxRepeatabilityOfPositioning.Location = new System.Drawing.Point(172, 115);
+            this.textBoxRepeatabilityOfPositioning.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxRepeatabilityOfPositioning.Name = "textBoxRepeatabilityOfPositioning";
+            this.textBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(219, 21);
+            this.textBoxRepeatabilityOfPositioning.TabIndex = 29;
+            this.textBoxRepeatabilityOfPositioning.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxRepeatabilityOfPositioning
             // 
@@ -393,13 +398,14 @@
             this.checkBoxPositioningAccuracy.TabIndex = 43;
             this.checkBoxPositioningAccuracy.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // textBoxLostMotion
             // 
-            this.textBox3.Location = new System.Drawing.Point(172, 144);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(219, 21);
-            this.textBox3.TabIndex = 31;
+            this.textBoxLostMotion.Location = new System.Drawing.Point(172, 144);
+            this.textBoxLostMotion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLostMotion.Name = "textBoxLostMotion";
+            this.textBoxLostMotion.Size = new System.Drawing.Size(219, 21);
+            this.textBoxLostMotion.TabIndex = 31;
+            this.textBoxLostMotion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // checkBoxTravelRange
             // 
@@ -419,21 +425,23 @@
             this.label22.Text = "移動精度 H[μm]";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox8
+            // textBoxParallelismOfMotion
             // 
-            this.textBox8.Location = new System.Drawing.Point(172, 289);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(219, 21);
-            this.textBox8.TabIndex = 41;
+            this.textBoxParallelismOfMotion.Location = new System.Drawing.Point(172, 289);
+            this.textBoxParallelismOfMotion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxParallelismOfMotion.Name = "textBoxParallelismOfMotion";
+            this.textBoxParallelismOfMotion.Size = new System.Drawing.Size(219, 21);
+            this.textBoxParallelismOfMotion.TabIndex = 41;
+            this.textBoxParallelismOfMotion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox4
+            // textBoxMotionAccuracyH
             // 
-            this.textBox4.Location = new System.Drawing.Point(172, 173);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(219, 21);
-            this.textBox4.TabIndex = 33;
+            this.textBoxMotionAccuracyH.Location = new System.Drawing.Point(172, 173);
+            this.textBoxMotionAccuracyH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMotionAccuracyH.Name = "textBoxMotionAccuracyH";
+            this.textBoxMotionAccuracyH.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyH.TabIndex = 33;
+            this.textBoxMotionAccuracyH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label26
             // 
@@ -453,21 +461,23 @@
             this.label23.Text = "移動精度 V[μm]";
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox7
+            // textBoxMotionAccuracyP
             // 
-            this.textBox7.Location = new System.Drawing.Point(172, 260);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(219, 21);
-            this.textBox7.TabIndex = 39;
+            this.textBoxMotionAccuracyP.Location = new System.Drawing.Point(172, 260);
+            this.textBoxMotionAccuracyP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMotionAccuracyP.Name = "textBoxMotionAccuracyP";
+            this.textBoxMotionAccuracyP.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyP.TabIndex = 39;
+            this.textBoxMotionAccuracyP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox5
+            // textBoxMotionAccuracyV
             // 
-            this.textBox5.Location = new System.Drawing.Point(172, 202);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(219, 21);
-            this.textBox5.TabIndex = 35;
+            this.textBoxMotionAccuracyV.Location = new System.Drawing.Point(172, 202);
+            this.textBoxMotionAccuracyV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMotionAccuracyV.Name = "textBoxMotionAccuracyV";
+            this.textBoxMotionAccuracyV.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyV.TabIndex = 35;
+            this.textBoxMotionAccuracyV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label25
             // 
@@ -487,25 +497,26 @@
             this.label24.Text = "移動精度 Y[″]";
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox6
+            // textBoxMotionAccuracyY
             // 
-            this.textBox6.Location = new System.Drawing.Point(172, 231);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(219, 21);
-            this.textBox6.TabIndex = 37;
+            this.textBoxMotionAccuracyY.Location = new System.Drawing.Point(172, 231);
+            this.textBoxMotionAccuracyY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMotionAccuracyY.Name = "textBoxMotionAccuracyY";
+            this.textBoxMotionAccuracyY.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyY.TabIndex = 37;
+            this.textBoxMotionAccuracyY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.textBox13);
+            this.groupBox3.Controls.Add(this.textBoxWaitTimeAfterStopped);
             this.groupBox3.Controls.Add(this.label34);
-            this.groupBox3.Controls.Add(this.textBox12);
+            this.groupBox3.Controls.Add(this.textBoxLostMotionCorrectValue);
             this.groupBox3.Controls.Add(this.label33);
-            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.textBoxAccelerationTime);
             this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.textBox10);
+            this.groupBox3.Controls.Add(this.textBoxUpperSpeed);
             this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.textBox9);
+            this.groupBox3.Controls.Add(this.textBoxLowerSpeed);
             this.groupBox3.Controls.Add(this.label30);
             this.groupBox3.Location = new System.Drawing.Point(754, 282);
             this.groupBox3.Name = "groupBox3";
@@ -514,13 +525,14 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "ステージ測定条件";
             // 
-            // textBox13
+            // textBoxWaitTimeAfterStopped
             // 
-            this.textBox13.Location = new System.Drawing.Point(124, 137);
-            this.textBox13.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(116, 21);
-            this.textBox13.TabIndex = 22;
+            this.textBoxWaitTimeAfterStopped.Location = new System.Drawing.Point(124, 137);
+            this.textBoxWaitTimeAfterStopped.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxWaitTimeAfterStopped.Name = "textBoxWaitTimeAfterStopped";
+            this.textBoxWaitTimeAfterStopped.Size = new System.Drawing.Size(116, 21);
+            this.textBoxWaitTimeAfterStopped.TabIndex = 22;
+            this.textBoxWaitTimeAfterStopped.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label34
             // 
@@ -531,13 +543,14 @@
             this.label34.Text = "停止後待ち時間[ms]";
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox12
+            // textBoxLostMotionCorrectValue
             // 
-            this.textBox12.Location = new System.Drawing.Point(165, 108);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(75, 21);
-            this.textBox12.TabIndex = 20;
+            this.textBoxLostMotionCorrectValue.Location = new System.Drawing.Point(165, 108);
+            this.textBoxLostMotionCorrectValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLostMotionCorrectValue.Name = "textBoxLostMotionCorrectValue";
+            this.textBoxLostMotionCorrectValue.Size = new System.Drawing.Size(75, 21);
+            this.textBoxLostMotionCorrectValue.TabIndex = 20;
+            this.textBoxLostMotionCorrectValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label33
             // 
@@ -548,13 +561,14 @@
             this.label33.Text = "ロストモーション除去量[pulse]";
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox11
+            // textBoxAccelerationTime
             // 
-            this.textBox11.Location = new System.Drawing.Point(124, 79);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(116, 21);
-            this.textBox11.TabIndex = 18;
+            this.textBoxAccelerationTime.Location = new System.Drawing.Point(124, 79);
+            this.textBoxAccelerationTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxAccelerationTime.Name = "textBoxAccelerationTime";
+            this.textBoxAccelerationTime.Size = new System.Drawing.Size(116, 21);
+            this.textBoxAccelerationTime.TabIndex = 18;
+            this.textBoxAccelerationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label32
             // 
@@ -565,13 +579,14 @@
             this.label32.Text = "加減速時間[ms]";
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox10
+            // textBoxUpperSpeed
             // 
-            this.textBox10.Location = new System.Drawing.Point(124, 50);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(116, 21);
-            this.textBox10.TabIndex = 16;
+            this.textBoxUpperSpeed.Location = new System.Drawing.Point(124, 50);
+            this.textBoxUpperSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUpperSpeed.Name = "textBoxUpperSpeed";
+            this.textBoxUpperSpeed.Size = new System.Drawing.Size(116, 21);
+            this.textBoxUpperSpeed.TabIndex = 16;
+            this.textBoxUpperSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label31
             // 
@@ -582,13 +597,14 @@
             this.label31.Text = "高速速度[pps]";
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox9
+            // textBoxLowerSpeed
             // 
-            this.textBox9.Location = new System.Drawing.Point(124, 21);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(116, 21);
-            this.textBox9.TabIndex = 14;
+            this.textBoxLowerSpeed.Location = new System.Drawing.Point(124, 21);
+            this.textBoxLowerSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLowerSpeed.Name = "textBoxLowerSpeed";
+            this.textBoxLowerSpeed.Size = new System.Drawing.Size(116, 21);
+            this.textBoxLowerSpeed.TabIndex = 14;
+            this.textBoxLowerSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label30
             // 
@@ -619,9 +635,9 @@
             // 
             this.listBoxMeasuringPositions.FormattingEnabled = true;
             this.listBoxMeasuringPositions.ItemHeight = 15;
-            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 117);
+            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 116);
             this.listBoxMeasuringPositions.Name = "listBoxMeasuringPositions";
-            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(120, 79);
+            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(79, 79);
             this.listBoxMeasuringPositions.TabIndex = 17;
             // 
             // buttonDeleteMeasuringPosition
@@ -651,6 +667,7 @@
             this.textBox1MeasuringPosition.Name = "textBox1MeasuringPosition";
             this.textBox1MeasuringPosition.Size = new System.Drawing.Size(116, 21);
             this.textBox1MeasuringPosition.TabIndex = 15;
+            this.textBox1MeasuringPosition.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label29
             // 
@@ -668,6 +685,7 @@
             this.textBoxRepeatCount.Name = "textBoxRepeatCount";
             this.textBoxRepeatCount.Size = new System.Drawing.Size(116, 21);
             this.textBoxRepeatCount.TabIndex = 12;
+            this.textBoxRepeatCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label28
             // 
@@ -696,6 +714,7 @@
             this.textBoxMeasuringPointCount.Name = "textBoxMeasuringPointCount";
             this.textBoxMeasuringPointCount.Size = new System.Drawing.Size(116, 21);
             this.textBoxMeasuringPointCount.TabIndex = 12;
+            this.textBoxMeasuringPointCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label27
             // 
@@ -1323,21 +1342,21 @@
         private System.Windows.Forms.CheckBox checkBoxRepeatabilityOfPositioning;
         private System.Windows.Forms.CheckBox checkBoxPositioningAccuracy;
         private System.Windows.Forms.CheckBox checkBoxTravelRange;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBoxParallelismOfMotion;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBoxMotionAccuracyP;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBoxMotionAccuracyY;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBoxMotionAccuracyV;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox textBoxMotionAccuracyH;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxLostMotion;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBoxRepeatabilityOfPositioning;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxPositioningAccuracy;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox textBoxUpperTravelRange;
@@ -1362,15 +1381,15 @@
         private System.Windows.Forms.TextBox textBox1MeasuringPosition;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox13;
+        private System.Windows.Forms.TextBox textBoxWaitTimeAfterStopped;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBoxLostMotionCorrectValue;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox textBoxAccelerationTime;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox textBoxUpperSpeed;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox textBoxLowerSpeed;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button buttonShowMeasuringUnitSettingDialogue;
 

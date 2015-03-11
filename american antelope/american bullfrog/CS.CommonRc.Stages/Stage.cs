@@ -48,6 +48,7 @@ namespace CS.CommonRc.Stages {
         public const string AccelerationTimeMs = "AccelerationTimeMs";
         public const string LostMotionCorrectPps = "LostMotionCorrectPps";
         public const string WaitTimeMsAfterStopped = "WaitTimeMsAfterStopped";
+        public const string MeasuringPointCount = "MeasuringPointCount";
         public const string RepeatCount = "RepeatCount";
         public const string MeasuringPositions = "MeasuringPositions";
     }
@@ -157,12 +158,12 @@ namespace CS.CommonRc.Stages {
 
         private void LoadInformationVersion1(StreamReader reader) {
             InspectionItems = Inspections.InspectionItems.Nothing;
+            double upper = 0, lower = 0, offset = 0;
             while ( !reader.EndOfStream ) {
                 var words = reader.ReadLine().Split(',');
 
                 bool b;
                 double d;
-                double upper = 0, lower = 0, offset = 0;
                 switch ( words[0] ) {
                 case TextConsts.StageType:
                     StageType = (StageType)Enum.Parse(typeof(StageType), words[1]);
@@ -280,6 +281,9 @@ namespace CS.CommonRc.Stages {
                     break;
                 case TextConsts.WaitTimeMsAfterStopped:
                     WaitTimeMsAfterStopped = Int32.Parse(words[1]);
+                    break;
+                case TextConsts.MeasuringPointCount:
+                    MeasuringPointCount = Int32.Parse(words[1]);
                     break;
                 case TextConsts.RepeatCount:
                     RepeatCount = Int32.Parse(words[1]);

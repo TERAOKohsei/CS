@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="CS.CommonRc.MeasuringUnits\MeasuringUnit.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\LacS.cs" />
+    <Compile Include="MeasuringUnitCombination.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\Mitutoyo\LinearGuages\Counter.cs" />
     <Compile Include="CS.CommonRc.MeasuringUnits\Mitutoyo\LinearGuages\FormCounterSettings.cs">
       <SubType>Form</SubType>

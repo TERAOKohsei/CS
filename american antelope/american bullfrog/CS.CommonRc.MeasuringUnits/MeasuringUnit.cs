@@ -197,7 +197,6 @@ namespace CS.CommonRc.MeasuringUnits {
         }
 
         public virtual void ReadXml(System.Xml.XmlReader reader) {
-            reader.Read();
             ID = reader.ReadElementContentAsInt("ID", "");
             ManagementNumber = reader.ReadElementContentAsString("ManagementNumber", "");
             Manufacturer = reader.ReadElementContentAsString("Manufacturer", "");

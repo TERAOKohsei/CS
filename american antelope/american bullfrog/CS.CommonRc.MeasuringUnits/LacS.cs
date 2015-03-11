@@ -12,8 +12,7 @@ namespace CS.CommonRc.MeasuringUnits {
     public class LacS : MeasuringUnit {
         double[] currentAngle = new double[2];
 
-        protected LacS()
-            : base() {
+        public LacS() : base() {
         }
 
         public LacS(int id, string managementNumber, string manufacturer, string productName, string productType, string serialNumber, int axisCount,
@@ -97,6 +96,8 @@ namespace CS.CommonRc.MeasuringUnits {
         #region IXmlSerializable メンバー
 
         public override void ReadXml(System.Xml.XmlReader reader) {
+            reader.ReadStartElement("LacS");
+
             base.ReadXml(reader);
             switch ( reader.ReadElementContentAsString("Communication", "") ) {
             case "SerialPort":
@@ -113,9 +114,13 @@ namespace CS.CommonRc.MeasuringUnits {
                 }
                 break;
             }
+
+            reader.ReadEndElement();
         }
 
         public override void WriteXml(System.Xml.XmlWriter writer) {
+            writer.WriteStartElement("LacS");
+
             base.WriteXml(writer);
             if ( port == null ) {
                 writer.WriteElementString("Communication", "Null");
@@ -123,6 +128,8 @@ namespace CS.CommonRc.MeasuringUnits {
                 writer.WriteElementString("Communication", "SerialPort");
                 port.WriteXml(writer);
             }
+
+            writer.WriteEndElement();
         }
 
         #endregion
