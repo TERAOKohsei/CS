@@ -10,7 +10,7 @@ namespace CS.CommonRc.Inspections {
         Nothing = 0x0,
         TravelRange = 0x1,
         PositioningAccuracy = 0x2,
-        RepeatabilityofPositioning = 0x4,
+        RepeatabilityOfPositioning = 0x4,
         LostMotion = 0x8,
         MotionAccuracyHorizontal = 0x10,
         MotionAccuracyVertical = 0x20,
@@ -19,15 +19,15 @@ namespace CS.CommonRc.Inspections {
         ParallelismOfMotion = 0x100,
     }
 
-    public struct InspectionCondition {
-        public InspectionItems InspectionItems { get; private set; }
-        public int LowerSpeed { get; private set; }
-        public int UppeerSpeed { get; private set; }
-        public int AccelerationMilliSecond { get; private set; }
-        public double LostMotionCorrectValue { get; private set; }
-        public int WaitMilliSecondAfterStopped { get; private set; }
-        public int MeasuringPoints { get; private set; }
-        public int RepeatCount { get; private set; }
-        public double[] MeasuringPositions { get; private set; }
-    }
+    //public struct InspectionCondition {
+    //    public InspectionItems InspectionItems { get; private set; }
+    //    public int LowerSpeed { get; private set; }
+    //    public int UppeerSpeed { get; private set; }
+    //    public int AccelerationMilliSecond { get; private set; }
+    //    public double LostMotionCorrectValue { get; private set; }
+    //    public int WaitMilliSecondAfterStopped { get; private set; }
+    //    public int MeasuringPoints { get; private set; }
+    //    public int RepeatCount { get; private set; }
+    //    public double[] MeasuringPositions { get; private set; }
+    //}
 }

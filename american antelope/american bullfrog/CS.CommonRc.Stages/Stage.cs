@@ -64,7 +64,7 @@ namespace CS.CommonRc.Stages {
         public Range<double> TravelRange { get; set; }
         #endregion // General Specs
         #region Accuracy Specs
-        public double PositionAccuracy { get; set; }
+        public double PositioningAccuracy { get; set; }
         public double RepeatabilityOfPositioning { get; set; }
         public double LostMotion { get; set; }
         public double MotionAccuracyHorizontal { get; set; }
@@ -91,7 +91,7 @@ namespace CS.CommonRc.Stages {
             HaveOriginSensor = true;
             HaveLimitSensors = true;
             Resolution = 0.002;
-            PositionAccuracy = Double.NaN;
+            PositioningAccuracy = Double.NaN;
             RepeatabilityOfPositioning = Double.NaN;
             LostMotion = Double.NaN;
             LowerSpeedPps = 1000;
@@ -197,7 +197,7 @@ namespace CS.CommonRc.Stages {
                     break;
                 case TextConsts.PositioningAccuracy:
                     Double.TryParse(words[1], out d);
-                    PositionAccuracy = d;
+                    PositioningAccuracy = d;
                     break;
                 case TextConsts.RepeatabilityOfPositioning:
                     Double.TryParse(words[1], out d);
@@ -234,7 +234,7 @@ namespace CS.CommonRc.Stages {
                     break;
                 case TextConsts.InspectRepeatabilityOfPositioning:
                     if ( Boolean.Parse(words[1]) ) {
-                        InspectionItems |= Inspections.InspectionItems.RepeatabilityofPositioning;
+                        InspectionItems |= Inspections.InspectionItems.RepeatabilityOfPositioning;
                     }
                     break;
                 case TextConsts.InspectLostMotion:
@@ -311,6 +311,47 @@ namespace CS.CommonRc.Stages {
                     ProductType = words[0];
                     LoadInformationVersion0(sr);
                 }
+            }
+        }
+
+        public void SaveInformation(string filePath) {
+            using ( var sw = new StreamWriter(filePath, false, Encoding.GetEncoding("shift-jis")) ) {
+                sw.WriteLine("StageInformation,1");
+                sw.WriteLine(String.Join(",", TextConsts.StageType, StageType));
+                sw.WriteLine(String.Join(",", TextConsts.ProductName, ProductName));
+                sw.WriteLine(String.Join(",", TextConsts.ProductType, ProductType));
+                sw.WriteLine(String.Join(",", TextConsts.HaveOriginSensor, HaveOriginSensor));
+                sw.WriteLine(String.Join(",", TextConsts.HaveLimitSensors, HaveLimitSensors));
+                sw.WriteLine(String.Join(",", TextConsts.Resolution, Resolution));
+                sw.WriteLine(String.Join(",", TextConsts.TravelRangeLower, TravelRange.Lower));
+                sw.WriteLine(String.Join(",", TextConsts.TravelRangeUpper, TravelRange.Upper));
+                sw.WriteLine(String.Join(",", TextConsts.OriginPosition, TravelRange.Offset));
+                sw.WriteLine(String.Join(",", TextConsts.PositioningAccuracy, PositioningAccuracy));
+                sw.WriteLine(String.Join(",", TextConsts.RepeatabilityOfPositioning, RepeatabilityOfPositioning));
+                sw.WriteLine(String.Join(",", TextConsts.LostMotion, LostMotion));
+                sw.WriteLine(String.Join(",", TextConsts.MotionAccuracyHorizontal, MotionAccuracyHorizontal));
+                sw.WriteLine(String.Join(",", TextConsts.MotionAccuracyVertical, MotionAccuracyVertical));
+                sw.WriteLine(String.Join(",", TextConsts.MotionAccuracyYaw, MotionAccuracyYaw));
+                sw.WriteLine(String.Join(",", TextConsts.MotionAccuracyPitch, MotionAccuracyPitch));
+                sw.WriteLine(String.Join(",", TextConsts.ParallelismOfMotion, ParallelismOfMotion));
+                sw.WriteLine(String.Join(",", TextConsts.InspectTravelRange, InspectionItems.HasFlag(InspectionItems.TravelRange)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectPositioningAccuracy, InspectionItems.HasFlag(InspectionItems.PositioningAccuracy)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectRepeatabilityOfPositioning, InspectionItems.HasFlag(InspectionItems.RepeatabilityOfPositioning)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectLostMotion, InspectionItems.HasFlag(InspectionItems.LostMotion)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectMotionAccuracyHorizontal, InspectionItems.HasFlag(InspectionItems.MotionAccuracyHorizontal)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectMotionAccuracyVertical, InspectionItems.HasFlag(InspectionItems.MotionAccuracyVertical)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectMotionAccuracyYaw, InspectionItems.HasFlag(InspectionItems.MotionAccuracyYaw)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectMotionAccuracyPitch, InspectionItems.HasFlag(InspectionItems.MotionAccuracyPitch)));
+                sw.WriteLine(String.Join(",", TextConsts.InspectParallelismOfMotion, InspectionItems.HasFlag(InspectionItems.ParallelismOfMotion)));
+                sw.WriteLine(String.Join(",", TextConsts.LowerSpeedPps, LowerSpeedPps));
+                sw.WriteLine(String.Join(",", TextConsts.UpperSpeedPps, UpperSpeedPps));
+                sw.WriteLine(String.Join(",", TextConsts.AccelerationTimeMs, AccelerationTimeMs));
+                sw.WriteLine(String.Join(",", TextConsts.LostMotionCorrectPps, LostMotionCorrectPps));
+                sw.WriteLine(String.Join(",", TextConsts.WaitTimeMsAfterStopped, WaitTimeMsAfterStopped));
+                sw.WriteLine(String.Join(",", TextConsts.MeasuringPointCount, MeasuringPointCount));
+                sw.WriteLine(String.Join(",", TextConsts.RepeatCount, RepeatCount));
+                sw.Write(TextConsts.MeasuringPositions + ",");
+                sw.WriteLine(String.Join(",", MeasuringPositions));
             }
         }
     }

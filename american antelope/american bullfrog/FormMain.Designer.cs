@@ -25,6 +25,30 @@
         private void InitializeComponent() {
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.groupBoxPositioninAccuracyConditions = new System.Windows.Forms.GroupBox();
+            this.textBoxMeasuringPointCount = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.groupBoxRepeatabilityOfPositioning = new System.Windows.Forms.GroupBox();
+            this.listBoxMeasuringPositions = new System.Windows.Forms.ListBox();
+            this.buttonDeleteMeasuringPosition = new System.Windows.Forms.Button();
+            this.buttonAddMeasuringPosition = new System.Windows.Forms.Button();
+            this.textBoxMeasuringPosition = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.textBoxRepeatCount = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBoxWaitTimeAfterStopped = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.textBoxLostMotionCorrectValue = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.textBoxAccelerationTime = new System.Windows.Forms.TextBox();
+            this.label32 = new System.Windows.Forms.Label();
+            this.textBoxUpperSpeed = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.textBoxLowerSpeed = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.textBoxTravelRange = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -57,32 +81,11 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.textBoxMotionAccuracyY = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBoxWaitTimeAfterStopped = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBoxLostMotionCorrectValue = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.textBoxAccelerationTime = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
-            this.textBoxUpperSpeed = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.textBoxLowerSpeed = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.listBoxMeasuringPositions = new System.Windows.Forms.ListBox();
-            this.buttonDeleteMeasuringPosition = new System.Windows.Forms.Button();
-            this.buttonAddMeasuringPosition = new System.Windows.Forms.Button();
-            this.textBox1MeasuringPosition = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.textBoxRepeatCount = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxMeasuringPointCount = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
+            this.textBoxProductName = new System.Windows.Forms.TextBox();
             this.textBoxProductType = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.textBoxProductName = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.buttonLoadStageSpec = new System.Windows.Forms.Button();
+            this.buttonSaveStageSpec = new System.Windows.Forms.Button();
             this.textBoxNote = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -91,8 +94,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxSerialNumber = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.buttonShowMeasuringUnitSettingDialogue = new System.Windows.Forms.Button();
@@ -128,12 +129,15 @@
             this.tabPageLog = new System.Windows.Forms.TabPage();
             this.richTextBoxLogger = new System.Windows.Forms.RichTextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControlMain.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBoxPositioninAccuracyConditions.SuspendLayout();
+            this.groupBoxRepeatabilityOfPositioning.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -160,14 +164,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.groupBox4);
-            this.tabPage1.Controls.Add(this.groupBox3);
-            this.tabPage1.Controls.Add(this.groupBox2);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Controls.Add(this.textBoxProductType);
-            this.tabPage1.Controls.Add(this.label15);
-            this.tabPage1.Controls.Add(this.textBoxProductName);
-            this.tabPage1.Controls.Add(this.label14);
+            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.textBoxNote);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label12);
@@ -176,8 +173,6 @@
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.textBoxSerialNumber);
             this.tabPage1.Controls.Add(this.label10);
-            this.tabPage1.Controls.Add(this.button2);
-            this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage1.Name = "tabPage1";
@@ -186,6 +181,267 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "ステージ仕様/測定条件";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label14);
+            this.groupBox5.Controls.Add(this.groupBoxPositioninAccuracyConditions);
+            this.groupBox5.Controls.Add(this.groupBoxRepeatabilityOfPositioning);
+            this.groupBox5.Controls.Add(this.groupBox3);
+            this.groupBox5.Controls.Add(this.groupBox4);
+            this.groupBox5.Controls.Add(this.textBoxProductName);
+            this.groupBox5.Controls.Add(this.textBoxProductType);
+            this.groupBox5.Controls.Add(this.label15);
+            this.groupBox5.Controls.Add(this.buttonLoadStageSpec);
+            this.groupBox5.Controls.Add(this.buttonSaveStageSpec);
+            this.groupBox5.Location = new System.Drawing.Point(319, 7);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(624, 524);
+            this.groupBox5.TabIndex = 55;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "ステージ仕様/測定条件";
+            // 
+            // label14
+            // 
+            this.label14.Location = new System.Drawing.Point(7, 20);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(107, 22);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "製品名";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBoxPositioninAccuracyConditions
+            // 
+            this.groupBoxPositioninAccuracyConditions.Controls.Add(this.textBoxMeasuringPointCount);
+            this.groupBoxPositioninAccuracyConditions.Controls.Add(this.label27);
+            this.groupBoxPositioninAccuracyConditions.Location = new System.Drawing.Point(358, 78);
+            this.groupBoxPositioninAccuracyConditions.Name = "groupBoxPositioninAccuracyConditions";
+            this.groupBoxPositioninAccuracyConditions.Size = new System.Drawing.Size(255, 51);
+            this.groupBoxPositioninAccuracyConditions.TabIndex = 51;
+            this.groupBoxPositioninAccuracyConditions.TabStop = false;
+            this.groupBoxPositioninAccuracyConditions.Text = "位置決め精度/移動精度設定";
+            // 
+            // textBoxMeasuringPointCount
+            // 
+            this.textBoxMeasuringPointCount.Location = new System.Drawing.Point(124, 23);
+            this.textBoxMeasuringPointCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMeasuringPointCount.Name = "textBoxMeasuringPointCount";
+            this.textBoxMeasuringPointCount.Size = new System.Drawing.Size(116, 21);
+            this.textBoxMeasuringPointCount.TabIndex = 12;
+            this.textBoxMeasuringPointCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMeasuringPointCount.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label27
+            // 
+            this.label27.Location = new System.Drawing.Point(6, 23);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(112, 20);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "測定点数";
+            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBoxRepeatabilityOfPositioning
+            // 
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.listBoxMeasuringPositions);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.buttonDeleteMeasuringPosition);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.buttonAddMeasuringPosition);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.textBoxMeasuringPosition);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.label29);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.textBoxRepeatCount);
+            this.groupBoxRepeatabilityOfPositioning.Controls.Add(this.label28);
+            this.groupBoxRepeatabilityOfPositioning.Location = new System.Drawing.Point(358, 135);
+            this.groupBoxRepeatabilityOfPositioning.Name = "groupBoxRepeatabilityOfPositioning";
+            this.groupBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(255, 206);
+            this.groupBoxRepeatabilityOfPositioning.TabIndex = 52;
+            this.groupBoxRepeatabilityOfPositioning.TabStop = false;
+            this.groupBoxRepeatabilityOfPositioning.Text = "繰り返し精度/ロストモーション設定";
+            // 
+            // listBoxMeasuringPositions
+            // 
+            this.listBoxMeasuringPositions.FormattingEnabled = true;
+            this.listBoxMeasuringPositions.ItemHeight = 15;
+            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 116);
+            this.listBoxMeasuringPositions.Name = "listBoxMeasuringPositions";
+            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(79, 79);
+            this.listBoxMeasuringPositions.TabIndex = 17;
+            this.listBoxMeasuringPositions.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
+            this.listBoxMeasuringPositions.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxMeasuringPositions_KeyDown);
+            // 
+            // buttonDeleteMeasuringPosition
+            // 
+            this.buttonDeleteMeasuringPosition.Enabled = false;
+            this.buttonDeleteMeasuringPosition.Location = new System.Drawing.Point(184, 81);
+            this.buttonDeleteMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonDeleteMeasuringPosition.Name = "buttonDeleteMeasuringPosition";
+            this.buttonDeleteMeasuringPosition.Size = new System.Drawing.Size(56, 29);
+            this.buttonDeleteMeasuringPosition.TabIndex = 16;
+            this.buttonDeleteMeasuringPosition.Text = "削除";
+            this.buttonDeleteMeasuringPosition.UseVisualStyleBackColor = true;
+            this.buttonDeleteMeasuringPosition.Click += new System.EventHandler(this.buttonMeasuringPositions_Click);
+            // 
+            // buttonAddMeasuringPosition
+            // 
+            this.buttonAddMeasuringPosition.Enabled = false;
+            this.buttonAddMeasuringPosition.Location = new System.Drawing.Point(124, 81);
+            this.buttonAddMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonAddMeasuringPosition.Name = "buttonAddMeasuringPosition";
+            this.buttonAddMeasuringPosition.Size = new System.Drawing.Size(56, 29);
+            this.buttonAddMeasuringPosition.TabIndex = 16;
+            this.buttonAddMeasuringPosition.Text = "追加";
+            this.buttonAddMeasuringPosition.UseVisualStyleBackColor = true;
+            this.buttonAddMeasuringPosition.Click += new System.EventHandler(this.buttonMeasuringPositions_Click);
+            // 
+            // textBoxMeasuringPosition
+            // 
+            this.textBoxMeasuringPosition.Location = new System.Drawing.Point(124, 52);
+            this.textBoxMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxMeasuringPosition.Name = "textBoxMeasuringPosition";
+            this.textBoxMeasuringPosition.Size = new System.Drawing.Size(116, 21);
+            this.textBoxMeasuringPosition.TabIndex = 15;
+            this.textBoxMeasuringPosition.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMeasuringPosition.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label29
+            // 
+            this.label29.Location = new System.Drawing.Point(6, 52);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(112, 20);
+            this.label29.TabIndex = 13;
+            this.label29.Text = "測定点[mm]";
+            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxRepeatCount
+            // 
+            this.textBoxRepeatCount.Location = new System.Drawing.Point(124, 23);
+            this.textBoxRepeatCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxRepeatCount.Name = "textBoxRepeatCount";
+            this.textBoxRepeatCount.Size = new System.Drawing.Size(116, 21);
+            this.textBoxRepeatCount.TabIndex = 12;
+            this.textBoxRepeatCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxRepeatCount.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label28
+            // 
+            this.label28.Location = new System.Drawing.Point(6, 23);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(112, 20);
+            this.label28.TabIndex = 11;
+            this.label28.Text = "繰返し回数";
+            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBoxWaitTimeAfterStopped);
+            this.groupBox3.Controls.Add(this.label34);
+            this.groupBox3.Controls.Add(this.textBoxLostMotionCorrectValue);
+            this.groupBox3.Controls.Add(this.label33);
+            this.groupBox3.Controls.Add(this.textBoxAccelerationTime);
+            this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.textBoxUpperSpeed);
+            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.textBoxLowerSpeed);
+            this.groupBox3.Controls.Add(this.label30);
+            this.groupBox3.Location = new System.Drawing.Point(358, 347);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(255, 168);
+            this.groupBox3.TabIndex = 53;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ステージ測定条件";
+            // 
+            // textBoxWaitTimeAfterStopped
+            // 
+            this.textBoxWaitTimeAfterStopped.Location = new System.Drawing.Point(124, 137);
+            this.textBoxWaitTimeAfterStopped.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxWaitTimeAfterStopped.Name = "textBoxWaitTimeAfterStopped";
+            this.textBoxWaitTimeAfterStopped.Size = new System.Drawing.Size(116, 21);
+            this.textBoxWaitTimeAfterStopped.TabIndex = 22;
+            this.textBoxWaitTimeAfterStopped.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxWaitTimeAfterStopped.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label34
+            // 
+            this.label34.Location = new System.Drawing.Point(6, 137);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(112, 20);
+            this.label34.TabIndex = 21;
+            this.label34.Text = "停止後待ち時間[ms]";
+            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxLostMotionCorrectValue
+            // 
+            this.textBoxLostMotionCorrectValue.Location = new System.Drawing.Point(165, 108);
+            this.textBoxLostMotionCorrectValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLostMotionCorrectValue.Name = "textBoxLostMotionCorrectValue";
+            this.textBoxLostMotionCorrectValue.Size = new System.Drawing.Size(75, 21);
+            this.textBoxLostMotionCorrectValue.TabIndex = 20;
+            this.textBoxLostMotionCorrectValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxLostMotionCorrectValue.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label33
+            // 
+            this.label33.Location = new System.Drawing.Point(6, 108);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(153, 20);
+            this.label33.TabIndex = 19;
+            this.label33.Text = "ロストモーション除去量[pulse]";
+            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxAccelerationTime
+            // 
+            this.textBoxAccelerationTime.Location = new System.Drawing.Point(124, 79);
+            this.textBoxAccelerationTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxAccelerationTime.Name = "textBoxAccelerationTime";
+            this.textBoxAccelerationTime.Size = new System.Drawing.Size(116, 21);
+            this.textBoxAccelerationTime.TabIndex = 18;
+            this.textBoxAccelerationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxAccelerationTime.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label32
+            // 
+            this.label32.Location = new System.Drawing.Point(6, 79);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(112, 20);
+            this.label32.TabIndex = 17;
+            this.label32.Text = "加減速時間[ms]";
+            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxUpperSpeed
+            // 
+            this.textBoxUpperSpeed.Location = new System.Drawing.Point(124, 50);
+            this.textBoxUpperSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxUpperSpeed.Name = "textBoxUpperSpeed";
+            this.textBoxUpperSpeed.Size = new System.Drawing.Size(116, 21);
+            this.textBoxUpperSpeed.TabIndex = 16;
+            this.textBoxUpperSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxUpperSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label31
+            // 
+            this.label31.Location = new System.Drawing.Point(6, 50);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(112, 20);
+            this.label31.TabIndex = 15;
+            this.label31.Text = "高速速度[pps]";
+            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxLowerSpeed
+            // 
+            this.textBoxLowerSpeed.Location = new System.Drawing.Point(124, 21);
+            this.textBoxLowerSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxLowerSpeed.Name = "textBoxLowerSpeed";
+            this.textBoxLowerSpeed.Size = new System.Drawing.Size(116, 21);
+            this.textBoxLowerSpeed.TabIndex = 14;
+            this.textBoxLowerSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxLowerSpeed.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
+            // 
+            // label30
+            // 
+            this.label30.Location = new System.Drawing.Point(6, 21);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(112, 20);
+            this.label30.TabIndex = 13;
+            this.label30.Text = "低速速度[pps]";
+            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // groupBox4
             // 
@@ -220,9 +476,9 @@
             this.groupBox4.Controls.Add(this.label25);
             this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.textBoxMotionAccuracyY);
-            this.groupBox4.Location = new System.Drawing.Point(319, 71);
+            this.groupBox4.Location = new System.Drawing.Point(10, 78);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(408, 318);
+            this.groupBox4.Size = new System.Drawing.Size(335, 318);
             this.groupBox4.TabIndex = 54;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "測定項目";
@@ -232,9 +488,10 @@
             this.textBoxTravelRange.Location = new System.Drawing.Point(172, 21);
             this.textBoxTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxTravelRange.Name = "textBoxTravelRange";
-            this.textBoxTravelRange.Size = new System.Drawing.Size(219, 21);
+            this.textBoxTravelRange.Size = new System.Drawing.Size(147, 21);
             this.textBoxTravelRange.TabIndex = 22;
             this.textBoxTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxTravelRange.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label16
             // 
@@ -259,9 +516,10 @@
             this.textBoxLowerTravelRange.Location = new System.Drawing.Point(172, 53);
             this.textBoxLowerTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLowerTravelRange.Name = "textBoxLowerTravelRange";
-            this.textBoxLowerTravelRange.Size = new System.Drawing.Size(80, 21);
+            this.textBoxLowerTravelRange.Size = new System.Drawing.Size(50, 21);
             this.textBoxLowerTravelRange.TabIndex = 24;
             this.textBoxLowerTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxLowerTravelRange.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // checkBoxParallelismOfMotion
             // 
@@ -271,15 +529,17 @@
             this.checkBoxParallelismOfMotion.Size = new System.Drawing.Size(15, 14);
             this.checkBoxParallelismOfMotion.TabIndex = 50;
             this.checkBoxParallelismOfMotion.UseVisualStyleBackColor = true;
+            this.checkBoxParallelismOfMotion.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBoxUpperTravelRange
             // 
-            this.textBoxUpperTravelRange.Location = new System.Drawing.Point(311, 53);
+            this.textBoxUpperTravelRange.Location = new System.Drawing.Point(269, 53);
             this.textBoxUpperTravelRange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxUpperTravelRange.Name = "textBoxUpperTravelRange";
-            this.textBoxUpperTravelRange.Size = new System.Drawing.Size(80, 21);
+            this.textBoxUpperTravelRange.Size = new System.Drawing.Size(50, 21);
             this.textBoxUpperTravelRange.TabIndex = 24;
             this.textBoxUpperTravelRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxUpperTravelRange.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // checkBoxMotionAccuracyP
             // 
@@ -289,10 +549,11 @@
             this.checkBoxMotionAccuracyP.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMotionAccuracyP.TabIndex = 49;
             this.checkBoxMotionAccuracyP.UseVisualStyleBackColor = true;
+            this.checkBoxMotionAccuracyP.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label18
             // 
-            this.label18.Location = new System.Drawing.Point(260, 57);
+            this.label18.Location = new System.Drawing.Point(228, 53);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(35, 20);
             this.label18.TabIndex = 25;
@@ -307,6 +568,7 @@
             this.checkBoxMotionAccuracyY.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMotionAccuracyY.TabIndex = 48;
             this.checkBoxMotionAccuracyY.UseVisualStyleBackColor = true;
+            this.checkBoxMotionAccuracyY.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label19
             // 
@@ -325,15 +587,17 @@
             this.checkBoxMotionAccuracyV.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMotionAccuracyV.TabIndex = 47;
             this.checkBoxMotionAccuracyV.UseVisualStyleBackColor = true;
+            this.checkBoxMotionAccuracyV.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBoxPositioningAccuracy
             // 
             this.textBoxPositioningAccuracy.Location = new System.Drawing.Point(172, 84);
             this.textBoxPositioningAccuracy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxPositioningAccuracy.Name = "textBoxPositioningAccuracy";
-            this.textBoxPositioningAccuracy.Size = new System.Drawing.Size(219, 21);
+            this.textBoxPositioningAccuracy.Size = new System.Drawing.Size(147, 21);
             this.textBoxPositioningAccuracy.TabIndex = 27;
             this.textBoxPositioningAccuracy.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxPositioningAccuracy.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // checkBoxMotionAccuracyH
             // 
@@ -343,6 +607,7 @@
             this.checkBoxMotionAccuracyH.Size = new System.Drawing.Size(15, 14);
             this.checkBoxMotionAccuracyH.TabIndex = 46;
             this.checkBoxMotionAccuracyH.UseVisualStyleBackColor = true;
+            this.checkBoxMotionAccuracyH.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label20
             // 
@@ -361,15 +626,17 @@
             this.checkBoxLostMotion.Size = new System.Drawing.Size(15, 14);
             this.checkBoxLostMotion.TabIndex = 45;
             this.checkBoxLostMotion.UseVisualStyleBackColor = true;
+            this.checkBoxLostMotion.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBoxRepeatabilityOfPositioning
             // 
             this.textBoxRepeatabilityOfPositioning.Location = new System.Drawing.Point(172, 115);
             this.textBoxRepeatabilityOfPositioning.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxRepeatabilityOfPositioning.Name = "textBoxRepeatabilityOfPositioning";
-            this.textBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(219, 21);
+            this.textBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(147, 21);
             this.textBoxRepeatabilityOfPositioning.TabIndex = 29;
             this.textBoxRepeatabilityOfPositioning.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxRepeatabilityOfPositioning.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // checkBoxRepeatabilityOfPositioning
             // 
@@ -379,6 +646,7 @@
             this.checkBoxRepeatabilityOfPositioning.Size = new System.Drawing.Size(15, 14);
             this.checkBoxRepeatabilityOfPositioning.TabIndex = 44;
             this.checkBoxRepeatabilityOfPositioning.UseVisualStyleBackColor = true;
+            this.checkBoxRepeatabilityOfPositioning.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label21
             // 
@@ -397,15 +665,17 @@
             this.checkBoxPositioningAccuracy.Size = new System.Drawing.Size(15, 14);
             this.checkBoxPositioningAccuracy.TabIndex = 43;
             this.checkBoxPositioningAccuracy.UseVisualStyleBackColor = true;
+            this.checkBoxPositioningAccuracy.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // textBoxLostMotion
             // 
             this.textBoxLostMotion.Location = new System.Drawing.Point(172, 144);
             this.textBoxLostMotion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxLostMotion.Name = "textBoxLostMotion";
-            this.textBoxLostMotion.Size = new System.Drawing.Size(219, 21);
+            this.textBoxLostMotion.Size = new System.Drawing.Size(147, 21);
             this.textBoxLostMotion.TabIndex = 31;
             this.textBoxLostMotion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxLostMotion.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // checkBoxTravelRange
             // 
@@ -415,6 +685,7 @@
             this.checkBoxTravelRange.Size = new System.Drawing.Size(15, 14);
             this.checkBoxTravelRange.TabIndex = 42;
             this.checkBoxTravelRange.UseVisualStyleBackColor = true;
+            this.checkBoxTravelRange.CheckedChanged += new System.EventHandler(this.checkBox_CheckedChanged);
             // 
             // label22
             // 
@@ -430,18 +701,20 @@
             this.textBoxParallelismOfMotion.Location = new System.Drawing.Point(172, 289);
             this.textBoxParallelismOfMotion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxParallelismOfMotion.Name = "textBoxParallelismOfMotion";
-            this.textBoxParallelismOfMotion.Size = new System.Drawing.Size(219, 21);
+            this.textBoxParallelismOfMotion.Size = new System.Drawing.Size(147, 21);
             this.textBoxParallelismOfMotion.TabIndex = 41;
             this.textBoxParallelismOfMotion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxParallelismOfMotion.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // textBoxMotionAccuracyH
             // 
             this.textBoxMotionAccuracyH.Location = new System.Drawing.Point(172, 173);
             this.textBoxMotionAccuracyH.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMotionAccuracyH.Name = "textBoxMotionAccuracyH";
-            this.textBoxMotionAccuracyH.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyH.Size = new System.Drawing.Size(147, 21);
             this.textBoxMotionAccuracyH.TabIndex = 33;
             this.textBoxMotionAccuracyH.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMotionAccuracyH.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label26
             // 
@@ -466,18 +739,20 @@
             this.textBoxMotionAccuracyP.Location = new System.Drawing.Point(172, 260);
             this.textBoxMotionAccuracyP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMotionAccuracyP.Name = "textBoxMotionAccuracyP";
-            this.textBoxMotionAccuracyP.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyP.Size = new System.Drawing.Size(147, 21);
             this.textBoxMotionAccuracyP.TabIndex = 39;
             this.textBoxMotionAccuracyP.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMotionAccuracyP.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // textBoxMotionAccuracyV
             // 
             this.textBoxMotionAccuracyV.Location = new System.Drawing.Point(172, 202);
             this.textBoxMotionAccuracyV.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMotionAccuracyV.Name = "textBoxMotionAccuracyV";
-            this.textBoxMotionAccuracyV.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyV.Size = new System.Drawing.Size(147, 21);
             this.textBoxMotionAccuracyV.TabIndex = 35;
             this.textBoxMotionAccuracyV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMotionAccuracyV.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label25
             // 
@@ -502,275 +777,73 @@
             this.textBoxMotionAccuracyY.Location = new System.Drawing.Point(172, 231);
             this.textBoxMotionAccuracyY.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxMotionAccuracyY.Name = "textBoxMotionAccuracyY";
-            this.textBoxMotionAccuracyY.Size = new System.Drawing.Size(219, 21);
+            this.textBoxMotionAccuracyY.Size = new System.Drawing.Size(147, 21);
             this.textBoxMotionAccuracyY.TabIndex = 37;
             this.textBoxMotionAccuracyY.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.textBoxMotionAccuracyY.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
-            // groupBox3
+            // textBoxProductName
             // 
-            this.groupBox3.Controls.Add(this.textBoxWaitTimeAfterStopped);
-            this.groupBox3.Controls.Add(this.label34);
-            this.groupBox3.Controls.Add(this.textBoxLostMotionCorrectValue);
-            this.groupBox3.Controls.Add(this.label33);
-            this.groupBox3.Controls.Add(this.textBoxAccelerationTime);
-            this.groupBox3.Controls.Add(this.label32);
-            this.groupBox3.Controls.Add(this.textBoxUpperSpeed);
-            this.groupBox3.Controls.Add(this.label31);
-            this.groupBox3.Controls.Add(this.textBoxLowerSpeed);
-            this.groupBox3.Controls.Add(this.label30);
-            this.groupBox3.Location = new System.Drawing.Point(754, 282);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(255, 168);
-            this.groupBox3.TabIndex = 53;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "ステージ測定条件";
-            // 
-            // textBoxWaitTimeAfterStopped
-            // 
-            this.textBoxWaitTimeAfterStopped.Location = new System.Drawing.Point(124, 137);
-            this.textBoxWaitTimeAfterStopped.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxWaitTimeAfterStopped.Name = "textBoxWaitTimeAfterStopped";
-            this.textBoxWaitTimeAfterStopped.Size = new System.Drawing.Size(116, 21);
-            this.textBoxWaitTimeAfterStopped.TabIndex = 22;
-            this.textBoxWaitTimeAfterStopped.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label34
-            // 
-            this.label34.Location = new System.Drawing.Point(6, 137);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(112, 20);
-            this.label34.TabIndex = 21;
-            this.label34.Text = "停止後待ち時間[ms]";
-            this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxLostMotionCorrectValue
-            // 
-            this.textBoxLostMotionCorrectValue.Location = new System.Drawing.Point(165, 108);
-            this.textBoxLostMotionCorrectValue.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxLostMotionCorrectValue.Name = "textBoxLostMotionCorrectValue";
-            this.textBoxLostMotionCorrectValue.Size = new System.Drawing.Size(75, 21);
-            this.textBoxLostMotionCorrectValue.TabIndex = 20;
-            this.textBoxLostMotionCorrectValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label33
-            // 
-            this.label33.Location = new System.Drawing.Point(6, 108);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(153, 20);
-            this.label33.TabIndex = 19;
-            this.label33.Text = "ロストモーション除去量[pulse]";
-            this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxAccelerationTime
-            // 
-            this.textBoxAccelerationTime.Location = new System.Drawing.Point(124, 79);
-            this.textBoxAccelerationTime.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxAccelerationTime.Name = "textBoxAccelerationTime";
-            this.textBoxAccelerationTime.Size = new System.Drawing.Size(116, 21);
-            this.textBoxAccelerationTime.TabIndex = 18;
-            this.textBoxAccelerationTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label32
-            // 
-            this.label32.Location = new System.Drawing.Point(6, 79);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(112, 20);
-            this.label32.TabIndex = 17;
-            this.label32.Text = "加減速時間[ms]";
-            this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxUpperSpeed
-            // 
-            this.textBoxUpperSpeed.Location = new System.Drawing.Point(124, 50);
-            this.textBoxUpperSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxUpperSpeed.Name = "textBoxUpperSpeed";
-            this.textBoxUpperSpeed.Size = new System.Drawing.Size(116, 21);
-            this.textBoxUpperSpeed.TabIndex = 16;
-            this.textBoxUpperSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label31
-            // 
-            this.label31.Location = new System.Drawing.Point(6, 50);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(112, 20);
-            this.label31.TabIndex = 15;
-            this.label31.Text = "高速速度[pps]";
-            this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxLowerSpeed
-            // 
-            this.textBoxLowerSpeed.Location = new System.Drawing.Point(124, 21);
-            this.textBoxLowerSpeed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxLowerSpeed.Name = "textBoxLowerSpeed";
-            this.textBoxLowerSpeed.Size = new System.Drawing.Size(116, 21);
-            this.textBoxLowerSpeed.TabIndex = 14;
-            this.textBoxLowerSpeed.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label30
-            // 
-            this.label30.Location = new System.Drawing.Point(6, 21);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(112, 20);
-            this.label30.TabIndex = 13;
-            this.label30.Text = "低速速度[pps]";
-            this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.listBoxMeasuringPositions);
-            this.groupBox2.Controls.Add(this.buttonDeleteMeasuringPosition);
-            this.groupBox2.Controls.Add(this.buttonAddMeasuringPosition);
-            this.groupBox2.Controls.Add(this.textBox1MeasuringPosition);
-            this.groupBox2.Controls.Add(this.label29);
-            this.groupBox2.Controls.Add(this.textBoxRepeatCount);
-            this.groupBox2.Controls.Add(this.label28);
-            this.groupBox2.Location = new System.Drawing.Point(754, 70);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(255, 206);
-            this.groupBox2.TabIndex = 52;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "繰り返し精度/ロストモーション設定";
-            // 
-            // listBoxMeasuringPositions
-            // 
-            this.listBoxMeasuringPositions.FormattingEnabled = true;
-            this.listBoxMeasuringPositions.ItemHeight = 15;
-            this.listBoxMeasuringPositions.Location = new System.Drawing.Point(124, 116);
-            this.listBoxMeasuringPositions.Name = "listBoxMeasuringPositions";
-            this.listBoxMeasuringPositions.Size = new System.Drawing.Size(79, 79);
-            this.listBoxMeasuringPositions.TabIndex = 17;
-            // 
-            // buttonDeleteMeasuringPosition
-            // 
-            this.buttonDeleteMeasuringPosition.Location = new System.Drawing.Point(184, 81);
-            this.buttonDeleteMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonDeleteMeasuringPosition.Name = "buttonDeleteMeasuringPosition";
-            this.buttonDeleteMeasuringPosition.Size = new System.Drawing.Size(56, 29);
-            this.buttonDeleteMeasuringPosition.TabIndex = 16;
-            this.buttonDeleteMeasuringPosition.Text = "削除";
-            this.buttonDeleteMeasuringPosition.UseVisualStyleBackColor = true;
-            // 
-            // buttonAddMeasuringPosition
-            // 
-            this.buttonAddMeasuringPosition.Location = new System.Drawing.Point(124, 81);
-            this.buttonAddMeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.buttonAddMeasuringPosition.Name = "buttonAddMeasuringPosition";
-            this.buttonAddMeasuringPosition.Size = new System.Drawing.Size(56, 29);
-            this.buttonAddMeasuringPosition.TabIndex = 16;
-            this.buttonAddMeasuringPosition.Text = "追加";
-            this.buttonAddMeasuringPosition.UseVisualStyleBackColor = true;
-            // 
-            // textBox1MeasuringPosition
-            // 
-            this.textBox1MeasuringPosition.Location = new System.Drawing.Point(124, 52);
-            this.textBox1MeasuringPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox1MeasuringPosition.Name = "textBox1MeasuringPosition";
-            this.textBox1MeasuringPosition.Size = new System.Drawing.Size(116, 21);
-            this.textBox1MeasuringPosition.TabIndex = 15;
-            this.textBox1MeasuringPosition.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label29
-            // 
-            this.label29.Location = new System.Drawing.Point(6, 52);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(112, 20);
-            this.label29.TabIndex = 13;
-            this.label29.Text = "測定点[mm]";
-            this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // textBoxRepeatCount
-            // 
-            this.textBoxRepeatCount.Location = new System.Drawing.Point(124, 23);
-            this.textBoxRepeatCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxRepeatCount.Name = "textBoxRepeatCount";
-            this.textBoxRepeatCount.Size = new System.Drawing.Size(116, 21);
-            this.textBoxRepeatCount.TabIndex = 12;
-            this.textBoxRepeatCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label28
-            // 
-            this.label28.Location = new System.Drawing.Point(6, 23);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(112, 20);
-            this.label28.TabIndex = 11;
-            this.label28.Text = "繰返し回数";
-            this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.textBoxMeasuringPointCount);
-            this.groupBox1.Controls.Add(this.label27);
-            this.groupBox1.Location = new System.Drawing.Point(754, 13);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(255, 51);
-            this.groupBox1.TabIndex = 51;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "位置決め精度/移動精度設定";
-            // 
-            // textBoxMeasuringPointCount
-            // 
-            this.textBoxMeasuringPointCount.Location = new System.Drawing.Point(124, 23);
-            this.textBoxMeasuringPointCount.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxMeasuringPointCount.Name = "textBoxMeasuringPointCount";
-            this.textBoxMeasuringPointCount.Size = new System.Drawing.Size(116, 21);
-            this.textBoxMeasuringPointCount.TabIndex = 12;
-            this.textBoxMeasuringPointCount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label27
-            // 
-            this.label27.Location = new System.Drawing.Point(6, 23);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(112, 20);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "測定点数";
-            this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.textBoxProductName.Location = new System.Drawing.Point(119, 21);
+            this.textBoxProductName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.textBoxProductName.Name = "textBoxProductName";
+            this.textBoxProductName.Size = new System.Drawing.Size(494, 21);
+            this.textBoxProductName.TabIndex = 18;
+            this.textBoxProductName.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // textBoxProductType
             // 
-            this.textBoxProductType.Location = new System.Drawing.Point(429, 43);
+            this.textBoxProductType.Location = new System.Drawing.Point(119, 50);
             this.textBoxProductType.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxProductType.Name = "textBoxProductType";
-            this.textBoxProductType.Size = new System.Drawing.Size(298, 21);
+            this.textBoxProductType.Size = new System.Drawing.Size(494, 21);
             this.textBoxProductType.TabIndex = 20;
+            this.textBoxProductType.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label15
             // 
-            this.label15.Location = new System.Drawing.Point(315, 40);
+            this.label15.Location = new System.Drawing.Point(6, 49);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(108, 22);
             this.label15.TabIndex = 19;
             this.label15.Text = "製品型番";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBoxProductName
+            // buttonLoadStageSpec
             // 
-            this.textBoxProductName.Location = new System.Drawing.Point(429, 12);
-            this.textBoxProductName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBoxProductName.Name = "textBoxProductName";
-            this.textBoxProductName.Size = new System.Drawing.Size(298, 21);
-            this.textBoxProductName.TabIndex = 18;
+            this.buttonLoadStageSpec.Location = new System.Drawing.Point(6, 426);
+            this.buttonLoadStageSpec.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonLoadStageSpec.Name = "buttonLoadStageSpec";
+            this.buttonLoadStageSpec.Size = new System.Drawing.Size(335, 29);
+            this.buttonLoadStageSpec.TabIndex = 7;
+            this.buttonLoadStageSpec.Text = "読み込み...";
+            this.buttonLoadStageSpec.UseVisualStyleBackColor = true;
+            this.buttonLoadStageSpec.Click += new System.EventHandler(this.buttonLoadStageSpec_Click);
             // 
-            // label14
+            // buttonSaveStageSpec
             // 
-            this.label14.Location = new System.Drawing.Point(316, 11);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(107, 22);
-            this.label14.TabIndex = 17;
-            this.label14.Text = "製品名";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.buttonSaveStageSpec.Location = new System.Drawing.Point(6, 480);
+            this.buttonSaveStageSpec.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.buttonSaveStageSpec.Name = "buttonSaveStageSpec";
+            this.buttonSaveStageSpec.Size = new System.Drawing.Size(335, 29);
+            this.buttonSaveStageSpec.TabIndex = 8;
+            this.buttonSaveStageSpec.Text = "保存...";
+            this.buttonSaveStageSpec.UseVisualStyleBackColor = true;
+            this.buttonSaveStageSpec.Click += new System.EventHandler(this.buttonSaveStageSpec_Click);
             // 
             // textBoxNote
             // 
-            this.textBoxNote.Location = new System.Drawing.Point(134, 260);
+            this.textBoxNote.Location = new System.Drawing.Point(127, 186);
             this.textBoxNote.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxNote.Multiline = true;
             this.textBoxNote.Name = "textBoxNote";
             this.textBoxNote.Size = new System.Drawing.Size(179, 190);
             this.textBoxNote.TabIndex = 16;
+            this.textBoxNote.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label13
             // 
-            this.label13.Location = new System.Drawing.Point(15, 261);
+            this.label13.Location = new System.Drawing.Point(8, 187);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(112, 20);
             this.label13.TabIndex = 15;
@@ -779,7 +852,7 @@
             // 
             // label12
             // 
-            this.label12.Location = new System.Drawing.Point(15, 142);
+            this.label12.Location = new System.Drawing.Point(8, 68);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(112, 20);
             this.label12.TabIndex = 14;
@@ -790,23 +863,25 @@
             // 
             this.listBoxInspectors.FormattingEnabled = true;
             this.listBoxInspectors.ItemHeight = 15;
-            this.listBoxInspectors.Location = new System.Drawing.Point(134, 142);
+            this.listBoxInspectors.Location = new System.Drawing.Point(127, 68);
             this.listBoxInspectors.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBoxInspectors.Name = "listBoxInspectors";
             this.listBoxInspectors.Size = new System.Drawing.Size(179, 109);
             this.listBoxInspectors.TabIndex = 13;
+            this.listBoxInspectors.SelectedIndexChanged += new System.EventHandler(this.listBox_SelectedIndexChanged);
             // 
             // textBoxProductCode
             // 
-            this.textBoxProductCode.Location = new System.Drawing.Point(134, 111);
+            this.textBoxProductCode.Location = new System.Drawing.Point(127, 37);
             this.textBoxProductCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxProductCode.Name = "textBoxProductCode";
             this.textBoxProductCode.Size = new System.Drawing.Size(179, 21);
             this.textBoxProductCode.TabIndex = 12;
+            this.textBoxProductCode.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label11
             // 
-            this.label11.Location = new System.Drawing.Point(15, 112);
+            this.label11.Location = new System.Drawing.Point(8, 38);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(112, 20);
             this.label11.TabIndex = 11;
@@ -815,40 +890,21 @@
             // 
             // textBoxSerialNumber
             // 
-            this.textBoxSerialNumber.Location = new System.Drawing.Point(134, 80);
+            this.textBoxSerialNumber.Location = new System.Drawing.Point(127, 6);
             this.textBoxSerialNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBoxSerialNumber.Name = "textBoxSerialNumber";
             this.textBoxSerialNumber.Size = new System.Drawing.Size(179, 21);
             this.textBoxSerialNumber.TabIndex = 10;
+            this.textBoxSerialNumber.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Validating);
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(15, 81);
+            this.label10.Location = new System.Drawing.Point(8, 7);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(112, 20);
             this.label10.TabIndex = 9;
             this.label10.Text = "ロット/シリアルNo.";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(9, 44);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(300, 29);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "保存...";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(9, 8);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(301, 29);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "読み込み...";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
@@ -1244,6 +1300,20 @@
             this.panel1.Size = new System.Drawing.Size(1176, 146);
             this.panel1.TabIndex = 1;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "csv";
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "ステージ定義ファイル|*.csv";
+            this.openFileDialog1.Title = "ステージ定義ファイルを読み込む";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "csv";
+            this.saveFileDialog1.Filter = "ステージ定義ファイル|*.csv";
+            this.saveFileDialog1.RestoreDirectory = true;
+            this.saveFileDialog1.Title = "ステージ定義ファイルに書き込む";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1262,14 +1332,16 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBoxPositioninAccuracyConditions.ResumeLayout(false);
+            this.groupBoxPositioninAccuracyConditions.PerformLayout();
+            this.groupBoxRepeatabilityOfPositioning.ResumeLayout(false);
+            this.groupBoxRepeatabilityOfPositioning.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -1328,8 +1400,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBoxSerialNumber;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSaveStageSpec;
+        private System.Windows.Forms.Button buttonLoadStageSpec;
         private System.Windows.Forms.TextBox textBoxNote;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
@@ -1368,17 +1440,17 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox textBoxProductName;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxRepeatabilityOfPositioning;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.TextBox textBoxRepeatCount;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxPositioninAccuracyConditions;
         private System.Windows.Forms.TextBox textBoxMeasuringPointCount;
         private System.Windows.Forms.Label label27;
         private System.Windows.Forms.ListBox listBoxMeasuringPositions;
         private System.Windows.Forms.Button buttonDeleteMeasuringPosition;
         private System.Windows.Forms.Button buttonAddMeasuringPosition;
-        private System.Windows.Forms.TextBox textBox1MeasuringPosition;
+        private System.Windows.Forms.TextBox textBoxMeasuringPosition;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBoxWaitTimeAfterStopped;
@@ -1392,6 +1464,9 @@
         private System.Windows.Forms.TextBox textBoxLowerSpeed;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button buttonShowMeasuringUnitSettingDialogue;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 
     }
 }

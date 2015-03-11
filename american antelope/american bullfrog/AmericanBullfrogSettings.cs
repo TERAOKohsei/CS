@@ -8,6 +8,7 @@ using CS.CommonRc.MeasuringUnits;
 using CS.CommonRc.Stages;
 using CS.CommonRc.StageControllers;
 
+using System.IO;
 using System.Xml.Serialization;
 
 namespace CS.Applications.AmericanBullfrog {
@@ -34,11 +35,13 @@ namespace CS.Applications.AmericanBullfrog {
     public struct AmericanBullfrogSettings : IXmlSerializable {
         public static MeasuringUnit[] MeasuringUnits;
         public static Sensor[] Sensors;
+        public static Inspector[] Inspectors;
         public MeasuringUnitCombination LengthUnit;
         public MeasuringUnitCombination HUnit;
         public MeasuringUnitCombination VUnit;
         public MeasuringUnitCombination YUnit;
         public MeasuringUnitCombination PUnit;
+        public InspectionConditions Conditions;
 
         public StageController StageController;
         public Stage Stage;
@@ -47,12 +50,12 @@ namespace CS.Applications.AmericanBullfrog {
             try {
                 MeasuringUnits = MeasuringUnit.LoadFromFile(filePath).ToArray();
             } catch ( Exception e ) {
-                FormMain.logger.DebugException("測定機リスト読み込み中に例外が発生。", e);
+                FormMain.Logger.DebugException("測定機リスト読み込み中に例外が発生。", e);
                 throw;
             }
 
             foreach ( var unit in MeasuringUnits ) {
-                FormMain.logger.Trace(String.Format("測定機{0}: {1} {2} ({3})を読み込み", unit.ID, unit.Manufacturer, unit.ProductType, unit.ManagementNumber));
+                FormMain.Logger.Trace(String.Format("測定機{0}: {1} {2} ({3})を読み込み", unit.ID, unit.Manufacturer, unit.ProductType, unit.ManagementNumber));
             }
         }
 
@@ -60,12 +63,35 @@ namespace CS.Applications.AmericanBullfrog {
             try {
                 Sensors = Sensor.LoadFromFile(filePath).ToArray();
             } catch ( Exception e ) {
-                FormMain.logger.DebugException("センサリスト読み込み中に例外が発生。", e);
+                FormMain.Logger.DebugException("センサリスト読み込み中に例外が発生。", e);
                 throw;
             }
 
             foreach ( var sensor in Sensors ) {
-                FormMain.logger.Trace(String.Format("センサ{0}: {1} {2} ({3})を読み込み", sensor.Id, sensor.Manufacturer, sensor.ProductType, sensor.ManagementNumber));
+                FormMain.Logger.Trace(String.Format("センサ{0}: {1} {2} ({3})を読み込み", sensor.Id, sensor.Manufacturer, sensor.ProductType, sensor.ManagementNumber));
+            }
+        }
+
+        public static void LoadInspectorsList(string filePath) {
+            var inspectors = new List<Inspector>();
+
+            try {
+                using ( StreamReader sr = new StreamReader(filePath, Encoding.GetEncoding("shift-jis")) ) {
+                    while ( !sr.EndOfStream ) {
+                        var words = sr.ReadLine().Split(',');
+                        int c;
+                        Int32.TryParse(words[0], out c);
+                        inspectors.Add(new Inspector(c, words[1]));
+                    }
+                }
+            } catch ( Exception e ) {
+                FormMain.Logger.DebugException("検査担当リスト読み込み中に例外が発生。", e);
+                throw;
+            }
+
+            Inspectors = inspectors.ToArray();
+            foreach ( var inspector in Inspectors ) {
+                FormMain.Logger.Trace(String.Format("検査担当:{0}を読み込み", inspector.ToString()));
             }
         }
 
@@ -199,6 +225,16 @@ namespace CS.Applications.AmericanBullfrog {
             xs.Serialize(writer, Stage);
         }
 
+        private void ReadXmlInspectionConditions(System.Xml.XmlReader reader) {
+            var xs = new XmlSerializer(typeof(InspectionConditions));
+            Conditions = (InspectionConditions)xs.Deserialize(reader);
+        }
+
+        private void WriteXmlInspectionConditions(System.Xml.XmlWriter writer) {
+            var xs = new XmlSerializer(typeof(InspectionConditions));
+            xs.Serialize(writer, Conditions);
+        }
+
         public void ReadXml(System.Xml.XmlReader reader) {
             reader.ReadStartElement("AmericanBullfrogSettings");
 
@@ -206,8 +242,7 @@ namespace CS.Applications.AmericanBullfrog {
             ReadXmlStageControllers(reader);
             ReadXmlMeasuringUnits(reader);
             ReadXmlStage(reader);
-
-            // TODO: 測定キリストの設定値を復元。
+            ReadXmlInspectionConditions(reader);
             reader.ReadEndElement();
         }
 
@@ -216,6 +251,7 @@ namespace CS.Applications.AmericanBullfrog {
             WriteXmlStageControllers(writer);
             WriteXmlMeasuringUnits(writer);
             WriteXmlStage(writer);
+            WriteXmlInspectionConditions(writer);
         }
 
         #endregion
